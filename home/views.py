@@ -1,8 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Consultant
 
 # Create your views here.
 
+def consultant_home(request):
+    """
+    Renders the home page
+    """
+    consultant = Consultant.objects.all().first()
 
-def my_home(request):
-    return HttpResponse("Hello, World!")
+    return render(
+        request,
+        "home/home.html",
+        {"consultant": consultant},
+    )
