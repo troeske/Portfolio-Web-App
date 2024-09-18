@@ -16,11 +16,14 @@
     <h2>{{ section.heading_2 }}</h2>
     <br>
     <p>{{ section.text }}</p>
+    
     {% if show_images %}
+    <p>test</p>
     {% for image in images %}
-    <img src="{{ section.image.url }}" width="35%" alt="{{ section.alt_text }}">
+    <img src="{{ image.image.url }}" width="35%" alt="{{ section.alt_text }}">
     {% endfor %}
     {% endif %}
+    
     {% endfor %}
 
     {% endif %}
@@ -30,7 +33,7 @@
     <h3>Learnings</h3>
     <br>
     {% for learning in learnings %}
-    <p>{{ learning.header }}</p>
+    <h4>{{ learning.header }}</h4>
     <p>{{ learning.text }}</p>
     {% endfor %}
     
