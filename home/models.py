@@ -30,11 +30,12 @@ class Skill(models.Model):
         )
     label = models.CharField(max_length=200, blank=False)
     type = models.IntegerField(choices=TYPE, default=1)
-    proficiency = models.IntegerField()
+    proficiency = models.IntegerField(null=True, blank=True)
     text = models.TextField(blank=True)
+    display_order = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ["consultant_id","type"]
+        ordering = ["consultant_id","type", "display_order"]
 
     def __str__(self):
         return f"{self.consultant_id} | Type: {self.type} - {self.label}"

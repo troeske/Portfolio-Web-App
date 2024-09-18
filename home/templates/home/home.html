@@ -2,25 +2,23 @@
 {% block content %}
 {% load static %}
 <div class="container mt-5">
-    <img src="{{consultant.profile_image.url}}" width="35%" alt="">
-    <h3>Name: {{ consultant.first_name }} {{ consultant.last_name }}</h3>
-    <p>{{ consultant.intro_text }}</p>
-    <p>{{ consultant.phone }}</p>
-    <p>{{ consultant.street }}</p>
+    <h3>{{ consultant.first_name }} {{ consultant.last_name }}</h3>
     <p>{{ consultant.city }}.{{ consultant.country }}</p>
-</div>
-
-<!-- About section -->
-<div class="container mt-5">
-    <h2>ABOUT</h2>
+    <br>
+    <p>{{ consultant.intro_text }}</p>
+    <img src="{{consultant.profile_image.url}}" width="35%" alt="">
     {% if show_roles %}
     <h3>Roles</h3>
     {% for role in roles %}
     <p>{{ role.label }}</p>
     <p>{{ role.text }}</p>
-    <p>{{ role.proficiency }}</p>
     {% endfor %}
     {% endif %}
+</div>
+
+<!-- About section -->
+<div class="container mt-5">
+    <h2>ABOUT</h2>
     {% if show_tools %}
     <h3>Tools</h3>
     {% for t in tools %}

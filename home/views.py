@@ -18,7 +18,7 @@ def consultant_home(request):
     """
     current_consultant = get_consultant()
     consultant = Consultant.objects.filter(consultant_id=current_consultant).first()
-    skills = Skill.objects.filter(consultant_id=current_consultant, type=1)
+    skills = Skill.objects.filter(consultant_id=current_consultant, type=1).order_by("display_order")
     show_skills = False if skills.count() == 0 else True
 
     tools = Skill.objects.filter(consultant_id=current_consultant, type=2)
