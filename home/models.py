@@ -8,9 +8,7 @@ TYPE = ((1, "Skill"), (2, "Tool"), (3, "Interest"), (4, "Role"))
 
 
 class Consultant(models.Model):
-    consultant = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="home_consultants"
-        )
+    consultant_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=200, blank=True)
     last_name = models.CharField(max_length=200, blank=True)
     email = models.EmailField(null=True, blank=True)
@@ -23,8 +21,8 @@ class Consultant(models.Model):
 
 
 class Skill(models.Model):
-    consultant = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="home_skills"
+    consultant_id = models.ForeignKey(
+        Consultant, on_delete=models.CASCADE, related_name="home_skills"
         )
     label = models.CharField(max_length=200, blank=False)
     type = models.IntegerField(choices=TYPE, default=1)
@@ -37,9 +35,10 @@ class Skill(models.Model):
     def __str__(self):
         return f"{self.type} | {self.label}"
 
+
 class PastEmployment(models.Model):
-    consultant = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="home_pastemployments"
+    consultant_id = models.ForeignKey(
+        Consultant, on_delete=models.CASCADE, related_name="home_pastemployments"
         )
     company = models.CharField(max_length=200, blank=False)
     country = models.CharField(max_length=200, blank=False)
@@ -55,12 +54,14 @@ class PastEmployment(models.Model):
     def __str__(self):
         return f"{self.start} | {self.company} |  {self.role}"
 
+
 class PressLink(models.Model):
-    consultant = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="home_presslinks"
+    consultant_id = models.ForeignKey(
+        Consultant, on_delete=models.CASCADE, related_name="home_presslinks"
         )
-    link_text = models.CharField(max_length=200, blank=False)
+    link_text = models.CharField(max_length=250, blank=False)
     link = models.URLField(max_length=250, blank=False)
+
 
 class Config(models.Model):
     """

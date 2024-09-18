@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from .models import Consultant, Config
+from .models import Consultant, Config, Skill, PastEmployment, PressLink
 
 def get_consultant():
     """
     Get the consultant id from the Config table
     """
-    consultant = Config.objects.filter(key="CURRENT_CONSULTANT").first()
+    queryset = Config.objects.filter(key="CURRENT_CONSULTANT")
+    consultant = get_object_or_404(queryset)
     return consultant.value
 
 # Create your views here.
