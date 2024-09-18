@@ -11,6 +11,7 @@ class Project(models.Model):
         )
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
+    sub_heading = models.CharField(max_length=250, blank=True)
     summary = models.TextField(blank=True)
     project_image = CloudinaryField('image', default='placeholder')
     confidential = models.BooleanField(default=True)

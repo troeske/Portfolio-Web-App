@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+    <h1>PROJECTS</h3>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.</p>
+</div>
+
+<div class="container mt-5">
+    
+    {% if show_projects %}
+    {% for project in projects %}
+    <img src="{{project.project_image.url}}" width="35%" alt="">
+    <p>{{ project.title }}</p>
+    <p>{{ project.sub_heading }}</p>
+    <p>-------------------------------------</p>
+    <br>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock content %}
