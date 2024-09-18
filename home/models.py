@@ -11,6 +11,9 @@ class Consultant(models.Model):
     consultant = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="home_consultants"
         )
+    first_name = models.CharField(max_length=200, blank=True)
+    last_name = models.CharField(max_length=200, blank=True)
+    email = models.EmailField(null=True, blank=True)
     intro_text = models.TextField(blank=False, default="default intro text.")
     profile_image = CloudinaryField('image', default='placeholder')
     phone = models.CharField(max_length=50, blank=True)
@@ -58,3 +61,13 @@ class PressLink(models.Model):
         )
     link_text = models.CharField(max_length=200, blank=False)
     link = models.URLField(max_length=250, blank=False)
+
+class Config(models.Model):
+    """
+    Model for storing configuration data
+    """
+    key = models.CharField(max_length=200, blank=False)
+    value = models.CharField(max_length=200, blank=False)
+
+    def __str__(self):
+        return f"{self.key} | {self.value}"
