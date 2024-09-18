@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ project.title }}</h2>
+    <img src="{{ project.detail_image.url }}" width="35%" alt="{{ project.detail_image_alt }}">
+
+    <p>{{ project.summary }}</p>
+    <br>
+    
+    {% if show_sections %}
+    
+    {% for section in sections %}
+    <h3>{{ section.heading_1 }}</h3>
+    <h2>{{ section.heading_2 }}</h2>
+    <br>
+    <p>{{ section.text }}</p>
+    {% if show_images %}
+    {% for image in images %}
+    <img src="{{ section.image.url }}" width="35%" alt="{{ section.alt_text }}">
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+
+    {% endif %}
+
+    {% if show_learnings %}
+    
+    <h3>Learnings</h3>
+    <br>
+    {% for learning in learnings %}
+    <p>{{ learning.header }}</p>
+    <p>{{ learning.text }}</p>
+    {% endfor %}
+    
+    {% endif %}
+
+</div>
+
+{% endblock content %}

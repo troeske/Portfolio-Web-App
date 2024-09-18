@@ -14,6 +14,9 @@ class Project(models.Model):
     sub_heading = models.CharField(max_length=250, blank=True)
     summary = models.TextField(blank=True)
     project_image = CloudinaryField('image', default='placeholder')
+    image_alt_text = models.CharField(max_length=200, blank=True)
+    detail_image = CloudinaryField('image', default='placeholder')
+    detail_image_alt = models.CharField(max_length=200, blank=True)
     confidential = models.BooleanField(default=True)
     display_order = models.IntegerField(default=0)
 

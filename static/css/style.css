@@ -91,17 +91,17 @@ body {
     z-index: 100;
 }
 
-.post-link {
+.project-link {
     text-decoration: none;
     color: #445261;
 }
 
-.post-link:hover,
+.project-link:hover,
 .page-link {
     color: #E84610;
 }
 
-.post-title {
+.project-title {
     margin-top: 10%;
     margin-left: 5%;
 }

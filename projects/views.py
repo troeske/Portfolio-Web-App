@@ -29,3 +29,38 @@ def projects_list(request):
          "show_projects": show_projects,
         },
     )
+
+def project_details(request, slug):
+    """
+    Renders the project details page
+    """
+    current_consultant = get_consultant()
+    queryset = Project.objects.filter(consultant_id = current_consultant)
+    project = get_object_or_404(queryset, slug=slug)
+
+    categories = project.categorys.all().order_by("display_order", "category")
+    show_categories = False if categories.count() == 0 else True
+
+    learnings = project.learnings.all.order_by("display_order", "header")
+    show_learnings = False if learnings.count() == 0 else True
+
+    sections = project.sections.all.order_by("display_order", "heading_1")
+    show_sections = False if sections.count() == 0 else True
+
+    images = project.images.all().order_by("display_order", "alt_text")
+    show_images = False if images.count() == 0 else True
+    
+    return render(
+        request,
+        "projects/project_details.html",
+        {"project": project,
+         "categories": categories,
+         "show_categories": show_categories,
+         "learnings": learnings,
+         "show_learnings": show_learnings,
+         "sections": sections,
+         "show_sections": show_sections,
+         "images": images,
+         "show_images": show_images
+        },
+    )
