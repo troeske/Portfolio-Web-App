@@ -18,6 +18,7 @@ class Consultant(models.Model):
     street = models.CharField(max_length=200, blank=True)
     city = models.CharField(max_length=100, blank=True)
     zip = models.CharField(max_length=10, blank=True)
+    country = models.CharField(max_length=100, blank=True)
 
 
 class Skill(models.Model):

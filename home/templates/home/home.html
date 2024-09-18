@@ -2,13 +2,41 @@
 {% block content %}
 {% load static %}
 <div class="container mt-5">
-    <h1>Personal Info</h1>
-    <h3>Name: {{ consultant.first_name }} {{ consultant.last_name }}</h3>
     <img src="{{consultant.profile_image.url}}" width="35%" alt="">
-    <p>{{ consultant.id }}</p>
+    <h3>Name: {{ consultant.first_name }} {{ consultant.last_name }}</h3>
     <p>{{ consultant.intro_text }}</p>
     <p>{{ consultant.phone }}</p>
     <p>{{ consultant.street }}</p>
-    <p>{{ consultant.zip }} {{ consultant.city }}</p>
-    
+    <p>{{ consultant.city }}.{{ consultant.country }}</p>
+</div>
+
+<div class="container mt-5">
+    <h2>ABOUT</h2>
+    <h3>Roles</h3>
+    {% for role in roles %}
+    <p>{{ role.label }}</p>
+    <p>{{ role.text }}</p>
+    <p>{{ role.proficiency }}</p>
+    {% endfor %}
+    <h3>Tools</h3>
+    {% for tool in tooles %}
+    <p>{{ tool.label }}</p>
+    <p>{{ tool.text }}</p>
+    <p>{{ tool.proficiency }}</p>
+    {% endfor %}
+    <h3>Interests</h3>
+    {% for interest in interests %}
+    <p>{{ interest.label }}</p>
+    <p>{{ interest.text }}</p>
+    <p>{{ interest.proficiency }}</p>
+    {% endfor %}
+    <h3>Skills</h3>
+    {% for skill in skills %}
+    <p>{{ skill.label }}</p>
+    <p>{{ skill.text }}</p>
+    <p>{{ skill.proficiency }}</p>
+    {% endfor %}
+</div>
+
+
 {% endblock content %}

@@ -16,13 +16,24 @@ def consultant_home(request):
     """
     Renders the home page
     """
-    consultant = Consultant.objects.filter(consultant_id=get_consultant()).first()
-    
-    print(consultant.consultant_id)
-    
+    current_consultant = get_consultant()
+    consultant = Consultant.objects.filter(consultant_id=current_consultant).first()
+    skills = Skill.objects.filter(consultant_id=current_consultant, type=1)
+    tools = Skill.objects.filter(consultant_id=current_consultant, type=2)
+    interests = Skill.objects.filter(consultant_id=current_consultant, type=3)
+    roles = Skill.objects.filter(consultant_id=current_consultant, type=4)
+    pastemployments = PastEmployment.objects.filter(consultant_id=current_consultant)
+    presslinks = PressLink.objects.filter(consultant_id=current_consultant)
+
     return render(
         request,
         "home/home.html",
         {"consultant": consultant,
+        "skills": skills,
+        "tools": tools,
+        "interests": interests,
+        "roles": roles,
+        "pastemployments": pastemployments,
+        "presslinks": presslinks,
         },
     )
