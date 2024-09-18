@@ -18,16 +18,16 @@ def consultant_home(request):
     """
     current_consultant = get_consultant()
     consultant = Consultant.objects.filter(consultant_id=current_consultant).first()
-    skills = Skill.objects.filter(consultant_id=current_consultant, type=1).order_by("display_order")
+    skills = Skill.objects.filter(consultant_id=current_consultant, type=1).order_by("display_order", "label")
     show_skills = False if skills.count() == 0 else True
 
-    tools = Skill.objects.filter(consultant_id=current_consultant, type=2)
+    tools = Skill.objects.filter(consultant_id=current_consultant, type=2).order_by("display_order", "label")
     show_tools = False if tools.count() == 0 else True
 
-    interests = Skill.objects.filter(consultant_id=current_consultant, type=3)
+    interests = Skill.objects.filter(consultant_id=current_consultant, type=3).order_by("display_order", "label")
     show_interests = False if interests.count() == 0 else True
 
-    roles = Skill.objects.filter(consultant_id=current_consultant, type=4)
+    roles = Skill.objects.filter(consultant_id=current_consultant, type=4).order_by("display_order", "label")
     show_roles = False if roles.count() == 0 else True
 
     pastemployments = PastEmployment.objects.filter(consultant_id=current_consultant)
