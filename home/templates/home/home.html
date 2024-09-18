@@ -12,30 +12,38 @@
 
 <div class="container mt-5">
     <h2>ABOUT</h2>
+    {% if roles.length > 0 %}
     <h3>Roles</h3>
     {% for role in roles %}
     <p>{{ role.label }}</p>
     <p>{{ role.text }}</p>
     <p>{{ role.proficiency }}</p>
     {% endfor %}
+    {% endif %}
+    {% if tools.length > 0 %}
     <h3>Tools</h3>
     {% for tool in tooles %}
     <p>{{ tool.label }}</p>
     <p>{{ tool.text }}</p>
     <p>{{ tool.proficiency }}</p>
     {% endfor %}
+    {% endif %}
+    {% if interests.length > 0 %}
     <h3>Interests</h3>
     {% for interest in interests %}
     <p>{{ interest.label }}</p>
     <p>{{ interest.text }}</p>
     <p>{{ interest.proficiency }}</p>
     {% endfor %}
+    {% endif %}
+    {% if skills.length > 0 %}
     <h3>Skills</h3>
     {% for skill in skills %}
     <p>{{ skill.label }}</p>
     <p>{{ skill.text }}</p>
     <p>{{ skill.proficiency }}</p>
     {% endfor %}
+    {% endif %}
 </div>
 
 
