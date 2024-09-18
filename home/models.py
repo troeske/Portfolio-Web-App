@@ -50,7 +50,7 @@ class PastEmployment(models.Model):
     start = models.DateField(default=date.today)
     end = models.DateField(default=date.today)
     role = models.CharField(max_length=200, blank=True)
-    text = models.CharField(max_length=250, blank=True)
+    text = models.TextField(blank=True)
 
     class Meta:
         ordering = ["consultant_id", "-start"]

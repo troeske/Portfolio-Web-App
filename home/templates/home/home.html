@@ -48,7 +48,7 @@
 </div>
 
 <!-- Employment History -->
-<div class="container mt-5"></div>
+<div class="container mt-5">
     {% if show_pastemployments %}
     <h2>LATEST POSITIONS</h2>
     {% for pastemployment in pastemployments %}
@@ -61,12 +61,14 @@
 </div>
 
 <!-- Press Links -->
-{% if show_presslinks %}
-<h2>Press Links</h2>
-{% for presslink in presslinks %}
-<h3><a href="{{ presslink.link }}">{{ presslink.text }}</a></h3>
-{% endfor %}
-{% endif %}
+<div class="container mt-5">
+    {% if show_presslinks %}
+    <h2>Press Links</h2>
+    {% for presslink in presslinks %}
+    <h3>{{ presslink.link_text }}: <a href="{{ presslink.link }}" target="_blank">link</a></h3>
+    {% endfor %}
+    {% endif %}
+</div>
 
 
 {% endblock content %}
