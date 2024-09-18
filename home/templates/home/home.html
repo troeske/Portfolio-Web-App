@@ -10,6 +10,7 @@
     <p>{{ consultant.city }}.{{ consultant.country }}</p>
 </div>
 
+<!-- About section -->
 <div class="container mt-5">
     <h2>ABOUT</h2>
     {% if show_roles %}
@@ -45,6 +46,27 @@
     {% endfor %}
     {% endif %}
 </div>
+
+<!-- Employment History -->
+<div class="container mt-5"></div>
+    {% if show_pastemployments %}
+    <h2>LATEST POSITIONS</h2>
+    {% for pastemployment in pastemployments %}
+    <h3>{{ pastemployment.role }} | {{ pastemployment.company }}</h3>
+    <p>{{ pastemployment.start }} - {{ pastemployment.end }}</p>
+    <p>{{ pastemployment.city }}.{{ pastemployment.country }}</p>
+    <p>{{ pastemployment.text }}</p>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<!-- Press Links -->
+{% if show_presslinks %}
+<h2>Press Links</h2>
+{% for presslink in presslinks %}
+<h3><a href="{{ presslink.link }}">{{ presslink.text }}</a></h3>
+{% endfor %}
+{% endif %}
 
 
 {% endblock content %}

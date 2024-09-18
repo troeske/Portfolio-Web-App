@@ -20,6 +20,9 @@ class Consultant(models.Model):
     zip = models.CharField(max_length=10, blank=True)
     country = models.CharField(max_length=100, blank=True)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Skill(models.Model):
     consultant_id = models.ForeignKey(
@@ -31,10 +34,10 @@ class Skill(models.Model):
     text = models.TextField(blank=True)
 
     class Meta:
-        ordering = ["type"]
+        ordering = ["consultant_id","type"]
 
     def __str__(self):
-        return f"{self.type} | {self.label}"
+        return f"{self.consultant_id} | Type: {self.type} - {self.label}"
 
 
 class PastEmployment(models.Model):
@@ -50,10 +53,10 @@ class PastEmployment(models.Model):
     text = models.CharField(max_length=250, blank=True)
 
     class Meta:
-        ordering = ["-start"]
+        ordering = ["consultant_id", "-start"]
 
     def __str__(self):
-        return f"{self.start} | {self.company} |  {self.role}"
+        return f"{self.consultant_id} | {self.start} | {self.company} | {self.role}"
 
 
 class PressLink(models.Model):
@@ -62,6 +65,9 @@ class PressLink(models.Model):
         )
     link_text = models.CharField(max_length=250, blank=False)
     link = models.URLField(max_length=250, blank=False)
+
+    def __str__(self):
+        return f"{self.consultant_id} | {self.link_text}"
 
 
 class Config(models.Model):
