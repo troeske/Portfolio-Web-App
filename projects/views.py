@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Category, Learning, Section
+from .models import Project, Category, Learning, Section, SectionImages
 from home.models import Config
 
 def get_consultant():
@@ -38,16 +38,17 @@ def project_details(request, slug):
     queryset = Project.objects.filter(consultant_id = current_consultant)
     project = get_object_or_404(queryset, slug=slug)
 
-    categories = project.categorys.all().order_by("display_order", "category")
+    categories = Category.objects.filter(project_id=project).order_by("display_order", "category")
     show_categories = False if categories.count() == 0 else True
-
-    learnings = project.learnings.all.order_by("display_order", "header")
+ 
+    learnings = Learning.objects.filter(project_id=project).order_by("display_order", "header")
     show_learnings = False if learnings.count() == 0 else True
 
-    sections = project.sections.all.order_by("display_order", "heading_1")
+    sections = Section.objects.filter(project_id=project).order_by("display_order", "heading_1")
     show_sections = False if sections.count() == 0 else True
 
-    images = project.images.all().order_by("display_order", "alt_text")
+    # needs to fixed to show only images for the current project !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    images = SectionImages.objects.all().order_by("display_order", "alt_text")
     show_images = False if images.count() == 0 else True
     
     return render(

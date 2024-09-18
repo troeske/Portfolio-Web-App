@@ -15,7 +15,7 @@
     
     {% if show_projects %}
     {% for project in projects %}
-    <a href="{% url 'project_detail' project.slug %}" class="project-link">
+    <a href="{% url 'project_details' project.slug %}" class="project-link">
         <img src="{{project.project_image.url}}" width="35%" alt="{{project.image_alt_text}}">
         <p>{{ project.title }}</p>
         <p>{{ project.sub_heading }}</p>
