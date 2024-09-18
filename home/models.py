@@ -28,7 +28,7 @@ class Skill(models.Model):
     label = models.CharField(max_length=200, blank=False)
     type = models.IntegerField(choices=TYPE, default=1)
     proficiency = models.IntegerField()
-    text = models.CharField(max_length=250, blank=True)
+    text = models.TextField(blank=True)
 
     class Meta:
         ordering = ["type"]
