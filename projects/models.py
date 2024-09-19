@@ -19,6 +19,12 @@ class Project(models.Model):
     detail_image_alt = models.CharField(max_length=200, blank=True)
     confidential = models.BooleanField(default=True)
     display_order = models.IntegerField(default=0)
+    link = models.URLField(max_length=250, blank=False)
+    link_text = models.CharField(max_length=200, blank=True)
+    customer = models.CharField(max_length=250, blank=True)
+    start = models.DateField(default=date.today)
+    end = models.DateField(default=date.today)
+
 
     class Meta:
         ordering = ["consultant_id", "display_order"]
@@ -90,8 +96,8 @@ class SectionURLS(models.Model):
     section = models.ForeignKey(
         Section, on_delete=models.CASCADE, related_name="section_urls"
         )
-    url = models.URLField(max_length=250, blank=False)
-    alt_text = models.CharField(max_length=200)
+    link = models.URLField(max_length=250, blank=False)
+    link_text = models.CharField(max_length=200)
     display_order = models.IntegerField(default=0)
 
     class Meta:
