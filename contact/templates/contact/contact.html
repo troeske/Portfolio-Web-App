@@ -1,11 +1,19 @@
 {% extends 'base.html' %} 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <div class="container mt-5">
-    <h2>hallo contact</h2>
-    <a href="">link</a>
+    <h2>Let's chat</h2>
+    <!-- <a href="">link</a> -->
+    <br>
+    <form method="post">
+        {{ collaboration_form | crispy }}
+        {% csrf_token %}
+        <button class="btn btn-secondary" type="submit">Submit</button>
+    </form>
     
 </div>
 
