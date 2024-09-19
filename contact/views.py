@@ -6,12 +6,12 @@ def collaboration_request_list(request):
     """
     Renders the CR list page
     """
-    queryset = CollaborationRequest.objects.filter(open=True).order_by("-request_date")
-    crs = get_object_or_404(queryset)
+    crs = CollaborationRequest.objects.filter(open=True).order_by("-request_date")
+    # crs = get_object_or_404(queryset)
 
     return render(
         request,
-        "contact/collaborationrequest_list.html",
+        "contact/collaboration_request_list.html",
         {"crs": crs,
         
         },

@@ -6,11 +6,11 @@
 <div class="container mt-5">
     <h2>Open Collaboration requests</h2>
     <br>
-    {{% for cr in crs %}}
+    {% for cr in crs %}
     <p>{{ cr.id }} | {{ cr.first_name }} {{ cr.last_name }} | {{ cr.email }} | {{ cr.request_date }}</p>
     <p>{{ cr.message }}</p>
     <br>
-    {{% endfor %}}
+    {% endfor %}
 
 </div>
 
