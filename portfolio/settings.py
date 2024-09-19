@@ -33,6 +33,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
+# SMTP KEY for sending emails
+SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -149,6 +152,15 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# setting up email sending
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'email.portfolio.tro@gmail.com'
+EMAIL_HOST_PASSWORD = SMTP_PASSWORD
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

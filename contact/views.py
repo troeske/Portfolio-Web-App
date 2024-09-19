@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import CollaborationRequest
 from .forms import CollaborationForm
-from datetime import datetime
+from django.core.mail import send_mail
 
 # Create your views here.
 def collaboration_request_list(request):
@@ -29,6 +29,13 @@ def contact(request):
         collaboration_form = CollaborationForm(data=request.POST)
         if collaboration_form.is_valid():
             collaboration_form.save()
+            send_mail(
+                "Collaboration Request received",
+                "thank you for reaching out",
+                "tsroeske@gmail.com",
+                ["tsroeske@gmail.com"],
+                fail_silently=False,
+            )
 
     collaboration_form = CollaborationForm()
     
