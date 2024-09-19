@@ -65,8 +65,8 @@ class Section(models.Model):
     project_id = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name="projects_sections"
         )
-    heading_1 = models.CharField(max_length=200, unique=True, blank=True)
-    heading_2 = models.CharField(max_length=200, unique=True, blank=True)
+    heading_1 = models.CharField(max_length=200, blank=True)
+    heading_2 = models.CharField(max_length=200, blank=True)
     text = models.TextField(blank=True)
     display_order = models.IntegerField(default=0)
     orientation_right = models.BooleanField(default=False)
@@ -84,7 +84,8 @@ class SectionImages(models.Model):
         )
     image = CloudinaryField('image', default='placeholder')
     alt_text = models.CharField(max_length=200, default='placeholder')
-    video = CloudinaryField('video', default='placeholder')
+    # video upload not working seems to be django is not handling the 'video' keyword correctly 
+    video = CloudinaryField('video', resource_type='video', default='placeholder')
     video_alt_text = models.CharField(max_length=200, default='placeholder')
     display_order = models.IntegerField(default=0)
 

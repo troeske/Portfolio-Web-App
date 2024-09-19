@@ -35,7 +35,9 @@
     <!-- only display the images for the current section -->
     {% if image.section.id == section.id %}
     <img src="{{ image.image.url }}" width="35%" alt="{{ section.alt_text }}">
-    {% if image.video %}
+
+    {% if image.video_alt_text != 'placeholder' %}
+    <br>
     <video width="35%" controls>
         <source src="{{ image.video.url }}" type="video/mp4">
         Your browser does not support the video tag.
@@ -44,7 +46,7 @@
     {% endif %}
     {% endfor %}
     {% endif %}
-    
+    <br>
     {% endfor %}
 
     {% endif %}
