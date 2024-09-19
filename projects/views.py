@@ -47,10 +47,9 @@ def project_details(request, slug):
     sections = Section.objects.filter(project_id=project).order_by("display_order", "heading_1")
     show_sections = False if sections.count() == 0 else True
 
-    # needs to fixed to show only images for the current project !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     images = SectionImages.objects.all().order_by("display_order", "alt_text")
     show_images = False if images.count() == 0 else True
-    
+
     return render(
         request,
         "projects/project_details.html",

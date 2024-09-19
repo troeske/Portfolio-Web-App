@@ -20,7 +20,10 @@
     {% if show_images %}
     <p>test</p>
     {% for image in images %}
+    <!-- only display the images for the current section -->
+    {% if image.section.id == section.id %}
     <img src="{{ image.image.url }}" width="35%" alt="{{ section.alt_text }}">
+    {% endif %}
     {% endfor %}
     {% endif %}
     
