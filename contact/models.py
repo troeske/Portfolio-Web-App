@@ -9,7 +9,7 @@ class CollaborationRequest(models.Model):
     last_name = models.CharField(max_length=200, blank=True)
     email = models.EmailField(null=True, blank=True)
     message = models.TextField(blank=True)
-    request_date = models. DateTimeField(default=date.today)
+    request_date = models. DateTimeField(auto_now_add=True)
     open = models.BooleanField(default=True)
     
     class Meta:

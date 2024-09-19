@@ -28,7 +28,6 @@ def contact(request):
     if request.method == "POST":
         collaboration_form = CollaborationForm(data=request.POST)
         if collaboration_form.is_valid():
-            collaboration_form.request_date = datetime.datetime.now()
             collaboration_form.save()
 
     collaboration_form = CollaborationForm()
