@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import CollaborationRequest
 
 # Create your views here.
-def CollaborationRequest_list(request):
+def collaboration_request_list(request):
     """
     Renders the CR list page
     """
@@ -13,6 +13,23 @@ def CollaborationRequest_list(request):
         request,
         "contact/collaborationrequest_list.html",
         {"crs": crs,
+        
+        },
+    )
+
+def contact(request):
+    """sumary_line
+    
+    Keyword arguments:
+    argument -- description
+    Return: return_description
+    """
+    
+    
+    return render(
+        request,
+        "contact/contact.html",
+        {
         
         },
     )
