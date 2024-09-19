@@ -65,8 +65,8 @@ class Section(models.Model):
     project_id = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name="projects_sections"
         )
-    heading_1 = models.CharField(max_length=200, unique=True)
-    heading_2 = models.CharField(max_length=200, unique=True)
+    heading_1 = models.CharField(max_length=200, unique=True, blank=True)
+    heading_2 = models.CharField(max_length=200, unique=True, blank=True)
     text = models.TextField(blank=True)
     display_order = models.IntegerField(default=0)
     orientation_right = models.BooleanField(default=False)
@@ -83,7 +83,9 @@ class SectionImages(models.Model):
         Section, on_delete=models.CASCADE, related_name="section_images"
         )
     image = CloudinaryField('image', default='placeholder')
-    alt_text = models.CharField(max_length=200)
+    alt_text = models.CharField(max_length=200, default='placeholder')
+    video = CloudinaryField('video', default='placeholder')
+    video_alt_text = models.CharField(max_length=200, default='placeholder')
     display_order = models.IntegerField(default=0)
 
     class Meta:
