@@ -7,4 +7,6 @@ urlpatterns = [
     path('client_registration_list', views.client_registration_list, name='client_registration_list'),
     path('delete_client/<str:username>',
          views.client_delete, name='client_delete'),
+    path('approve_client/<client:client>',
+        views.approve_client, name='approve_client'),
 ]

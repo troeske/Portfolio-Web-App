@@ -1,6 +1,6 @@
 const approvalButtons = document.getElementsByClassName("btn-approve");
 
-const userImportButton = document.getElementById("user_import");
+const userImportButton = document.getElementById("userImport");
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
@@ -18,8 +18,8 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 
 for (let button of approvalButtons) {
     button.addEventListener("click", (e) => {
-        let client_id = e.target.getAttribute("data-user");
-        /* commentForm.setAttribute("action", `edit_comment/${commentId}`); */
+        let client = e.target.getAttribute("data-user");
+        /*  need to find out how to call the view!!!!!!!!!!!!!!!!!!!!!*/
     });
 } 
 
@@ -41,8 +41,7 @@ userImportButton.addEventListener("click", (e) => {
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let username = e.target.getAttribute("data-user");
-        console.log("Username: ", username);
-        /* deleteConfirm.href = `delete_client/${username}`;
-        deleteModal.show(); */
+        deleteConfirm.href = `delete_client/${username}`;
+        deleteModal.show();
     });
 }

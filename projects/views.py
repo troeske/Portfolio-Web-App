@@ -110,7 +110,7 @@ def client_registration_list(request):
     
     if request.user.is_superuser:
         # to avoid changing the AllAuth stgandard model we need to add all new the users/clients to the client table 
-        """ users = User.objects.all().order_by("username")
+        users = User.objects.all().order_by("username")
         for a_user in users:
             if a_user.is_superuser:
                 client_allow_delete = False
@@ -120,7 +120,7 @@ def client_registration_list(request):
             if not_in_clients(a_user):
                 new_client = Client(client=a_user, consultant_id=current_consultant, email=a_user.email, allow_delete=client_allow_delete)
                 new_client.save()
-        """
+        
         # now let's get a list of all the clients
         registrations = Client.objects.filter(consultant = current_consultant).order_by( "client","approval_date")
         show_registrations = False if registrations.count() == 0 else True
@@ -160,9 +160,22 @@ def client_delete(request, username):
     """ client = Client.objects.get(pk=client_id)
     client.delete()
  """
-    print("deleting user")
+    
     user = User.objects.get(username=username)
     user.delete()
+
+    return HttpResponseRedirect(reverse('client_registration_list'))
+
+
+def approve_client(request, client):
+    """
+    approve a client.
+
+    """
+    
+    this_client = Client.objects.get(client=client)
+    this_client.approved = True
+    this_client.save()
 
     return HttpResponseRedirect(reverse('client_registration_list'))
 

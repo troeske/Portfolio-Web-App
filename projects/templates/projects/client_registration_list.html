@@ -8,8 +8,6 @@
     <br>
     
     {% if user.is_superuser %}
-    
-    <button class="btn btn-submit" id="user-import">Import User</button>
 
     {% if show_registrations %}
     
@@ -18,7 +16,7 @@
         {% if registration.approved %} {{ registration.approval_date }} {% endif %}</p>
     
     {% if registration.allow_delete %} 
-    <button class="btn btn-delete" data-user="{{ registration.email }}">Delete</button>
+    <button class="btn btn-delete" data-user="{{ registration.client }}">Delete</button>
     {% endif %}
     {% if not registration.approved %} 
     <button class="btn btn-approve" data-user="{{ registration.client }}">Approve</button>
