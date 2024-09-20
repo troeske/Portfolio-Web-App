@@ -160,9 +160,10 @@ def client_delete(request, username):
     """ client = Client.objects.get(pk=client_id)
     client.delete()
  """
-    
-    user = User.objects.get(username=username)
-    user.delete()
+    # only superusers can delete clients
+    if request.user.is_superuser:
+        user = User.objects.get(username=username)
+        user.delete()
 
     return HttpResponseRedirect(reverse('client_registration_list'))
 
@@ -171,13 +172,10 @@ def approve_client(request, id):
     """
     Approve a client.
     """
-    this_client = get_object_or_404(Client, pk=id)
-    this_client.approved = True
-    this_client.save()
+    # only superusers can approve clients
+    if request.user.is_superuser:
+        this_client = get_object_or_404(Client, pk=id)
+        this_client.approved = True
+        this_client.save()
 
     return HttpResponseRedirect(reverse('client_registration_list'))
-
-
-# client = Client.objects.get(pk=a_user.id)
-# client.email = a_user.email
-# client.save()        
