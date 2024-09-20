@@ -1,10 +1,9 @@
 const approvalButtons = document.getElementsByClassName("btn-approve");
 
+const userImportButton = document.getElementById("user_import");
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
-
-alert("evenet listener working");
 
 /*
  * Initializes edit functionality for the provided aproval buttons.
@@ -19,11 +18,15 @@ alert("evenet listener working");
 
 for (let button of approvalButtons) {
     button.addEventListener("click", (e) => {
-        let client_id = e.target.getAttribute("data-registration_id");
-
+        let client_id = e.target.getAttribute("data-user");
         /* commentForm.setAttribute("action", `edit_comment/${commentId}`); */
     });
 } 
+
+userImportButton.addEventListener("click", (e) => {
+    alert("Importing users");
+});
+
 
 /*
  * Initializes deletion functionality for the provided delete buttons.
@@ -37,10 +40,9 @@ for (let button of approvalButtons) {
  */
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-        let client_id = e.target.getAttribute("data-registration_id");
-        console.log(client_id);
-        deleteConfirm.href = `delete_client/${client_id}`;
-        console.log(`delete_client/${client_id}`);
-        deleteModal.show();
+        let username = e.target.getAttribute("data-user");
+        console.log("Username: ", username);
+        /* deleteConfirm.href = `delete_client/${username}`;
+        deleteModal.show(); */
     });
 }

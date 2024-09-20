@@ -4,8 +4,6 @@ const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
 
-console.log("js file runs");
-
 /*
  * Initializes edit functionality for the provided aproval buttons.
  * 
@@ -19,10 +17,10 @@ console.log("js file runs");
 
 for (let button of approvalButtons) {
     button.addEventListener("click", (e) => {
-        let client_id = e.target.getAttribute("data-registration_id");
+        let client_id = e.target.getAttribute("data-user");
         /* commentForm.setAttribute("action", `edit_comment/${commentId}`); */
     });
-}
+} 
 
 /*
  * Initializes deletion functionality for the provided delete buttons.
@@ -36,10 +34,9 @@ for (let button of approvalButtons) {
  */
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-        let client_id = e.target.getAttribute("data-registration_id");
-        console.log(client_id);
-        deleteConfirm.href = `delete_client/${client_id}`;
-        console.log(`delete_client/${client_id}`);
-        deleteModal.show();
+        let username = e.target.getAttribute("data-user");
+        console.log("Username: ", username);
+        /* deleteConfirm.href = `delete_client/${username}`;
+        deleteModal.show(); */
     });
 }

@@ -145,7 +145,7 @@ def client_registration_list(request):
 
     )
 
-def client_delete(request, client_id):
+def client_delete(request, username):
     """
     Delete an individual client.
 
@@ -156,11 +156,13 @@ def client_delete(request, client_id):
     ``client``
         A single client.
     """
-    # 
-    # DELETE WORKS BUT NEEDS THOUGHT ON HOW TO HANDLE THE UNDERLYING USER!!!!!!!!!!
     
-    client = Client.objects.get(pk=client_id)
+    """ client = Client.objects.get(pk=client_id)
     client.delete()
+ """
+    print("deleting user")
+    user = User.objects.get(username=username)
+    user.delete()
 
     return HttpResponseRedirect(reverse('client_registration_list'))
 
