@@ -18,13 +18,11 @@ def client_approved(user):
     """
     see if a client/user has been approved
     """
-    
-    client =Client.objects.filter(client=user).first()
+    client = Client.objects.filter(client=user).first()
     if client is None:
         return False
     else:
         return client.approved
-
 
 
 def projects_list(request):
@@ -33,13 +31,16 @@ def projects_list(request):
     """
     current_consultant = get_consultant()
     
-    if client_approved(request.user):
-        # show all projects
-        projects = Project.objects.filter(consultant_id = current_consultant).order_by("display_order", "title")  
+    if request.user.is_authenticated:
+        if client_approved(request.user):
+            # show all projects
+            projects = Project.objects.filter(consultant_id = current_consultant).order_by("display_order", "title")  
+        else:
+            # show only non-confidential projects
+            projects = Project.objects.filter(consultant_id = current_consultant, confidential = False ).order_by("display_order", "title")
     else:
         # show only non-confidential projects
         projects = Project.objects.filter(consultant_id = current_consultant, confidential = False ).order_by("display_order", "title")
-
 
     show_projects = False if projects.count() == 0 else True
     
