@@ -8,7 +8,7 @@
     <br>
     {% if show_registrations %}
     {% for registration in registrations %}
-    <p>{{ user.username }} | {{ user.email }} | {{ registration.approved }} |
+    <p>{{ registration.client }} | {{ registration.email }} | {{ registration.approved }} |
         {% if registration.approved %} {{ registration.approval_date }} {% endif %}</p>
     <p>------------------------</p>
     <br>

@@ -40,6 +40,7 @@ class Client(models.Model):
     consultant = models.ForeignKey(
         Consultant, on_delete=models.CASCADE, related_name="client_access", default=1
         )
+    email = models.EmailField(null=True, blank=True)
     approved = models.BooleanField(default=False)
     approval_date = models.DateTimeField(auto_now=True)
 
@@ -48,7 +49,7 @@ class Client(models.Model):
         ordering = ["client", "approval_date"]
 
     def __str__(self):
-       return f"{self.client}"
+       return f"{self.client} | {self.email} | {self.approved}"
 
 
 class Category(models.Model):

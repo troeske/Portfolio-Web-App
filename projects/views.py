@@ -24,6 +24,16 @@ def client_approved(user):
     else:
         return client.approved
 
+def not_in_clients(user):
+    """
+    see if a client/user is in the client list
+    """
+    client = Client.objects.filter(client=user).first()
+    if client is None:
+        return True
+    else:
+        return False
+
 
 def projects_list(request):
     """
@@ -98,15 +108,16 @@ def client_registration_list(request):
     current_consultant = get_consultant()
     
     if request.user.is_superuser:
-        registrations = Client.objects.filter(consultant = current_consultant).order_by( "client","approval_date")
-        show_registrations = False if registrations.count() == 0 else True
-        
-       
-        # work in progress: need to iterate through all users and add to registrations if not there 
+        # to avoid changing the AllAuth stgandard model we need to add all new the users/clients to the client table 
         users = User.objects.all().order_by("username")
         for a_user in users:
-            print(a_user.username, a_user.id)
-            # print(registrations[0].client, registrations[0].id)
+            if not_in_clients(a_user):
+                new_client = Client(client=a_user, consultant_id=current_consultant, email=a_user.email)
+                new_client.save()
+        
+        # now let's get a list of all the clients
+        registrations = Client.objects.filter(consultant = current_consultant).order_by( "client","approval_date")
+        show_registrations = False if registrations.count() == 0 else True
 
         return render(
         request,
@@ -128,4 +139,6 @@ def client_registration_list(request):
 
     )
     
-    
+# client = Client.objects.get(pk=a_user.id)
+# client.email = a_user.email
+# client.save()        
