@@ -4,6 +4,7 @@
 {% url 'projects_list' as projects_url %}
 {% url 'contact' as contact_url %}
 {% url 'client_registration_list' as registrations_url %}
+{% url 'collaboration_request_list' as collaborations_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -72,6 +73,9 @@
                     {% if user.is_superuser %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path ==  registrations_url %}active{% endif %}" aria-current="registrations" href="{% url 'client_registration_list' %}">Registrations</a>
+                    </li>
+                    <li class="nav-item"></li>
+                        <a class="nav-link {% if request.path ==  collaborations_url %}active{% endif %}" aria-current="collaborations" href="{% url 'collaboration_request_list' %}">Collaborations</a>
                     </li>
                     {% endif %}
                 </ul>
