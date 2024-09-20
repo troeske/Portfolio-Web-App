@@ -6,17 +6,61 @@
 <div class="container mt-5">
     <h2>Client Registratgions</h2>
     <br>
+    
+    {% if user.is_superuser %}
+    
     {% if show_registrations %}
+    
     {% for registration in registrations %}
-    <p>{{ registration.client }} | {{ registration.email }} | {{ registration.approved }} |
+    <p>{{ registration.id }} | {{ registration.client }} | {{ registration.email }} | {{ registration.approved }} |
         {% if registration.approved %} {{ registration.approval_date }} {% endif %}</p>
+    
+    {% if registration.allow_delete %} 
+    <button class="btn btn-delete" data-registration_id="{{ registration.id }}">Delete</button>
+    {% endif %}
+    {% if not registration.approved %} 
+    <button class="btn btn-approve" data-registration_id="{{ registration.id }}">Approve</button>
+    {% endif %}
+    <br>
     <p>------------------------</p>
     <br>
     {% endfor %}
-    {% else %}
+    
+    {% else %} 
+    <!-- for show_registrations -->
     <p>no registrations to display</p>
+    
     {% endif %}
+    
 
+    {% else %} 
+    <!--  for is_superuser -->
+    <p>login as superuser to see registrations</p>
+    
+    {% endif %}
+</div>
+
+<!-- Delete confirmation modal - copied from CodeStar project -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete registration?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this registration? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/registrations.js' %}"></script>
+{% endblock extras %}

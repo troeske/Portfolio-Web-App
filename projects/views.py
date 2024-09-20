@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.models import User
 from .models import Project, Category, Learning, Section, SectionImages, Client
+from django.http import HttpResponseRedirect
 from home.models import Config
 
 def get_consultant():
@@ -109,12 +110,17 @@ def client_registration_list(request):
     
     if request.user.is_superuser:
         # to avoid changing the AllAuth stgandard model we need to add all new the users/clients to the client table 
-        users = User.objects.all().order_by("username")
+        """ users = User.objects.all().order_by("username")
         for a_user in users:
+            if a_user.is_superuser:
+                client_allow_delete = False
+            else:
+                client_allow_delete = True
+            
             if not_in_clients(a_user):
-                new_client = Client(client=a_user, consultant_id=current_consultant, email=a_user.email)
+                new_client = Client(client=a_user, consultant_id=current_consultant, email=a_user.email, allow_delete=client_allow_delete)
                 new_client.save()
-        
+        """
         # now let's get a list of all the clients
         registrations = Client.objects.filter(consultant = current_consultant).order_by( "client","approval_date")
         show_registrations = False if registrations.count() == 0 else True
@@ -138,7 +144,27 @@ def client_registration_list(request):
         },
 
     )
+
+def client_delete(request, client_id):
+    """
+    Delete an individual client.
+
+    **Context**
+
+    ``post``
+        the client_registration_list.
+    ``client``
+        A single client.
+    """
+    # 
+    # DELETE WORKS BUT NEEDS THOUGHT ON HOW TO HANDLE THE UNDERLYING USER!!!!!!!!!!
     
+    client = Client.objects.get(pk=client_id)
+    client.delete()
+
+    return HttpResponseRedirect(reverse('client_registration_list'))
+
+
 # client = Client.objects.get(pk=a_user.id)
 # client.email = a_user.email
 # client.save()        

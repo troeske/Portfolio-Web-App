@@ -37,6 +37,7 @@ class Client(models.Model):
     client = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="client_access"
         )
+    allow_delete = models.BooleanField()
     consultant = models.ForeignKey(
         Consultant, on_delete=models.CASCADE, related_name="client_access", default=1
         )
