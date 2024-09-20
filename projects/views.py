@@ -35,10 +35,10 @@ def projects_list(request):
     
     if client_approved(request.user):
         # show all projects
-        projects = Project.objects.filter(consultant_id=current_consultant).order_by("display_order", "title")  
+        projects = Project.objects.filter(consultant_id = current_consultant).order_by("display_order", "title")  
     else:
         # show only non-confidential projects
-        projects = Project.objects.filter(consultant_id=current_consultant, confidential=False ).order_by("display_order", "title")
+        projects = Project.objects.filter(consultant_id = current_consultant, confidential = False ).order_by("display_order", "title")
 
 
     show_projects = False if projects.count() == 0 else True
@@ -56,7 +56,12 @@ def project_details(request, slug):
     Renders the project details page
     """
     current_consultant = get_consultant()
-    queryset = Project.objects.filter(consultant_id = current_consultant)
+    # see if the user is approved
+    if client_approved(request.user):
+        queryset = Project.objects.filter(consultant_id = current_consultant)
+    else:
+        queryset = Project.objects.filter(consultant_id = current_consultant, confidential = False)
+    
     project = get_object_or_404(queryset, slug=slug)
 
     categories = Category.objects.filter(project_id=project).order_by("display_order", "category")
