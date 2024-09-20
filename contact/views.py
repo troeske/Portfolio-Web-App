@@ -48,16 +48,16 @@ def contact(request):
             message = (
                 f"Hi {current_cr.first_name},\n\n"
                 "Thanks for your message!\n\n"
-                "We have received your collaboration request for "
+                "The collaboration request for "
                 f"{consultant_first_name} {consultant_last_name}" 
-                " and will respond at the earliest convenience.\n"
+                f" was received and {consultant_first_name} will respond at the earliest convenience.\n"
                 "\nKind regards"
             )
             
             send_mail(
                 "[NO-REPLY] Collaboration Request received",
                 message,
-                "tsroeske@gmail.com",
+                "",
                 [current_cr.email],
                 fail_silently=False,
             )
