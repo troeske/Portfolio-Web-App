@@ -91,3 +91,34 @@ def project_details(request, slug):
          "show_images": show_images
         },
     )
+def client_registration_list(request):
+    """
+    CRUD for the client registration list page
+    """
+    current_consultant = get_consultant()
+    
+    if request.user.is_superuser:
+        registrations = Client.objects.filter(consultant = current_consultant).order_by( "client","approval_date")
+        show_registrations = False if registrations.count() == 0 else True
+        
+        return render(
+        request,
+        "projects/client_registration_list.html",
+        {"registrations": registrations,
+         "show_registrations": show_registrations
+        },
+    )
+    else:
+        # user is not a super user so show nothing to be safe
+        show_registrations = False
+
+        return render(
+        request,
+        "projects/client_registration_list.html",
+        {
+         "show_registrations": show_registrations
+        },
+
+    )
+    
+    

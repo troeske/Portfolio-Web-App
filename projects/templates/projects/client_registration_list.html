@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2>Client Registratgions</h2>
+    <br>
+    {% if show_registrations %}
+    {% for registration in registrations %}
+    <p>{{ user.username }} | {{ user.email }} | {{ registration.approved }} |
+        {% if registration.approved %} {{ registration.approval_date }} {% endif %}</p>
+    <p>------------------------</p>
+    <br>
+    {% endfor %}
+    {% else %}
+    <p>no registrations to display</p>
+    {% endif %}
+
+</div>
+
+{% endblock content %}

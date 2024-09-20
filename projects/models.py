@@ -37,6 +37,9 @@ class Client(models.Model):
     client = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="client_access"
         )
+    consultant = models.ForeignKey(
+        Consultant, on_delete=models.CASCADE, related_name="client_access", default=1
+        )
     approved = models.BooleanField(default=False)
     approval_date = models.DateTimeField(auto_now=True)
 
