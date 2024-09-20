@@ -13,7 +13,7 @@ def get_consultant_name():
     current_consultant = get_object_or_404(queryset, key="CURRENT_CONSULTANT")
     consultant = Consultant.objects.filter(consultant_id=current_consultant.value).first()
 
-    return consultant.first_name, consultant.last_name
+    return consultant.first_name, consultant.last_name, consultant.email
 
 # Create your views here.
 def collaboration_request_list(request):
@@ -43,8 +43,9 @@ def contact(request):
             collaboration_form.save()
             
             current_cr = CollaborationRequest.objects.filter(open=True).order_by("-request_date").first()
-            consultant_first_name, consultant_last_name = get_consultant_name()
-
+            consultant_first_name, consultant_last_name, consultant_email = get_consultant_name()
+            
+            # send email to potential client
             message = (
                 f"Hi {current_cr.first_name},\n\n"
                 "Thanks for your message!\n\n"
@@ -59,6 +60,31 @@ def contact(request):
                 message,
                 "",
                 [current_cr.email],
+                fail_silently=False,
+            )
+
+            # send email to consultant
+            message = (
+                f"Hi {consultant_first_name}!\n\n"
+                "YEAH!! You have a new collaboration request:\n\n"
+                "----------------------\n"
+                f"Name (last, first): {current_cr.last_name}, {current_cr.first_name}\n" 
+                "----------------------\n"
+                f"eMail: {current_cr.email}\n"
+                "----------------------\n"
+                f"Message:\n{current_cr.message}\n"
+                "----------------------\n"
+                f"Request date: {current_cr.request_date}\n"
+                "----------------------\n"
+
+                "\nYour friendly Portfolio App django"
+            )
+            
+            send_mail(
+                "[NO-REPLY] you have a Collaboration Request",
+                message,
+                "",
+                [consultant_email],
                 fail_silently=False,
             )
 
