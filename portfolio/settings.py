@@ -37,7 +37,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 
