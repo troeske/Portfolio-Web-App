@@ -1,3 +1,5 @@
+/* re-used from CodeStar project */
+
 const approvalButtons = document.getElementsByClassName("btn-approve");
 
 const userImportButton = document.getElementById("userImport");
@@ -16,18 +18,12 @@ const deleteConfirm = document.getElementById("deleteConfirm");
  * - Sets the form's action attribute to the `edit_comment/{commentId}` endpoint.
  */
 
-for (let button of approvalButtons) {
+/* for (let button of approvalButtons) {
     button.addEventListener("click", (e) => {
         let client = e.target.getAttribute("data-user");
-        /*  need to find out how to call the view!!!!!!!!!!!!!!!!!!!!!*/
     });
 } 
-
-userImportButton.addEventListener("click", (e) => {
-    alert("Importing users");
-});
-
-
+ */
 /*
  * Initializes deletion functionality for the provided delete buttons.
  * 

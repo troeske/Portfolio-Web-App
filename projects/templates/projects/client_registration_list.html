@@ -19,7 +19,7 @@
     <button class="btn btn-delete" data-user="{{ registration.client }}">Delete</button>
     {% endif %}
     {% if not registration.approved %} 
-    <button class="btn btn-approve" data-user="{{ registration.client }}">Approve</button>
+    <a id="approveClient" href="{% url 'approve_client' registration.id %}" class="btn btn-danger">Approve</a>
     {% endif %}
     <br>
     <p>------------------------</p>
@@ -40,7 +40,7 @@
     {% endif %}
 </div>
 
-<!-- Delete confirmation modal - copied from CodeStar project -->
+<!-- Delete confirmation modal - re-used from CodeStar project -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

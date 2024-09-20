@@ -167,13 +167,11 @@ def client_delete(request, username):
     return HttpResponseRedirect(reverse('client_registration_list'))
 
 
-def approve_client(request, client):
+def approve_client(request, id):
     """
-    approve a client.
-
+    Approve a client.
     """
-    
-    this_client = Client.objects.get(client=client)
+    this_client = get_object_or_404(Client, pk=id)
     this_client.approved = True
     this_client.save()
 
