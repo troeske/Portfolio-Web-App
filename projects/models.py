@@ -2,6 +2,7 @@ from django.db import models
 from datetime import date
 from cloudinary.models import CloudinaryField
 from home.models import Consultant
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Project(models.Model):
@@ -31,6 +32,20 @@ class Project(models.Model):
 
     def __str__(self):
        return f"{self.consultant_id} | {self.title}"
+
+class Client(models.Model):
+    client = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="client_access"
+        )
+    approved = models.BooleanField(default=False)
+    approval_date = models.DateTimeField(auto_now=True)
+
+
+    class Meta:
+        ordering = ["client", "approval_date"]
+
+    def __str__(self):
+       return f"{self.client}"
 
 
 class Category(models.Model):

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Category, Learning, Section, SectionImages
+from django.contrib.auth.models import User
+from .models import Project, Category, Learning, Section, SectionImages, Client
 from home.models import Config
 
 def get_consultant():
@@ -13,13 +14,33 @@ def get_consultant():
 
 # Create your views here.
 
+def client_approved(user):
+    """
+    see if a client/user has been approved
+    """
+    
+    client =Client.objects.filter(client=user).first()
+    if client is None:
+        return False
+    else:
+        return client.approved
+
+
+
 def projects_list(request):
     """
     Renders the projects home page
     """
     current_consultant = get_consultant()
-    projects = Project.objects.filter(consultant_id=current_consultant).order_by("display_order", "title")
     
+    if client_approved(request.user):
+        # show all projects
+        projects = Project.objects.filter(consultant_id=current_consultant).order_by("display_order", "title")  
+    else:
+        # show only non-confidential projects
+        projects = Project.objects.filter(consultant_id=current_consultant, confidential=False ).order_by("display_order", "title")
+
+
     show_projects = False if projects.count() == 0 else True
     
     return render(
