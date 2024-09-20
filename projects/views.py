@@ -101,6 +101,13 @@ def client_registration_list(request):
         registrations = Client.objects.filter(consultant = current_consultant).order_by( "client","approval_date")
         show_registrations = False if registrations.count() == 0 else True
         
+       
+        # work in progress: need to iterate through all users and add to registrations if not there 
+        users = User.objects.all().order_by("username")
+        for a_user in users:
+            print(a_user.username, a_user.id)
+            # print(registrations[0].client, registrations[0].id)
+
         return render(
         request,
         "projects/client_registration_list.html",
