@@ -2,18 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import CollaborationRequest
 from .forms import CollaborationForm
 from django.core.mail import send_mail
-from home.models import Consultant, Config
-
-def get_consultant_name():
-    """
-    Get the consultant id from the Config table 
-    and first and last name from consultant table
-    """
-    queryset = Config.objects.all()
-    current_consultant = get_object_or_404(queryset, key="CURRENT_CONSULTANT")
-    consultant = Consultant.objects.filter(consultant_id=current_consultant.value).first()
-
-    return consultant.first_name, consultant.last_name, consultant.email
+from portfolio.utils import get_consultant
 
 # Create your views here.
 def collaboration_request_list(request):
@@ -31,7 +20,7 @@ def collaboration_request_list(request):
     )
 
 def contact(request):
-    """sumary_line
+    """summary_line
     
     Keyword arguments:
     argument -- description
@@ -43,7 +32,7 @@ def contact(request):
             collaboration_form.save()
             
             current_cr = CollaborationRequest.objects.filter(open=True).order_by("-request_date").first()
-            consultant_first_name, consultant_last_name, consultant_email = get_consultant_name()
+            consultant_id, consultant_first_name, consultant_last_name, consultant_email = get_consultant(False)
             
             # send email to potential client
             message = (

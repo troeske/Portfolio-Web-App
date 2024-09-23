@@ -2,17 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.models import User
 from .models import Project, Category, Learning, Section, SectionImages, Client
 from django.http import HttpResponseRedirect
-from home.models import Config
+from portfolio.utils import get_consultant
 from django.core.mail import send_mail
-
-def get_consultant():
-    """
-    Get the consultant id from the Config table
-    """
-    queryset = Config.objects.all()
-    consultant = get_object_or_404(queryset, key="CURRENT_CONSULTANT")
-
-    return consultant.value
 
 # Create your views here.
 
@@ -41,7 +32,7 @@ def projects_list(request):
     """
     Renders the projects home page
     """
-    current_consultant = get_consultant()
+    current_consultant = get_consultant(True)
     
     if request.user.is_authenticated:
         if client_approved(request.user):
@@ -68,7 +59,7 @@ def project_details(request, slug):
     """
     Renders the project details page
     """
-    current_consultant = get_consultant()
+    current_consultant = get_consultant(True)
     # see if the user is approved
     if client_approved(request.user):
         queryset = Project.objects.filter(consultant_id = current_consultant)
@@ -107,7 +98,7 @@ def client_registration_list(request):
     """
     CRUD for the client registration list page
     """
-    current_consultant = get_consultant()
+    current_consultant = get_consultant(TRUE)
     
     if request.user.is_superuser:
         # to avoid changing the AllAuth stgandard model we need to add all new the users/clients to the client table 
