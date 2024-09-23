@@ -41,7 +41,7 @@ class CollaborationFormTest(TestCase):
     def test_form_max_length(self):
         form_data = {
             'first_name': 'J' * 201,  # Exceeding max_length of 200
-            'last_name': 'D' * 201,   # Exceeding max_length of 200
+            'last_name': 'D' * 201,   
             'email': 'jane.doe@example.com',
             'message': 'I would like to collaborate with you.'
         }
