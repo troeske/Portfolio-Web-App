@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import Project, Category, Learning, Section, SectionImages, Client
 from django.http import HttpResponseRedirect
 from home.models import Config
+from django.core.mail import send_mail
 
 def get_consultant():
     """
@@ -170,12 +171,29 @@ def client_delete(request, username):
 
 def approve_client(request, id):
     """
-    Approve a client.
+    Approve a client to view confidential projects.
     """
     # only superusers can approve clients
     if request.user.is_superuser:
         this_client = get_object_or_404(Client, pk=id)
         this_client.approved = True
         this_client.save()
+        
+        # send email to potential client
+        user = User.objects.get(username=this_client.client)
+        message = (
+            f"Hi {user.username},\n\n"
+            "Thanks for registering!\n\n"
+            "Your registration was approved\n"
+            "\nKind regards"
+        )
+        
+        send_mail(
+            "[NO-REPLY] Registration approved",
+            message,
+            "",
+            [this_client.email],
+            fail_silently=False,
+        )
 
     return HttpResponseRedirect(reverse('client_registration_list'))
