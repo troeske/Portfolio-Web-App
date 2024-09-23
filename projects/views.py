@@ -6,34 +6,15 @@ from portfolio.utils import get_consultant
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.db import DatabaseError
+from .utils import client_approved, not_in_clients
 
 # Create your views here.
-
-def client_approved(user):
-    """
-    see if a client/user has been approved
-    """
-    client = Client.objects.filter(client=user).first()
-    if client is None:
-        return False
-    else:
-        return client.approved
-
-def not_in_clients(user):
-    """
-    see if a client/user is in the client list
-    """
-    client = Client.objects.filter(client=user).first()
-    if client is None:
-        return True
-    else:
-        return False
-
 
 def projects_list(request):
     """
     Renders the projects home page
     """
+    
     try:
         current_consultant = get_consultant(True)
         
