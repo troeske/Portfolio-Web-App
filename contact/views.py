@@ -77,15 +77,16 @@ def contact(request):
                 )                
 
             except DatabaseError as e:
-               print(f"A Database error occurred: {e}")
+               error_message = f"A Database error occurred: {e}. Please try again later."
+               print(error_message)
                print(type(e))
-               return HttpResponse("A database error occurred. Please try again later.", status=500)    
+               return HttpResponse(error_message, status=500)    
             
             except Exception as e:
-               print(f"A general error occurred: {e}")
+               error_message = f"A general error occurred:: {e}. Please try again later."
+               print(error_message)
                print(type(e))
-               return HttpResponse("An unexpected error occurred. Please try again later.", status=500)    
-
+               return HttpResponse(error_message, status=500)  
         
         else:
             print(f"A form validation error occurred")
