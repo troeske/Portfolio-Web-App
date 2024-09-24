@@ -20,7 +20,7 @@ class Project(models.Model):
     detail_image_alt = models.CharField(max_length=200, blank=True)
     confidential = models.BooleanField(default=True)
     display_order = models.IntegerField(default=0)
-    link = models.URLField(max_length=250, blank=False)
+    link = models.URLField(max_length=250, blank=True)
     link_text = models.CharField(max_length=200, blank=True)
     customer = models.CharField(max_length=250, blank=True)
     start = models.DateField(default=date.today)
