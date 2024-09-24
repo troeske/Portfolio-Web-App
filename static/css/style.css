@@ -1,7 +1,60 @@
-body {
-    background-color: #F9FAFC;
+/* fonts */
+@font-face {
+    font-family: 'Rychardwalker'; 
+    src: url('static/fonts/RychardwalkerDemo-nRwRP.ttf'); 
 }
 
+/* defining custom properties */
+:root {
+--ts-p-std-font-size: 13px;
+--ts-p-std-font-family: "Inter", sans-serif;
+--ts-p-std-font-color: #121D24;
+
+--ts-h7-std-font-size: 16px;
+--ts-h7-std-font-color: #121D24;
+--ts-h7-std-font-family: "Inter", sans-serif;
+
+--ts-h4-std-font-family: "Rychardwalker", sans-serif;
+
+--ts-std-padding-left: 16px;
+
+--ts-std-bg-color: #FFFFFF;
+
+}
+
+body {
+    background-color: var(--ts-std-bg-color);
+}
+
+.ts-p-std {
+    font-size: var(--ts-p-std-font-size);   
+    font-family: var(--ts-p-std-font-family); 
+    color: var(--ts-p-std-font-color);
+    padding-left: var(--ts-std-padding-left);
+}
+
+.ts-h7 {
+    font-size: var(--ts-h7-std-font-size);   
+    font-family: var(--ts-h7-std-font-family);
+    color: var(--ts-p-std-font-color);
+    padding-left: var(--ts-std-padding-left);
+    padding-top: 9px;
+}
+
+.ts-h4 {
+    padding-left: var(--ts-std-padding-left);
+    font-family: var(--ts-h4-std-font-family); 
+}
+
+.ts-neg-mar {
+    margin-top: -24px;
+    background-color: var(--ts-std-bg-color);
+}
+
+/* walk through project styles
+************************************************************
+   start
+*/
 .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
@@ -160,3 +213,8 @@ body {
 .approval {
     color: rgb(222, 146, 168);
 }
+
+/* walk through project styles
+************************************************************
+   end
+*/

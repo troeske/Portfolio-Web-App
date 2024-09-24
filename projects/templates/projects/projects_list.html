@@ -2,10 +2,7 @@
 {% block content %}
 {% load static %}
 <div class="container">
-    <h1>PROJECTS</h3>
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <h4 class="ts-h4">projects</h4>
     <br>
 </div>
 
@@ -22,11 +19,19 @@
     </div>
     
     <div class="row">
-        <div class="col border-bottom">
+        <div class="col-9 ts-neg-mar">
             <a href="{% url 'project_details' project.slug %}" class="project-link">
-                <p class="text-start">{{ project.title }}</p>
+                <h6 class="ts-h7 text-decoration-none">{{ project.title }}</h6>
             </a>
-            <p class="text-start">{{ project.sub_heading }}</p>
+            <p class="ts-p-std">{{ project.sub_heading }}</p>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <p class="ts-p-std">{{ project.summary }} </p>
         </div>
     </div>
     <br>
