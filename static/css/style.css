@@ -1,8 +1,4 @@
 /* fonts */
-@font-face {
-    font-family: 'Rychardwalker'; 
-    src: url('static/fonts/RychardwalkerDemo-nRwRP.ttf'); 
-}
 
 /* defining custom properties */
 :root {
