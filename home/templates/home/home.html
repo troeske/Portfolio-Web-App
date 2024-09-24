@@ -6,7 +6,8 @@
     <p>{{ consultant.city }}.{{ consultant.country }}</p>
     <br>
     <p>{{ consultant.intro_text }}</p>
-    <img src="{{consultant.profile_image.url}}" width="35%" alt="">
+    <img src="{{consultant.profile_image.url}}" width="65%" alt="">
+    <br>
     {% if show_roles %}
     <h3>Roles</h3>
     {% for role in roles %}
