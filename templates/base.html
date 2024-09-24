@@ -43,20 +43,24 @@
         /* defing CSS properties and assigning value from config table in the database */
         :root {
             --ts-p-std-font-size: 13px;
-            --ts-p-std-font-family: "Inter", sans-serif;
+            --ts-p-std-font-family: "Inter";
             --ts-p-std-font-color: #121D24;
 
             --ts-h7-std-font-size: 16px;
             --ts-h7-std-font-color: #121D24;
-            --ts-h7-std-font-family: "Inter", sans-serif;
+            --ts-h7-std-font-family: "Inter";
 
-            --ts-h4-std-font-size: 26px;
+            --ts-h4-std-font-size: {{ ts_h4_std_font_size }};
             --ts-h4-std-font-color: #121D24;
-            --ts-h4-std-font-family: {{ config_data.first_name }}, sans-serif;
+            --ts-h4-std-font-family: {{ ts_h4_std_font_family }};
+
+            --ts-brand-std-font-size: {{ ts_brand_font_size }};
+            --ts-brand-std-font-color: #121D24;
+            --ts-brand-std-font-family: {{ ts_brand_font_family }};
 
             --ts-std-padding-left: 16px;
 
-            --ts-std-bg-color: #FFFFFF;
+            --ts-std-bg-color: {{ ts_std_bg_color }};
         }
 
     </style>

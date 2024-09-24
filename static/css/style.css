@@ -8,7 +8,7 @@ body {
 
 .ts-p-std {
     font-size: var(--ts-p-std-font-size);   
-    font-family: var(--ts-p-std-font-family); 
+    font-family: var(--ts-p-std-font-family), sans-serif; 
     color: var(--ts-p-std-font-color);
     padding-left: var(--ts-std-padding-left);
     margin-bottom: 6px; 
@@ -16,7 +16,7 @@ body {
 
 .ts-h7 {
     font-size: var(--ts-h7-std-font-size);   
-    font-family: var(--ts-h7-std-font-family);
+    font-family: var(--ts-h7-std-font-family), sans-serif;
     color: var(--ts-p-std-font-color);
     padding-left: var(--ts-std-padding-left);
     padding-top: 16px;
@@ -24,7 +24,7 @@ body {
 
 .ts-h4 {
     padding-left: var(--ts-std-padding-left);
-    font-family: var(--ts-h4-std-font-family); 
+    font-family: var(--ts-h4-std-font-family), sans-serif; 
     font-size: var(--ts-h4-std-font-size);
 }
 
@@ -41,8 +41,8 @@ body {
 }
 
 .ts-brand {
-    font-family: var(--ts-h4-std-font-family);;
-    font-size: 30px;
+    font-family: var(--ts-brand-std-font-family), sans-serif;
+    font-size: var(--ts-brand-std-font-size);
     color: var(--ts-p-std-font-color);
     padding-left: var(--ts-std-padding-left);
 }

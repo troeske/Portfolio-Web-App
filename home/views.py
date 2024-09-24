@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Consultant, Skill, PastEmployment, PressLink, Config
 from portfolio.utils import get_consultant
 from django.http import HttpResponse
+from django.conf import settings
 
 # Create your views here.
 
@@ -12,8 +13,6 @@ def consultant_home(request):
     try:
         current_consultant = get_consultant(True)
         consultant = Consultant.objects.filter(consultant_id=current_consultant).first()
-        
-        config_data = Config.objects.filter(consultant_id=current_consultant)
         
         skills = Skill.objects.filter(consultant_id=current_consultant, type=1).order_by("display_order", "label")
         show_skills = False if skills.count() == 0 else True
@@ -39,6 +38,12 @@ def consultant_home(request):
         print(type(e))
         return HttpResponse(error_message, status=500)  
     
+    ts_h4_std_font_family = settings.CONFIG_DATA.get('--ts-h4-std-font-family')
+    ts_std_bg_color = settings.CONFIG_DATA.get('--ts-std-bg-color')
+    ts_h4_std_font_size = settings.CONFIG_DATA.get('--ts-h4-std-font-size')
+    ts_brand_font_size = settings.CONFIG_DATA.get('--ts-brand-std-font-size')
+    ts_brand_font_family = settings.CONFIG_DATA.get('--ts-brand-std-font-family')
+    
     context = {"consultant": consultant,
                 "skills": skills,
                 "show_skills": show_skills,
@@ -52,14 +57,12 @@ def consultant_home(request):
                 "show_pastemployments": show_pastemployments,
                 "presslinks": presslinks,
                 "show_presslinks": show_presslinks,
-                "config_data": config_data,
+                'ts_h4_std_font_family': ts_h4_std_font_family,
+                'ts_std_bg_color': ts_std_bg_color,
+                'ts_h4_std_font_size': ts_h4_std_font_size,
+                'ts_brand_font_size': ts_brand_font_size,
+                'ts_brand_font_family': ts_brand_font_family,
                 }
-    
-    context_test = ""
-    for config in config_data:
-        context_test += f'"{config.key}": {config.value},'
-        
-    print(context_test)
 
     return render(
         request,
