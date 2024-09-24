@@ -27,6 +27,7 @@ body {
     font-family: var(--ts-p-std-font-family); 
     color: var(--ts-p-std-font-color);
     padding-left: var(--ts-std-padding-left);
+    margin-bottom: 6px; 
 }
 
 .ts-h7 {
@@ -34,7 +35,7 @@ body {
     font-family: var(--ts-h7-std-font-family);
     color: var(--ts-p-std-font-color);
     padding-left: var(--ts-std-padding-left);
-    padding-top: 9px;
+    padding-top: 16px;
 }
 
 .ts-h4 {
@@ -43,8 +44,15 @@ body {
 }
 
 .ts-neg-mar {
-    margin-top: -24px;
+    margin-top: -36px;
     background-color: var(--ts-std-bg-color);
+}
+
+.ts-divider-black {
+    margin: 0 0 12px 28px;
+    padding-bottom: 9px;
+    border-top: 0.5mm solid var(--ts-p-std-font-color);
+    line-height: 1px;
 }
 
 /* walk through project styles

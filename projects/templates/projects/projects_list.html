@@ -21,14 +21,12 @@
     <div class="row">
         <div class="col-9 ts-neg-mar">
             <a href="{% url 'project_details' project.slug %}" class="project-link">
-                <h6 class="ts-h7 text-decoration-none">{{ project.title }}</h6>
+                <h6 class="ts-h7 fw-bold text-decoration-none">{{ project.title }}</h6>
             </a>
             <p class="ts-p-std">{{ project.sub_heading }}</p>
         </div>
-        <div class="col-3">
-        </div>
     </div>
-    <br>
+    <div class="ts-divider-black"></div>
     <div class="row">
         <div class="col">
             <p class="ts-p-std">{{ project.summary }} </p>
