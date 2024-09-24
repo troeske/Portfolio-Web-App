@@ -49,7 +49,7 @@ body {
 }
 
 .ts-divider-black {
-    margin: 0 0 12px 28px;
+    margin: 0 0 12px var(--ts-std-padding-left);
     padding-bottom: 9px;
     border-top: 0.5mm solid var(--ts-p-std-font-color);
     line-height: 1px;
