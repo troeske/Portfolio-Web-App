@@ -1,27 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="container mt-5">
+<div class="container">
     <h1>PROJECTS</h3>
     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
         dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <br>
 </div>
 
-<div class="container mt-5">
+<div class="container">
     
     {% if show_projects %}
     {% for project in projects %}
-    <a href="{% url 'project_details' project.slug %}" class="project-link">
-        <img src="{{project.project_image.url}}" width="35%" alt="{{project.image_alt_text}}">
-        <p>{{ project.title }}</p>
-        <p>{{ project.sub_heading }}</p>
-    </a>
-    <p>-------------------------------------</p>
+    <div class="row">
+        <div class="col container-fluid">
+            <a href="{% url 'project_details' project.slug %}" class="project-link">
+                <img src="{{project.project_image.url}}" class="img-fluid rounded" alt="{{project.image_alt_text}}">
+            </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col border-bottom">
+            <a href="{% url 'project_details' project.slug %}" class="project-link">
+                <p class="text-start">{{ project.title }}</p>
+            </a>
+        </div>
+
+        <div class="col border-bottom">
+            <p class="text-end">{{ project.sub_heading }}</p>
+        </div>
+    </div>
     <br>
+
     {% endfor %}
     {% endif %}
 </div>
