@@ -41,8 +41,8 @@ def consultant_home(request):
     ts_h4_std_font_family = settings.CONFIG_DATA.get('--ts-h4-std-font-family')
     ts_std_bg_color = settings.CONFIG_DATA.get('--ts-std-bg-color')
     ts_h4_std_font_size = settings.CONFIG_DATA.get('--ts-h4-std-font-size')
-    ts_brand_font_size = settings.CONFIG_DATA.get('--ts-brand-std-font-size')
-    ts_brand_font_family = settings.CONFIG_DATA.get('--ts-brand-std-font-family')
+    ts_brand_font_size = settings.CONFIG_DATA.get('--ts-brand-font-size')
+    ts_brand_font_family = settings.CONFIG_DATA.get('--ts-brand-font-family')
     
     context = {"consultant": consultant,
                 "skills": skills,
