@@ -39,6 +39,26 @@
             font-family: 'Rychardwalker'; 
             src: url("{% static 'fonts/RychardwalkerDemo-nRwRP.ttf' %}") format("truetype"); 
         	}
+        
+        /* defing CSS properties and assigning value from config table in the database */
+        :root {
+            --ts-p-std-font-size: 13px;
+            --ts-p-std-font-family: "Inter", sans-serif;
+            --ts-p-std-font-color: #121D24;
+
+            --ts-h7-std-font-size: 16px;
+            --ts-h7-std-font-color: #121D24;
+            --ts-h7-std-font-family: "Inter", sans-serif;
+
+            --ts-h4-std-font-size: 26px;
+            --ts-h4-std-font-color: #121D24;
+            --ts-h4-std-font-family: {{ config_data.first_name }}, sans-serif;
+
+            --ts-std-padding-left: 16px;
+
+            --ts-std-bg-color: #FFFFFF;
+        }
+
     </style>
 
     <!-- Custom CSS -->
@@ -51,13 +71,13 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">T</span></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><span class="ts-brand">{{ consultant.first_name }}</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ts-padding-left">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="home"
                             href="{% url 'home' %}">Home</a>

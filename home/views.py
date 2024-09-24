@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Consultant, Skill, PastEmployment, PressLink
+from .models import Consultant, Skill, PastEmployment, PressLink, Config
 from portfolio.utils import get_consultant
 from django.http import HttpResponse
 
@@ -12,6 +12,9 @@ def consultant_home(request):
     try:
         current_consultant = get_consultant(True)
         consultant = Consultant.objects.filter(consultant_id=current_consultant).first()
+        
+        config_data = Config.objects.filter(consultant_id=current_consultant)
+        
         skills = Skill.objects.filter(consultant_id=current_consultant, type=1).order_by("display_order", "label")
         show_skills = False if skills.count() == 0 else True
 
@@ -35,22 +38,31 @@ def consultant_home(request):
         print(error_message)
         print(type(e))
         return HttpResponse(error_message, status=500)  
+    
+    context = {"consultant": consultant,
+                "skills": skills,
+                "show_skills": show_skills,
+                "tools": tools,
+                "show_tools": show_tools,
+                "interests": interests,
+                "show_interests": show_interests,
+                "roles": roles,
+                "show_roles": show_roles,
+                "pastemployments": pastemployments,
+                "show_pastemployments": show_pastemployments,
+                "presslinks": presslinks,
+                "show_presslinks": show_presslinks,
+                "config_data": config_data,
+                }
+    
+    context_test = ""
+    for config in config_data:
+        context_test += f'"{config.key}": {config.value},'
+        
+    print(context_test)
 
     return render(
         request,
         "home/home.html",
-        {"consultant": consultant,
-        "skills": skills,
-        "show_skills": show_skills,
-        "tools": tools,
-        "show_tools": show_tools,
-        "interests": interests,
-        "show_interests": show_interests,
-        "roles": roles,
-        "show_roles": show_roles,
-        "pastemployments": pastemployments,
-        "show_pastemployments": show_pastemployments,
-        "presslinks": presslinks,
-        "show_presslinks": show_presslinks,
-        },
+        context,
     )

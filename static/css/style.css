@@ -1,25 +1,9 @@
-/* fonts */
-
-/* defining custom properties */
-:root {
---ts-p-std-font-size: 13px;
---ts-p-std-font-family: "Inter", sans-serif;
---ts-p-std-font-color: #121D24;
-
---ts-h7-std-font-size: 16px;
---ts-h7-std-font-color: #121D24;
---ts-h7-std-font-family: "Inter", sans-serif;
-
---ts-h4-std-font-family: "Rychardwalker", sans-serif;
-
---ts-std-padding-left: 16px;
-
---ts-std-bg-color: #FFFFFF;
-
-}
-
 body {
     background-color: var(--ts-std-bg-color);
+}
+
+.ts-padding-left{
+    padding-left: var(--ts-std-padding-left);
 }
 
 .ts-p-std {
@@ -41,6 +25,7 @@ body {
 .ts-h4 {
     padding-left: var(--ts-std-padding-left);
     font-family: var(--ts-h4-std-font-family); 
+    font-size: var(--ts-h4-std-font-size);
 }
 
 .ts-neg-mar {
@@ -55,16 +40,18 @@ body {
     line-height: 1px;
 }
 
+.ts-brand {
+    font-family: var(--ts-h4-std-font-family);;
+    font-size: 30px;
+    color: var(--ts-p-std-font-color);
+    padding-left: var(--ts-std-padding-left);
+}
+
+
 /* walk through project styles
 ************************************************************
    start
 */
-.brand {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
-}
 
 .red-o {
     color: #E84610;

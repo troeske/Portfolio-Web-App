@@ -75,6 +75,8 @@ class Config(models.Model):
     """
     Model for storing configuration data
     """
+    consultant_id = models.ForeignKey(
+        Consultant, on_delete=models.CASCADE, related_name="home_config"        )
     key = models.CharField(max_length=200, blank=False)
     value = models.CharField(max_length=200, blank=False)
 
