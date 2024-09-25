@@ -79,13 +79,12 @@
             </div>
         </div>
         <br>
-        <p class="text-start ts-p-std"><span class="fw-bold">More? This way. </span>
+        {% endfor %}
+        <p class="text-start ts-p-std ts-padding-left"><span class="fw-bold">More? This way. </span>
             <a href="{% url 'projects_list' %}" class="ts_icon_link">
                 <i class="fa-solid fa-arrow-right-long"></i>
             </a> 
         </p> 
-        <br>
-        {% endfor %}
         {% endif %}
 </section>
 
