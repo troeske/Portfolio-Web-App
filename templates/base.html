@@ -62,8 +62,17 @@
 
             --ts-std-padding-left: {{ ts_std_padding_left }};
 
+            {% if request.path == home_url %};
             --ts-bg-alt-color: {{ ts_bg_alt_color }};
             --ts-bg-std-color: {{ ts_bg_std_color }};
+            {% endif %};
+            
+            {% if request.path == projects_url %};
+            --ts-bg-alt-color: {{ ts_home_bg_alt_color }};
+            --ts-bg-std-color: {{ ts_home_bg_std_color }};
+            {% endif %};
+            
+
             --ts-section-padding: {{ ts_section_padding }};
             
             --ts-home-alt-bg-color: {{ ts_home_alt_bg_color }};

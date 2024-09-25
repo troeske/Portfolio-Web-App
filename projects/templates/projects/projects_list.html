@@ -19,17 +19,17 @@
     </div>
     
     <div class="row">
-        <div class="col-9 ts-neg-mar">
+        <div class="col-9 ts-proj-neg-mar">
             <a href="{% url 'project_details' project.slug %}" class="project-link">
                 <h6 class="ts-h7 fw-bold text-decoration-none">{{ project.title }}</h6>
             </a>
-            <p class="ts-p-std">{{ project.sub_heading }}</p>
+            <p class="ts-p-std ts-padding-left">{{ project.sub_heading }}</p>
         </div>
     </div>
     <div class="col-4 ts-divider-black"></div>
     <div class="row">
         <div class="col">
-            <p class="ts-p-std">{{ project.summary }} </p>
+            <p class="ts-p-std ts-padding-left">{{ project.summary }} </p>
         </div>
     </div>
     <br>

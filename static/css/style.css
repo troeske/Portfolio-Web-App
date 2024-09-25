@@ -84,10 +84,15 @@ body {
     height: 24px;
 }
 
-/* projects */
-.ts-neg-mar {
+.ts-home-neg-mar {
     margin-top: -36px;
     background-color: var(--ts-bg-alt-color);
+}
+
+/* projects */
+.ts-proj-neg-mar {
+    margin-top: -36px;
+    background-color: var(--ts-bg-std-color);
 }
 
 /* walk through project styles
