@@ -11,6 +11,7 @@ body {
     font-family: var(--ts-p-std-font-family), sans-serif; 
     color: var(--ts-p-std-font-color);
     font-size: var(--ts-p-std-font-size);
+    padding-top: 12px;
 }
 
 .section-padding {
@@ -36,6 +37,12 @@ body {
     line-height: 1px;
 }
 
+.ts-divider-footer {
+    margin-left: var(--ts-std-padding-left);
+    margin-right: var(--ts-std-padding-left);
+    padding-bottom: 9px;
+    border-top: 0.5px solid var(--ts-p-std-font-color);
+}
 .ts-p-std {
     font-size: var(--ts-p-std-font-size);   
     font-family: var(--ts-p-std-font-family), sans-serif; 
