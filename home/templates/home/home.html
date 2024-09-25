@@ -2,49 +2,110 @@
 {% block content %}
 {% load static %}
 
-<div class="container mt-5">
-    <h3>{{ consultant.first_name }} {{ consultant.last_name }}</h3>
-    <p>{{ consultant.city }}.{{ consultant.country }}</p>
-    <br>
-    <p>{{ consultant.intro_text }}</p>
-    <img src="{{consultant.profile_image.url}}" width="65%" alt="">
-    <br>
-    {% if show_roles %}
-    <h3>Roles</h3>
-    {% for role in roles %}
-    <p>{{ role.label }}</p>
-    <p>{{ role.text }}</p>
-    {% endfor %}
-    {% endif %}
-</div>
+<!-- intro section -->
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-3">
 
-<!-- About section -->
-<div class="container mt-5">
-    <h2>ABOUT</h2>
-    {% if show_tools %}
-    <h3>Tools</h3>
-    {% for t in tools %}
-    <p>{{ t.label }}</p>
-    <p>{{ t.text }}</p>
-    <p>{{ t.proficiency }}</p>
-    {% endfor %}
+            </div>
+            <div class="col-9 container-fluid">
+                <img src="{{consultant.profile_image.url}}" class="img-fluid rounded float-end" alt="picture of the consultant">
+            </div>
+        </div>
+        <br>
+        
+        <div class="row">
+            <div class="col">
+                <h4 class="ts-h4">{{ consultant.intro_text_heading }}</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+
+            </div>
+            <div class="col-9">
+                <p class="text-start ts-p-std">{{ consultant.intro_text }}</p>
+                <br>
+                <p class="text-start ts-p-std"><span class="fw-bold">Not enough?   </span>
+                    <a href="{% url 'about' %}" class="ts_icon_link">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </a> 
+                </p> 
+                
+                {% for social in socials %}
+                <a target="_blank" href="{{ social.link }}" class="ts_icon_link">
+                    <i class="{{ social.fa_icon }}"></i>
+                </a>
+                {% endfor %}
+
+                <a href="{% url 'contact' %}" class="ts_icon_link">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <br>
+    </div>
+</section>
+
+<!-- shows projects that are marked for home show-up -->
+<section class="ts-bg-section-alt">
+    <div class="container section-padding">
+        <h4 class="ts-h4">projects</h4>
+        <br>
+        {% if show_projects %}
+        {% for project in projects %}
+        <div class="row">
+            <div class="col container-fluid">
+                <a href="{% url 'project_details' project.slug %}" class="project-link">
+                    <img src="{{project.project_image.url}}" class="img-fluid rounded" alt="{{project.image_alt_text}}">
+                </a>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-9 ts-neg-mar">
+                <a href="{% url 'project_details' project.slug %}" class="project-link">
+                    <h6 class="ts-h7 fw-bold text-decoration-none">{{ project.title }}</h6>
+                </a>
+                <p class="ts-p-std ts-padding-left">{{ project.sub_heading }}</p>
+            </div>
+        </div>
+        <div class="col-4 ts-divider-black"></div>
+        <div class="row">
+            <div class="col">
+                <p class="ts-p-std ts-padding-left">{{ project.summary }} </p>
+            </div>
+        </div>
+        <br>
+        <p class="text-start ts-p-std"><span class="fw-bold">More? This way. </span>
+            <a href="{% url 'projects_list' %}" class="ts_icon_link">
+                <i class="fa-solid fa-arrow-right-long"></i>
+            </a> 
+        </p> 
+        <br>
+        {% endfor %}
+        {% endif %}
+</section>
+
+<!-- customer logo section -->
+<section>
+    {% if show_customers %}
+    <div class="container section-padding">
+        <h4 class="ts-h4">customers</h4>
+        <br>
+        
+        {% for customer in customers %}
+        <a href="{{customer.link.url}}" target="_blank" class="ts-padding-left">
+            <img class="ts-logo" src="{{customer.logo.url}}" alt="{{customer.logo_alt_text}}">
+        </a> 
+        {% endfor %}
+    
+    </div>
     {% endif %}
-    {% if show_interests %}
-    <h3>Interests</h3>
-    {% for interest in interests %}
-    <p>{{ interest.label }}</p>
-    <p>{{ interest.text }}</p>
-    {% endfor %}
-    {% endif %}
-    {% if show_skills %}
-    <h3>Skills</h3>
-    {% for skill in skills %}
-    <p>{{ skill.label }}</p>
-    <p>{{ skill.text }}</p>
-    <p>{{ skill.proficiency }}</p>
-    {% endfor %}
-    {% endif %}
-</div>
+
+</section>
 
 <!-- Employment History -->
 <div class="container mt-5">
@@ -58,16 +119,4 @@
     {% endfor %}
     {% endif %}
 </div>
-
-<!-- Press Links -->
-<div class="container mt-5">
-    {% if show_presslinks %}
-    <h2>Press Links</h2>
-    {% for presslink in presslinks %}
-    <h3>{{ presslink.link_text }}: <a href="{{ presslink.link }}" target="_blank">link</a></h3>
-    {% endfor %}
-    {% endif %}
-</div>
-
-
 {% endblock content %}

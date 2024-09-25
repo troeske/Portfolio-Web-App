@@ -1,6 +1,7 @@
 {% load static %}
 
 {% url 'home' as home_url %}
+{% url 'about' as about_url %}
 {% url 'projects_list' as projects_url %}
 {% url 'contact' as contact_url %}
 {% url 'client_registration_list' as registrations_url %}
@@ -61,7 +62,12 @@
 
             --ts-std-padding-left: {{ ts_std_padding_left }};
 
-            --ts-std-bg-color: {{ ts_bg_color }};
+            --ts-bg-alt-color: {{ ts_bg_alt_color }};
+            --ts-bg-std-color: {{ ts_bg_std_color }};
+            --ts-section-padding: {{ ts_section_padding }};
+            
+            --ts-home-alt-bg-color: {{ ts_home_alt_bg_color }};
+            --ts-home-std-bg-color: {{ ts_home_std_bg_color }};   
         }
 
     </style>
@@ -74,7 +80,7 @@
 <body class="d-flex flex-column h-100">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><span class="ts-brand">{{ consultant_fname }}</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -83,40 +89,49 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ts-padding-left">
-                    <li class="nav-item">
+                    <li class="nav-item ts_navbar">
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="home"
                             href="{% url 'home' %}">Home</a>
                     </li>
-                    <li class="nav-item"></li>
+                    <li class="nav-item ts_navbar">
+                        <a class="nav-link {% if request.path == about_url %}active{% endif %}" aria-current="about"
+                            href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item ts_navbar">
                         <a class="nav-link {% if request.path == projects_url %}active{% endif %}" aria-current="projects"
                             href="{% url 'projects_list' %}">Projects</a>
                     </li>
-                    <li class="nav-item"></li>
+                    <li class="nav-item ts_navbar">
                         <a class="nav-link {% if request.path == contact_url %}active{% endif %}" aria-current="contact"
                             href="{% url 'contact' %}">Contact</a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="logout" href="{% url 'account_logout' %}">Logout</a>
+                    <li class="nav-item ts_navbar">
+                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="logout" 
+                            href="{% url 'account_logout' %}">Logout</a>
                     </li>
                     {% else %}
-                    <li class="nav-item">
+                    <li class="nav-item ts_navbar">
                         <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="signup"
                             href="{% url 'account_signup' %}">Register</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="logout" href="{% url 'account_login' %}">Login</a>
+                    <li class="nav-item ts_navbar">
+                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="logout" 
+                            href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path ==  registrations_url %}active{% endif %}" aria-current="registrations" href="{% url 'client_registration_list' %}">Registrations</a>
+                    <li class="nav-item ts_navbar"> 
+                        <a class="nav-link {% if request.path ==  registrations_url %}active{% endif %}" aria-current="registrations" 
+                            href="{% url 'client_registration_list' %}">Registrations</a>
                     </li>
-                    <li class="nav-item"></li>
-                        <a class="nav-link {% if request.path ==  collaborations_url %}active{% endif %}" aria-current="collaborations" href="{% url 'collaboration_request_list' %}">Collaborations</a>
+                    <li class="nav-item ts_navbar"> 
+                        <a class="nav-link {% if request.path ==  collaborations_url %}active{% endif %}" aria-current="collaborations"
+                             href="{% url 'collaboration_request_list' %}">Collaborations</a>
                     </li>
-                    <li>
-                        <a class="nav-link" aria-current="reload config" href="{% url 'reload_config' %}">Reload Config</a>
+                    <li class="nav-item ts_navbar"> 
+                        <a class="nav-link ts_navbar" aria-current="reload config" 
+                            href="{% url 'reload_config' %}">Reload Config</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -133,16 +148,17 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">Made by Thorsten Roeske</p>
-        <div class="d-flex justify-content-center">
-            <i class="fab fa-instagram-square ms-3"></i>
-        </div>
+    <footer class="footer mt-auto py-3 bg-transparent">
+        <p class="text-center ts_footer"><i class="fa-regular fa-copyright"></i> Thorsten Roeske</p>
     </footer>
 
-   {% comment %}  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> {% endcomment %}
+    {% comment %} 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+    {% endcomment %}
+    
     {% bootstrap_javascript %}
+    
     <script src="https://kit.fontawesome.com/41140e06a6.js" crossorigin="anonymous"></script>
 
     {% block extras %}

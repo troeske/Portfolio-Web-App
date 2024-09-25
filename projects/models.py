@@ -25,6 +25,7 @@ class Project(models.Model):
     customer = models.CharField(max_length=250, blank=True)
     start = models.DateField(default=date.today)
     end = models.DateField(default=date.today)
+    show_in_home = models.BooleanField(default=True)
 
 
     class Meta:

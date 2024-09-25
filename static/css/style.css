@@ -1,16 +1,45 @@
+/* general */
 body {
-    background-color: var(--ts-std-bg-color);
+    background-color: var(--ts-bg-std-color);
+}
+
+.ts_navbar {
+    font-family: var(--ts-p-std-font-family), sans-serif;
+}
+
+.ts_footer {
+    font-family: var(--ts-p-std-font-family), sans-serif; 
+    color: var(--ts-p-std-font-color);
+    font-size: var(--ts-p-std-font-size);
+}
+
+.section-padding {
+    padding-top: var(--ts-section-padding);
+    padding-bottom: var(--ts-section-padding);
 }
 
 .ts-padding-left{
     padding-left: var(--ts-std-padding-left);
 }
 
+.ts-brand {
+    font-family: var(--ts-brand-font-family), sans-serif;
+    font-size: var(--ts-brand-font-size);
+    color: var(--ts-p-std-font-color);
+    padding-left: var(--ts-brand-padding-left);
+}
+
+.ts-divider-black {
+    margin: 0 0 12px var(--ts-std-padding-left);
+    padding-bottom: 9px;
+    border-top: 0.5mm solid var(--ts-p-std-font-color);
+    line-height: 1px;
+}
+
 .ts-p-std {
     font-size: var(--ts-p-std-font-size);   
     font-family: var(--ts-p-std-font-family), sans-serif; 
     color: var(--ts-p-std-font-color);
-    padding-left: var(--ts-std-padding-left);
     margin-bottom: 6px; 
 }
 
@@ -28,25 +57,31 @@ body {
     font-size: var(--ts-h4-std-font-size);
 }
 
+.ts_spacer {
+    margin-right: 6px;
+}
+
+.ts_icon_link {
+    color: var(--ts-p-std-font-color);
+    margin: 12px 6px 12px 0;
+    text-decoration: none;
+}
+
+/* home */
+.ts-bg-section-alt {
+    background-color: var(--ts-bg-alt-color);
+}
+
+.ts-logo {
+    width: auto;
+    height: 24px;
+}
+
+/* projects */
 .ts-neg-mar {
     margin-top: -36px;
-    background-color: var(--ts-std-bg-color);
+    background-color: var(--ts-bg-alt-color);
 }
-
-.ts-divider-black {
-    margin: 0 0 12px var(--ts-std-padding-left);
-    padding-bottom: 9px;
-    border-top: 0.5mm solid var(--ts-p-std-font-color);
-    line-height: 1px;
-}
-
-.ts-brand {
-    font-family: var(--ts-brand-font-family), sans-serif;
-    font-size: var(--ts-brand-font-size);
-    color: var(--ts-p-std-font-color);
-    padding-left: var(--ts-brand-padding-left);
-}
-
 
 /* walk through project styles
 ************************************************************
