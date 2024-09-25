@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.models import User
 from .models import Project, Category, Learning, Section, SectionImages, Client
 from django.http import HttpResponseRedirect
-from portfolio.utils import get_consultant
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.db import DatabaseError
@@ -17,7 +16,7 @@ def projects_list(request):
     """
     
     try:
-        current_consultant = get_consultant(True)
+        current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
         
         if request.user.is_authenticated:
             if client_approved(request.user):
@@ -39,7 +38,7 @@ def projects_list(request):
         return HttpResponse(error_message, status=500)  
     
     context = {"projects": projects,
-                "show_projects": show_projects,
+                "show_projects": show_projects
                }
 
     # let's append the config data for CSS custom properties to the context dictionary
@@ -56,7 +55,8 @@ def project_details(request, slug):
     Renders the project details page
     """
     try:
-        current_consultant = get_consultant(True)
+        current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
+
         # see if the user is approved
         if client_approved(request.user):
             queryset = Project.objects.filter(consultant_id = current_consultant)
@@ -83,10 +83,7 @@ def project_details(request, slug):
         print(type(e))
         return HttpResponse(error_message, status=500)  
     
-    return render(
-        request,
-        "projects/project_details.html",
-        {"project": project,
+    context = {"project": project,
          "categories": categories,
          "show_categories": show_categories,
          "learnings": learnings,
@@ -95,15 +92,23 @@ def project_details(request, slug):
          "show_sections": show_sections,
          "images": images,
          "show_images": show_images
-        },
+        }
+
+    # let's append the config data for CSS custom properties to the context dictionary
+    context.update(settings.CONTEXT_CONFIG_DATA)
+    
+    return render(
+        request,
+        "projects/project_details.html",
+        context,
     )
 
 def client_registration_list(request):
     """
-    CRUD for the client registration list page
+    CRUD basis for the client registration list page
     """
 
-    current_consultant = get_consultant(True)
+    current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
     
     if request.user.is_superuser:
         try:
@@ -129,25 +134,31 @@ def client_registration_list(request):
             print(type(e))
             return HttpResponse(error_message, status=500)  
     
+        context = {"registrations": registrations,
+                    "show_registrations": show_registrations
+                }
+
+        # let's append the config data for CSS custom properties to the context dictionary
+        context.update(settings.CONTEXT_CONFIG_DATA)
+
         return render(
-        request,
-        "projects/client_registration_list.html",
-        {"registrations": registrations,
-         "show_registrations": show_registrations
-        },
-    )
+                request,
+                "projects/client_registration_list.html",
+                context,
+                )
     else:
         # user is not a super user so show nothing to be safe
         show_registrations = False
+        
+        context = {"show_registrations": show_registrations}
 
+        # let's append the config data for CSS custom properties to the context dictionary
+        context.update(settings.CONTEXT_CONFIG_DATA)
         return render(
-        request,
-        "projects/client_registration_list.html",
-        {
-         "show_registrations": show_registrations
-        },
-
-    )
+                request,
+                "projects/client_registration_list.html",
+                context,
+                )
 
 def client_delete(request, username):
     """

@@ -3,10 +3,10 @@ from django.shortcuts import render
 from .models import CollaborationRequest
 from .forms import CollaborationForm
 from django.core.mail import send_mail
-from portfolio.utils import get_consultant
 from django.db import DatabaseError
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
+from django.conf import settings
 
 # Create your views here.
 def collaboration_request_list(request):
@@ -14,13 +14,15 @@ def collaboration_request_list(request):
     Renders the CR list page
     """
     crs = CollaborationRequest.objects.filter(open=True).order_by("-request_date")
+    
+    context = {"crs": crs}
+    # let's append the config data for CSS custom properties to the context dictionary
+    context.update(settings.CONTEXT_CONFIG_DATA)
 
     return render(
         request,
         "contact/collaboration_request_list.html",
-        {"crs": crs,
-        
-        },
+        context,
     )
 
 def contact(request):
@@ -32,15 +34,15 @@ def contact(request):
                 collaboration_form.save()
                 
                 current_cr = CollaborationRequest.objects.filter(open=True).order_by("-request_date").first()
-                consultant_id, consultant_first_name, consultant_last_name, consultant_email = get_consultant(False)
+                #consultant_id, consultant_first_name, consultant_last_name, consultant_email = get_consultant(False)
                 
                 # Send email to potential client
                 client_message = (
                     f"Hi {current_cr.first_name},\n\n"
                     "Thanks for your message!\n\n"
                     "The collaboration request for "
-                    f"{consultant_first_name} {consultant_last_name} ({consultant_id})" 
-                    f" was received and {consultant_first_name} will respond at the earliest convenience.\n"
+                    f"{settings.CONTEXT_CONFIG_DATA['consultant_fname']} {settings.CONTEXT_CONFIG_DATA['consultant_lname']} ({settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']})" 
+                    f" was received and {settings.CONTEXT_CONFIG_DATA['consultant_fname']} will respond at the earliest convenience.\n"
                     "\nKind regards"
                 )
                 
@@ -54,7 +56,7 @@ def contact(request):
 
                 # Send email to consultant
                 consultant_message = (
-                    f"Hi {consultant_first_name}!\n\n"
+                    f"Hi {settings.CONTEXT_CONFIG_DATA['consultant_fname']}!\n\n"
                     "YEAH!! You have a new collaboration request:\n\n"
                     "----------------------\n"
                     f"Name (last, first): {current_cr.last_name}, {current_cr.first_name}\n" 
@@ -72,7 +74,7 @@ def contact(request):
                     "[NO-REPLY] you have a Collaboration Request",
                     consultant_message,
                     "",
-                    [consultant_email],
+                    [settings.CONTEXT_CONFIG_DATA['consultant_email']],
                     fail_silently=False,
                 )                
 
@@ -94,12 +96,16 @@ def contact(request):
 
     collaboration_form = CollaborationForm()
     
+    context = {        
+                "collaboration_form": collaboration_form
+                }
+    # let's append the config data for CSS custom properties to the context dictionary
+    context.update(settings.CONTEXT_CONFIG_DATA)
+    
     return render(
         request,
         "contact/contact.html",
-        {        
-        "collaboration_form": collaboration_form
-        },
+        context,
     )
     
   

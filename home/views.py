@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Consultant, Skill, PastEmployment, PressLink, Config
-from portfolio.utils import get_consultant
 from django.http import HttpResponse
 from django.conf import settings
 
@@ -11,7 +10,8 @@ def consultant_home(request):
     Renders the home page
     """
     try:
-        current_consultant = get_consultant(True)
+        current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
+
         consultant = Consultant.objects.filter(consultant_id=current_consultant).first()
         
         skills = Skill.objects.filter(consultant_id=current_consultant, type=1).order_by("display_order", "label")
