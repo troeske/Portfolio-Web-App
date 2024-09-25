@@ -42,25 +42,25 @@
         
         /* defing CSS properties and assigning value from config table in the database */
         :root {
-            --ts-p-std-font-size: 13px;
-            --ts-p-std-font-family: "Inter";
-            --ts-p-std-font-color: #121D24;
+            --ts-p-std-font-size: {{ ts_p_std_font_size }};
+            --ts-p-std-font-family:  {{ ts_p_std_font_family }};
+            --ts-p-std-font-color:  {{ ts_p_std_font_color }};
 
-            --ts-h7-std-font-size: 16px;
-            --ts-h7-std-font-color: #121D24;
-            --ts-h7-std-font-family: "Inter";
+            --ts-h7-std-font-size:  {{ ts_h7_font_size }};
+            --ts-h7-std-font-color:  {{ ts_h7_font_color }};
+            --ts-h7-std-font-family:  {{ ts_h7_font_family }};
 
-            --ts-h4-std-font-size: {{ ts_h4_std_font_size }};
-            --ts-h4-std-font-color: #121D24;
-            --ts-h4-std-font-family: {{ ts_h4_std_font_family }};
+            --ts-h4-std-font-size: {{ ts_h4_font_size }};
+            --ts-h4-std-font-color:  {{ ts_h4_font_color }};
+            --ts-h4-std-font-family: {{ ts_h4_font_family }};
 
             --ts-brand-font-size: {{ ts_brand_font_size }};
-            --ts-brand-font-color: #121D24;
+            --ts-brand-font-color:  {{ ts_brand_font_color  }};
             --ts-brand-font-family: {{ ts_brand_font_family }};
 
-            --ts-std-padding-left: 16px;
+            --ts-std-padding-left: {{ ts_std_padding_left }};
 
-            --ts-std-bg-color: {{ ts_std_bg_color }};
+            --ts-std-bg-color: {{ ts_bg_color }};
         }
 
     </style>

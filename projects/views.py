@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.db import DatabaseError
 from .utils import client_approved, not_in_clients
+from django.conf import settings
 
 # Create your views here.
 
@@ -37,13 +38,18 @@ def projects_list(request):
         print(type(e))
         return HttpResponse(error_message, status=500)  
     
+    context = {"projects": projects,
+                "show_projects": show_projects,
+               }
+
+    # let's append the config data for CSS custom properties to the context dictionary
+    context.update(settings.CONTEXT_CONFIG_DATA)
+    
     return render(
         request,
         "projects/projects_list.html",
-        {"projects": projects,
-         "show_projects": show_projects,
-        },
-    )
+        context,
+        )
 
 def project_details(request, slug):
     """

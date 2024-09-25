@@ -38,12 +38,6 @@ def consultant_home(request):
         print(type(e))
         return HttpResponse(error_message, status=500)  
     
-    ts_h4_std_font_family = settings.CONFIG_DATA.get('--ts-h4-std-font-family')
-    ts_std_bg_color = settings.CONFIG_DATA.get('--ts-std-bg-color')
-    ts_h4_std_font_size = settings.CONFIG_DATA.get('--ts-h4-std-font-size')
-    ts_brand_font_size = settings.CONFIG_DATA.get('--ts-brand-font-size')
-    ts_brand_font_family = settings.CONFIG_DATA.get('--ts-brand-font-family')
-    
     context = {"consultant": consultant,
                 "skills": skills,
                 "show_skills": show_skills,
@@ -57,13 +51,11 @@ def consultant_home(request):
                 "show_pastemployments": show_pastemployments,
                 "presslinks": presslinks,
                 "show_presslinks": show_presslinks,
-                'ts_h4_std_font_family': ts_h4_std_font_family,
-                'ts_std_bg_color': ts_std_bg_color,
-                'ts_h4_std_font_size': ts_h4_std_font_size,
-                'ts_brand_font_size': ts_brand_font_size,
-                'ts_brand_font_family': ts_brand_font_family,
                 }
-
+    
+    # let's append the config data for CSS custom properties to the context dictionary
+    context.update(settings.CONTEXT_CONFIG_DATA)
+    
     return render(
         request,
         "home/home.html",
