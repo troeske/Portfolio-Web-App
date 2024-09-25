@@ -93,15 +93,27 @@
     {% if show_customers %}
     <div class="container section-padding">
         <h4 class="ts-h4">customers</h4>
-        <br>
-        
-        {% for customer in customers %}
-        <a href="{{customer.link.url}}" target="_blank" class="ts-padding-left">
-            <img class="ts-logo" src="{{customer.logo.url}}" alt="{{customer.logo_alt_text}}">
-        </a> 
-        {% endfor %}
+    </div>  
     
-    </div>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner ts-home-carousel">
+            {% for customer in customers %}
+            <div class="carousel-item {% if customer.id == 1 %}active{% endif %}">
+                <a href="{{customer.link.url}}" target="_blank" class="ts-padding-left">
+                    <img class="ts-logo" src="{{customer.logo.url}}" alt="{{customer.logo_alt_text}}">
+                </a> 
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        </div>
     {% endif %}
 
 </section>

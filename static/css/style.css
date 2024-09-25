@@ -81,12 +81,20 @@ body {
 
 .ts-logo {
     width: auto;
-    height: 24px;
+    height: 30px;
+    padding-left: 20px;
 }
 
 .ts-home-neg-mar {
     margin-top: -36px;
     background-color: var(--ts-bg-alt-color);
+}
+
+.ts-home-carousel {
+    display: flex;
+    padding-right: 170px;
+    justify-content: center;
+    align-items: center;
 }
 
 /* projects */
