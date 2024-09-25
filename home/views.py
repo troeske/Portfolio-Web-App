@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from .models import Consultant, Skill, PastEmployment, PressLink, Config
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.conf import settings
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -61,3 +62,28 @@ def consultant_home(request):
         "home/home.html",
         context,
     )
+
+
+def reload_config(request):
+    try:
+        CURRENT_CONSULTANT = Config.objects.get(key="CURRENT_CONSULTANT").value
+        # get all config data for the current consultant from the db
+        # and update the dictionary
+        consultant = Consultant.objects.get(consultant_id=CURRENT_CONSULTANT)
+        settings.CONTEXT_CONFIG_DATA['consultant_fname'] = consultant.first_name
+        settings.CONTEXT_CONFIG_DATA['consultant_lname'] = consultant.last_name
+        settings.CONTEXT_CONFIG_DATA['consultant_email'] = consultant.email
+        
+        # get all config data for the current consultant from the db
+        configs = Config.objects.filter(consultant_id=CURRENT_CONSULTANT)
+        # let's load these into a dictionary
+        for this_config in configs:
+            settings.CONTEXT_CONFIG_DATA[this_config.key] = this_config.value
+
+        return HttpResponseRedirect(reverse('home'))
+    
+    except Exception as e:
+        error_message = f"An error occurred while reloading config: {e}"
+        print(error_message)
+        print(type(e))
+        return HttpResponse(error_message, status=500)

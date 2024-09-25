@@ -18,11 +18,6 @@ import sys
 if os.path.isfile('env.py'):
     import env
 
-
-# define witch consultant is the consultant the site is build for
-CURRENT_CONSULTANT = 1
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')

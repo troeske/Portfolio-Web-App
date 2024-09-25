@@ -19,7 +19,6 @@ class LoadConfigMiddleware:
             settings.CONTEXT_CONFIG_DATA = {}
             CURRENT_CONSULTANT = Config.objects.get(key="CURRENT_CONSULTANT").value
             
-            
             # let's add data about the current consultant into the dictionary
             consultant = Consultant.objects.get(consultant_id=CURRENT_CONSULTANT)
             settings.CONTEXT_CONFIG_DATA['consultant_fname'] = consultant.first_name
