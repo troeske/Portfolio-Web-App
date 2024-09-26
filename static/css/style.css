@@ -16,7 +16,7 @@ body {
 
 .section-padding {
     padding-top: var(--ts-section-padding);
-    padding-bottom: var(--ts-section-padding);
+    padding-bottom: var(--ts-section-padding-b);
 }
 
 .ts-padding-left{
@@ -108,6 +108,33 @@ body {
 .ts-proj-neg-mar {
     margin-top: -36px;
     background-color: var(--ts-bg-std-color);
+}
+
+/* project details */
+.ts-sheading1 {
+    color: var(--ts-pdetails-sheading1-color);
+    font-size: var(--ts-pdetails-sheading1-font-size);
+    font-family: var(--ts-pdetails-sheading-font-family), sans-serif;
+    margin-bottom: 2px;
+}
+
+.ts-sheading2 {
+    color: var(--ts-pdetails-sheading2-color);
+    font-size: var(--ts-pdetails-sheading2-font-size);
+    font-family: var(--ts-pdetails-sheading-font-family), sans-serif;
+}
+
+.ts-image-caption {
+    font-size: var(--ts-p-std-font-size);
+    font-family: var(--ts-p-std-font-family), sans-serif;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+}
+
+.ts-image-caption-light {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
 }
 
 /* walk through project styles

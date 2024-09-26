@@ -25,42 +25,81 @@
         </div>
     </div>
 </section>    
-    
-    <!-- show any sections stored for the project -->
+
+<!-- show any sections available for the project -->
+<section class="section-padding"> 
     {% if show_sections %}
-    
     {% for section in sections %}
-    {% if section.heading_1 %}
-    <h3>{{ section.heading_1 }}</h3>
-    {% endif %}
-    {% if section.heading_2 %}
-    <h2>{{ section.heading_2 }}</h2>
-    {% endif %}
-    <br>
-    {% if section.text %}
-    <p>{{ section.text }}</p>
-    {% endif %}
-
+    <div class="container mt-4">
+        <div class="row mt-4">
+            <div class="col-3">
+            </div>
+            <div class="col-9">
+                <div class="container ps-0 pe-3">
+                    {% if section.heading_1 %}<h2 class="ts-sheading1">{{ section.heading_1 }}</h2>{% endif %}
+                    {% if section.heading_2 %}<h2 class="ts-sheading2">{{ section.heading_2 }}</h2>{% endif %}
+                    {% if section.text %}<p class="ts-p-std">{{ section.text }}</p>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+        
     {% if show_images %}
-    {% for image in images %}
-    <!-- only display the images for the current section -->
-    {% if image.section.id == section.id %}
-    <img src="{{ image.image.url }}" width="35%" alt="{{ section.alt_text }}">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-inner">
+                        {% for image in images %}
+                        {% if image.section.id == section.id %}
+                        <!-- only images for this section -->
+                        <div class="carousel-item {% if image.display_order == 1 %}active{% endif %}">
+                            <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="{{ image.alt_text }}">
+                            <div class="carousel-caption d-md-block {% if image.image_caption_mode == 'light' %}ts-image-caption-light{% endif %}">
+                                <h5 class="ts-image-caption {% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %}">{{ image.image_caption_heading }}</h5>
+                                <p class="ts-image-caption {% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %}">{{ image.image_caption_text }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-1">
+            </div>
 
-    {% if image.video_alt_text != 'placeholder' %}
-    <br>
-    <video width="35%" controls>
-        <source src="{{ image.video.url }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    <br>
-    {% endfor %}
+                <!-- {% if image.video_alt_text != 'placeholder' %}
+                    {% if image.video %}
+                    {% if image.video.url %}
+                    <br>
+                    <video width="35%" controls>
+                        <source src="{{ image.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    {% endif %} 
+                    {% endif %}
+                -->
+        </div>
+        <br>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
 
+    </div>
     {% endif %}
+
+</section> 
 
     {% if show_learnings %}
     

@@ -74,6 +74,12 @@ def project_details(request, slug):
         sections = Section.objects.filter(project_id=project).order_by("display_order", "heading_1")
         show_sections = False if sections.count() == 0 else True
 
+        # let's calculate the number of images per section for the image carousel
+        section_image_counts = {}
+        for section in sections:
+            image_count = SectionImages.objects.filter(section_id=section).count()
+            section_image_counts[section.id] = image_count
+            
         images = SectionImages.objects.all().order_by("display_order", "alt_text")
         show_images = False if images.count() == 0 else True
     
@@ -91,6 +97,7 @@ def project_details(request, slug):
          "sections": sections,
          "show_sections": show_sections,
          "images": images,
+         'section_image_counts': section_image_counts,
          "show_images": show_images
         }
 
