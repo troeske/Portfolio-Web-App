@@ -98,16 +98,16 @@ body {
 }
 
 /* about */
-.ts-about-sections1 {
-    background-color: var( --ts-about-section1-bg-color);
+.ts-about-section1 {
+    background-color: var(--ts-about-section1-bg-color);
 }
 
-.ts-about-sections2 {
-    background-color: var( --ts-about-section2-bg-color);
+.ts-about-section2 {
+    background-color: var(--ts-about-section2-bg-color);
 }
 
-.ts-about-sections3 {
-    background-color: var( --ts-about-section3-bg-color);
+.ts-about-section3 {
+    background-color: var(--ts-about-section3-bg-color);
 }
 
 .ts-about-aboutme {
@@ -126,6 +126,94 @@ body {
     font-size: var(--ts-about-section2-text-size);   
     font-family: var(--ts-about-section2-text-font), sans-serif; 
     color: var(--ts-about-section2-text-color);
+}
+
+.ts-skills-container {
+    width: 220px;
+    background-color: var(--ts-about-skills-card-bg-color);
+}
+
+.ts-skills-heading {
+    font-size: var(--ts-h4-std-font-size);
+    font-family:var(--ts-h4-std-font-family), sans-serif;
+    color: var(--ts-about-skills-card-text-color);
+}
+
+.ts-skills-text {
+    font-size: var(--ts-about-section2-text-size); 
+    font-family:var( --ts-about-section3-text-font), sans-serif;
+    color: var(--ts-about-skills-card-text-color);
+}
+
+.ts-tools-container {
+    width: 220px;
+    background-color: var(--ts-about-tools-card-bg-color);
+}
+
+.ts-tools-heading {
+    font-size: var(--ts-h4-std-font-size);
+    font-family:var(--ts-h4-std-font-family), sans-serif;
+    color: var(--ts-about-tools-card-text-color);
+}
+
+.ts-tools-text {
+    font-size: var(--ts-about-section2-text-size); 
+    font-family:var( --ts-about-section3-text-font), sans-serif;
+    color: var(--ts-about-tools-card-text-color);
+}
+
+.ts-interests-container {
+    width: 220px;
+    background-color: var(--ts-about-interests-card-bg-color);
+}
+
+.ts-interests-heading {
+    font-size: var(--ts-h4-std-font-size);
+    font-family:var(--ts-h4-std-font-family), sans-serif;
+    color: var(--ts-about-interests-card-text-color);
+}
+
+.ts-interests-text {
+    font-size: var(--ts-about-section2-text-size); 
+    font-family:var( --ts-about-section3-text-font), sans-serif;
+    color: var(--ts-about-interests-card-text-color);
+}
+
+.ts-about-section4 {
+    background-color: var(--ts-about-section4-bg-color);
+}
+
+.ts-about-section4-heading {
+    font-size: 16px;
+    font-family:var(--ts-about-section4-heading-font), sans-serif;
+    color: var(--ts-about-section4-text-color);
+}
+
+.ts-about-section4-img {
+    width: 20px;
+    height: auto;
+}
+.ts-about-section4-text {
+    font-size: var(--ts-about-section2-text-size); 
+    font-family:var(--ts-about-section4-text-font), sans-serif;
+    color: var( --ts-about-section4-text-color);
+}
+
+.ts-about-section5 {
+    background-color: var(--ts-about-section5-bg-color);
+}
+
+.ts-about-section5-heading {
+    font-size: var(--ts-h4-std-font-size);
+    font-family:var(--ts-about-section5-heading-font), sans-serif;
+    color: var(--ts-about-section5-text-color);
+}
+
+.ts-about-section5-text {
+    font-size: var(--ts-about-section2-text-size); 
+    font-family:var(--ts-about-section5-text-font), sans-serif;
+    color: var( --ts-about-section5-text-color);
+    text-decoration: none;
 }
 
 /* projects */
@@ -190,6 +278,7 @@ body {
     padding-left: 2px;
     padding-top: 6px;
 }
+
 /* walk through project styles
 ************************************************************
    start

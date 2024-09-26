@@ -66,7 +66,18 @@ class PastEmployment(models.Model):
     def __str__(self):
         return f"{self.consultant_id} | {self.start} | {self.company} | {self.role}"
 
+class How(models.Model):
+    consultant_id = models.ForeignKey(
+        Consultant, on_delete=models.CASCADE, related_name="home_hows"
+        )
+    heading = models.CharField(max_length=200, blank=False, default="heading.")
+    text = models.TextField(blank=False, default="default intro text.")
+    icon = CloudinaryField('image', default='placeholder')
+    display_order = models.IntegerField(default=0)
 
+    def __str__(self):
+        return f"{self.heading}"
+    
 class PressLink(models.Model):
     consultant_id = models.ForeignKey(
         Consultant, on_delete=models.CASCADE, related_name="home_presslinks"

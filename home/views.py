@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse
-from .models import Consultant, Skill, PastEmployment, PressLink, Config, Customer, SocialAccount
+from .models import Consultant, Skill, PastEmployment, PressLink, Config, Customer, SocialAccount, How
 from projects.models import Project
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
@@ -72,6 +72,9 @@ def consultant_about(request):
 
         tools = Skill.objects.filter(consultant_id=current_consultant, type=2).order_by("display_order", "label")
         show_tools = False if tools.count() == 0 else True
+        
+        hows = How.objects.filter(consultant_id=current_consultant).order_by("display_order")
+        show_how = False if tools.count() == 0 else True
 
         interests = Skill.objects.filter(consultant_id=current_consultant, type=3).order_by("display_order", "label")
         show_interests = False if interests.count() == 0 else True
@@ -104,6 +107,8 @@ def consultant_about(request):
                 "show_pastemployments": show_pastemployments,
                 "presslinks": presslinks,
                 "show_presslinks": show_presslinks,
+                "hows": hows,
+                "show_how": show_how
                 }
     
     # let's append the config data for CSS custom properties to the context dictionary

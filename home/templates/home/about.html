@@ -3,16 +3,19 @@
 {% load static %}
 
 <!-- Intro section -->
-<section class="ts-about-sections1 ts-section-padding">
-    <div class="container mt-5">
-        <!-- <h3>{{ consultant.first_name }} {{ consultant.last_name }}</h3>
-        <p>{{ consultant.city }}.{{ consultant.country }}</p> -->
+<section class="ts-about-section1 ts-section-padding">
+    <div class="container mt-5 pb-4">
         <div class="row mb-5">
             <div class="col-3">
-
             </div>
             <div class="col-9 ps-2">
                 <p class="ts-about-aboutme">{{ consultant.about_me }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="ts-p-std text-center fw-bold mb-0">{{ consultant.first_name }} {{ consultant.last_name }}</p>
+                <p class="ts-p-std text-center">{{ consultant.city }}.{{ consultant.country }}</p>
             </div>
         </div>
         {% for role in roles %}
@@ -23,14 +26,14 @@
                 </div>
             </div>
         </div>
-        <div class="row"></div>
+        <div class="row">
             <div class="col-12 px-5 mb-2"> 
                 <div class="d-flex justify-content-center align-items-center fw-bold">
                     <p class="ts-p-std">{{ role.label }}</p>
                 </div>
             </div>
         </div>
-        <div class="row"></div>
+        <div class="row">
             <div class="col-12 px-5 mb-3">
                 <div class="d-flex justify-content-center align-items-center">
                     <p class="ts-p-std text-center">{{ role.text }}</p>
@@ -42,9 +45,9 @@
 </section>
 
 <!-- Employment History -->
-<section class="ts-about-sections2 ts-section-padding">
+<section class="ts-about-section2 ts-section-padding">
     {% if show_pastemployments %}
-    <div class="container mt-5 ps-4">
+    <div class="container pt-2 pb-4 ps-4">
         <p class="ts-about-section2-h pt-4">LATEST POSITIONS</p>
         <div class="row pb-5">
             <div class="col-9">
@@ -60,45 +63,71 @@
 </section>
 
 <!-- skilss section -->
-<section class="ts-about-sections3 ts-section-padding">
-    <div class="container mt-5">
+<section class="ts-about-section3 ts-section-padding">
+    <div class="container pt-4 pb-4 px-3">
+        <div class="d-flex flex-wrap justify-content-around px-0">   
+            {% if show_skills %}
+            <div class="shadow rounded m-1 p-3 ts-skills-container">
+                <p class="ts-skills-heading mb-1">Skills</h4>
+                {% for skill in skills %}
+                <p class="ts-skills-text mb-0" >{{ skill.label }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
 
-        {% if show_tools %}
-        <h3>Tools</h3>
-        {% for t in tools %}
-        <p>{{ t.label }}</p>
-        <p>{{ t.text }}</p>
-        <p>{{ t.proficiency }}</p>
-        {% endfor %}
-        {% endif %}
-        {% if show_interests %}
-        <h3>Interests</h3>
-        {% for interest in interests %}
-        <p>{{ interest.label }}</p>
-        <p>{{ interest.text }}</p>
-        {% endfor %}
-        {% endif %}
-        {% if show_skills %}
-        <h3>Skills</h3>
-        {% for skill in skills %}
-        <p>{{ skill.label }}</p>
-        <p>{{ skill.text }}</p>
-        <p>{{ skill.proficiency }}</p>
-        {% endfor %}
-        {% endif %}
+            {% if show_tools %}
+            <div class="shadow-sm rounded m-1 p-3 ts-tools-container">
+                <p class="ts-tools-heading mb-1">Tools</h4>
+                    {% for t in tools %}
+                <p class="ts-tools-text mb-0" >{{ t.label }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if show_interests %}
+            <div class="shadow-sm rounded m-1 p-3 ts-interests-container">
+                <p class="ts-interests-heading mb-1">Skills</h4>
+                    {% for interest in interests %}
+                <p class="ts-interests-text mb-0" >{{ interest.label }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+
+<!-- How section -->
+<section class="ts-about-section4 ts-section-padding">
+    <div class="container px-3">
+        <div class="d-flex flex-wrap justify-content-around text-center px-0">   
+            {% if show_how %}
+            <div class="m-1 px-5 py-5 ">
+                <p class="ts-h4 mb-5 text-center">How I work *</p>
+            
+                {% for how in hows %}
+                <img class="ts-about-section4-img" src="{{ how.icon.url }}" alt="how I work">
+                <p class="ts-about-section4-heading fw-bold mb-0" >{{ how.heading }}</p>
+                <p class="ts-about-section4-text mb-4" >{{ how.text }}</p>
+                {% endfor %}
+  
+                <p class="ts-about-section4-text mt-5 mb-3">* Big fan of bringing AI into the process!</p>
+            </div>
+            {% endif %}
+        </div>
     </div>
 </section>
 
 <!-- Press Links -->
-<section class="ts-section-padding">
-<div class="container mt-5">
-    {% if show_presslinks %}
-    <h2>Press Links</h2>
-    {% for presslink in presslinks %}
-    <h3>{{ presslink.link_text }}: <a href="{{ presslink.link }}" target="_blank">link</a></h3>
-    {% endfor %}
-    {% endif %}
-</div>
+<section class="ts-about-section5 ts-section-padding">
+    <div class="container pt-4 pb-4 ps-4 pe-5">
+        {% if show_presslinks %}
+        <p class="ts-about-section5-heading mb-2">Press</p>
+        {% for presslink in presslinks %}
+        <p class="ts-about-section5-text ps-2"><a href="{{ presslink.link.url }}" target="_blank"><i class="fa-solid fa-up-right-from-square"></i><span class="ms-1">{{ presslink.link_text }}</span></a></p>
+        {% endfor %}
+        {% endif %}
+    </div>
 </section>
 
 {% endblock content %}
