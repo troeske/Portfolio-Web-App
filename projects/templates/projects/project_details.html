@@ -47,9 +47,7 @@
     {% if show_images %}
     <div class="container mt-4">
         <div class="row">
-            <div class="col-1">
-            </div>
-            <div class="col-10">
+            <div class="col px-4">
                 <div id="carouselExampleCaptions" class="carousel slide">
                     <div class="carousel-inner">
                         {% for image in images %}
@@ -58,8 +56,8 @@
                         <div class="carousel-item {% if image.display_order == 1 %}active{% endif %}">
                             <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="{{ image.alt_text }}">
                             <div class="carousel-caption d-md-block {% if image.image_caption_mode == 'light' %}ts-image-caption-light{% endif %}">
-                                <h5 class="ts-image-caption {% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %}">{{ image.image_caption_heading }}</h5>
-                                <p class="ts-image-caption {% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %}">{{ image.image_caption_text }}</p>
+                                <p class="{% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %} ts-image-caption">{{ image.image_caption_heading }}</p>
+                                <p class="{% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %} ts-image-caption">{{ image.image_caption_text }}</p>
                             </div>
                         </div>
                         {% endif %}
@@ -76,42 +74,46 @@
                     </button>
                 </div>
             </div>
-            <div class="col-1">
-            </div>
-
-                <!-- {% if image.video_alt_text != 'placeholder' %}
-                    {% if image.video %}
-                    {% if image.video.url %}
-                    <br>
-                    <video width="35%" controls>
-                        <source src="{{ image.video.url }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    {% endif %} 
-                    {% endif %}
-                -->
         </div>
-        <br>
-        {% endif %}
-        {% endif %}
-        {% endfor %}
-
+    </div>           
+    
+    {% if show_videos %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col px-4">
+                {% for video in videos %}
+                {% if video.section.id == section.id %}
+                <video source src="{{ video.video.url }}" class="ts-video border rounded" alt="{{ video.alt_text }}" 
+                type="video/mp4" controls>Your browser does not support the video tag.</video>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
     {% endif %}
 
+    {% endif %}
+    {% endfor %}
+
+    {% endif %}
 </section> 
 
+<!-- learnings section -->
+<section class="section-padding">
     {% if show_learnings %}
-    
-    <h3>Learnings</h3>
-    <br>
-    {% for learning in learnings %}
-    <h4>{{ learning.header }}</h4>
-    <p>{{ learning.text }}</p>
-    {% endfor %}
-    
+    <div class="container px-3">
+        <h4 class="ts-h4 ts-learning-section-heading pb-2">Learnings</h4>
+        <div class="d-flex flex-wrap justify-content-around px-0">   
+            {% for learning in learnings %}
+            <div class="m-1 p-2 border ts-learning-container">
+                <h4 class="ts-learning-heading border-bottom border-dark">{{ learning.header }}</h4>
+                <p class="ts-p-std">{{ learning.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
     {% endif %}
 
-</div>
+</section>
 
 {% endblock content %}

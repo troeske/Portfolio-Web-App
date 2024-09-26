@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.models import User
-from .models import Project, Category, Learning, Section, SectionImages, Client
+from .models import Project, Category, Learning, Section, SectionImages, Client, SectionVideo
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -82,6 +82,9 @@ def project_details(request, slug):
             
         images = SectionImages.objects.all().order_by("display_order", "alt_text")
         show_images = False if images.count() == 0 else True
+        
+        videos = SectionVideo.objects.all().order_by("display_order", "video_alt_text")
+        show_videos = False if videos.count() == 0 else True
     
     except Exception as e:
         error_message = f"A general error occurred:: {e}. Please try again later."
@@ -98,7 +101,9 @@ def project_details(request, slug):
          "show_sections": show_sections,
          "images": images,
          'section_image_counts': section_image_counts,
-         "show_images": show_images
+         "show_images": show_images,
+         "videos": videos,
+        "show_videos": show_videos
         }
 
     # let's append the config data for CSS custom properties to the context dictionary

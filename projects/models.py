@@ -108,6 +108,17 @@ class SectionImages(models.Model):
     image_caption_heading = models.CharField(max_length=250, blank=True, default='Caption Heading')
     image_caption_text = models.CharField(max_length=250,  blank=True, default='Caption Text')
     image_caption_mode = models.CharField(max_length=100,  blank=True, default='light')
+    display_order = models.IntegerField(default=0)
+    class Meta:
+        ordering = ["section_id", "display_order"]
+
+    def __str__(self):
+       return f"{self.section} | {self.alt_text} | {self.display_order}"
+   
+class SectionVideo(models.Model):
+    section = models.ForeignKey(
+        Section, on_delete=models.CASCADE, related_name="section_videos"
+        )
     video = CloudinaryField('video', resource_type='video', default='placeholder')
     video_alt_text = models.CharField(max_length=200, default='placeholder')
     display_order = models.IntegerField(default=0)
@@ -115,7 +126,7 @@ class SectionImages(models.Model):
         ordering = ["section_id", "display_order"]
 
     def __str__(self):
-       return f"{self.section} | {self.alt_text} | {self.display_order}"
+       return f"{self.section} | {self.video_alt_text} | {self.display_order}"
 
 class SectionURLS(models.Model):
     section = models.ForeignKey(
