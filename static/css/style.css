@@ -58,12 +58,6 @@ body {
     padding-top: 16px;
 }
 
-.ts-h4 {
-    padding-left: var(--ts-std-padding-left);
-    font-family: var(--ts-h4-std-font-family), sans-serif; 
-    font-size: var(--ts-h4-std-font-size);
-}
-
 .ts_spacer {
     margin-right: 6px;
 }
@@ -75,6 +69,12 @@ body {
 }
 
 /* home */
+
+.ts-h3 {
+    padding-left: 24px;
+    font-family: var(--ts-h4-std-font-family), sans-serif; 
+    font-size: 26px;
+}
 .ts-bg-section-alt {
     background-color: var(--ts-bg-alt-color);
 }
@@ -98,6 +98,13 @@ body {
 }
 
 /* projects */
+.ts-h4 {
+    padding-left: var(--ts-std-padding-left);
+    padding-right: var(--ts-std-padding-left);
+    font-family: var(--ts-h4-std-font-family), sans-serif; 
+    font-size: var(--ts-h4-std-font-size);
+}
+
 .ts-proj-neg-mar {
     margin-top: -36px;
     background-color: var(--ts-bg-std-color);

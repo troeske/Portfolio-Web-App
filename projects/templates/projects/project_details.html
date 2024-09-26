@@ -2,18 +2,29 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>{{ project.title }}</h2>
-    <img src="{{ project.detail_image.url }}" width="35%" alt="{{ project.detail_image_alt }}">
-    <h4>CUSTOMER</h4>
-    <p>{{ project.customer }}</p>
-    <br>
-    <p> <span>{{ project.start|date:"m/y" }}</span> - <span>{{ project.end|date:"m/y" }}</span> </p>
-    <br>
-    <p>{{ project.sub_heading }}</p>
-    <br>
-    <p>{{ project.summary }}</p>
-    <br>
+
+<!-- general about project section -->
+<section class="section-padding">
+    <div class="container">
+        <h4 class="text-center">{{ project.title }}</h4>
+        <div class="container-fluid">
+            <img src="{{ project.detail_image.url }}" class="img-fluid rounded" alt="{{ project.detail_image_alt }}">
+        </div>
+        <div class="row mt-4">
+            <div class="col-3">
+            </div>
+            <div class="col-9">
+                <div class="container ps-0 pe-3">
+                    <h4 class="border-top border-dark pt-2 mb-0">CUSTOMER</h4>
+                    <a href="{{ project.link }}" target="_blank" alt="{{ project.text }}"><p class="ts-p-std mb-2 pt-0">{{ project.customer }}</p></a>
+                    <p class="border-top border-dark ts-p-std pt-2"> <span>{{ project.start|date:"m/y" }}</span> - <span>{{ project.end|date:"m/y" }}</span> </p>
+                    <p class="border-top border-dark ts-p-std pt-2">{{ project.sub_heading }}</p>
+                    <p class="mt-4 ts-p-std">{{ project.summary }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    
     
     <!-- show any sections stored for the project -->
     {% if show_sections %}
