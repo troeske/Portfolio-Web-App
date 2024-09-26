@@ -116,6 +116,18 @@ body {
     color: var(--ts-p-std-font-color);
 }
 
+.ts-about-section2-h {
+    font-size: var(--ts-about-section2-heading-size);   
+    font-family: var(--ts-about-section2-heading-font), sans-serif; 
+    color: var(--ts-about-section2-text-color);
+}
+
+.ts-about-section2-p {
+    font-size: var(--ts-about-section2-text-size);   
+    font-family: var(--ts-about-section2-text-font), sans-serif; 
+    color: var(--ts-about-section2-text-color);
+}
+
 /* projects */
 .ts-h4 {
     padding-left: var(--ts-std-padding-left);

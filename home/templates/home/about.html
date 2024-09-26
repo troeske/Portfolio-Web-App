@@ -17,15 +17,15 @@
         </div>
         {% for role in roles %}
         <div class="row">
-            <div class="col-12 px-5 mb-2">
-                <div class="d-flex justify-content-center align-items-center">
+            <div class="col-12 px-5 mb-2 mt-3">
+                <div class="d-flex justify-content-center align-items-center fw-bold">
                     <i class="{{ role.icon }}"></i>
                 </div>
             </div>
         </div>
         <div class="row"></div>
-            <div class="col-12 px-5 mb-3">
-                <div class="d-flex justify-content-center align-items-center">
+            <div class="col-12 px-5 mb-2"> 
+                <div class="d-flex justify-content-center align-items-center fw-bold">
                     <p class="ts-p-std">{{ role.label }}</p>
                 </div>
             </div>
@@ -43,16 +43,19 @@
 
 <!-- Employment History -->
 <section class="ts-about-sections2 ts-section-padding">
-    <div class="container mt-5">
-        {% if show_pastemployments %}
-        <h2>LATEST POSITIONS</h2>
-        {% for pastemployment in pastemployments %}
-        <h3>{{ pastemployment.role }} | {{ pastemployment.company }}</h3>
-        <p>{{ pastemployment.start }} - {{ pastemployment.end }}</p>
-        <p>{{ pastemployment.city }}.{{ pastemployment.country }}</p>
-        <p>{{ pastemployment.text }}</p>
-        {% endfor %}
-        {% endif %}
+    {% if show_pastemployments %}
+    <div class="container mt-5 ps-4">
+        <p class="ts-about-section2-h pt-4">LATEST POSITIONS</p>
+        <div class="row pb-5">
+            <div class="col-9">
+                {% for pastemployment in pastemployments %}
+                <p class="ts-about-section2-h mb-0 mt-3">{{ pastemployment.company }}</p>
+                <p class="ts-about-section2-p mb-0">{{ pastemployment.role }}</p>
+                <p class="ts-about-section2-p mb-0">{{ pastemployment.city }}, {{ pastemployment.start|date:"m/y" }} - {{ pastemployment.end|date:"m/y" }}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
     </div>
 </section>
 
