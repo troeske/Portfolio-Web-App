@@ -14,6 +14,7 @@ class Consultant(models.Model):
     email = models.EmailField(null=True, blank=True)
     intro_text_heading = models.CharField(max_length=200, blank=False, default="heading.")
     intro_text = models.TextField(blank=False, default="default intro text.")
+    about_me = models.TextField(blank=False, default="default about me text.")
     profile_image = CloudinaryField('image', default='placeholder')
     phone = models.CharField(max_length=50, blank=True)
     street = models.CharField(max_length=200, blank=True)
@@ -33,6 +34,7 @@ class Skill(models.Model):
     type = models.IntegerField(choices=TYPE, default=1)
     proficiency = models.IntegerField(null=True, blank=True)
     text = models.TextField(blank=True)
+    icon = models.CharField(max_length=200, blank=True)
     display_order = models.IntegerField(default=0)
 
     class Meta:

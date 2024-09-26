@@ -67,17 +67,28 @@
             --ts-bg-std-color: {{ ts_bg_std_color }};
             {% endif %};
             
+            {% if request.path == about_url %};
+            --ts-bg-std-color: {{ ts_bg_std_color }};
+            {% endif %};
+            
             {% if request.path == projects_url %};
             --ts-bg-alt-color: {{ ts_home_bg_alt_color }};
             --ts-bg-std-color: {{ ts_home_bg_std_color }};
             {% endif %};
-            
 
             --ts-section-padding: {{ ts_section_padding }};
             --ts-section-padding-b: {{ ts_section_padding_b }};
             
             --ts-home-alt-bg-color: {{ ts_home_alt_bg_color }};
             --ts-home-std-bg-color: {{ ts_home_std_bg_color }}; 
+            
+            --ts-about-section1-bg-color: {{ ts_about_section1_bg }};
+            --ts-about-section2-bg-color: {{ ts_about_section3_bg }};
+            --ts-about-section3-bg-color: {{ ts_about_section3_bg }};
+
+            --ts-about-skills-card-bg-color: {{ ts_about_skills_card_bg }};
+            --ts-about-interests-card-bg-color: {{ ts_about_interests_card_bg }};
+            --ts-about-tools-card-bg-color: {{ ts_about_tools_card_bg }};
             
             --ts-pdetails-sheading1-color: {{ ts_pdetails_sheading1_color }}; 
             --ts-pdetails-sheading1-font-size: {{ ts_pdetails_sheading1_font_size }}; 

@@ -2,64 +2,92 @@
 {% block content %}
 {% load static %}
 
-<div class="container mt-5">
-    <h3>{{ consultant.first_name }} {{ consultant.last_name }}</h3>
-    <p>{{ consultant.city }}.{{ consultant.country }}</p>
-    <br>
-    <p>{{ consultant.intro_text }}</p>
-    <img src="{{consultant.profile_image.url}}" width="65%" alt="">
-    <br>
-    {% if show_roles %}
-    <h3>Roles</h3>
-    {% for role in roles %}
-    <p>{{ role.label }}</p>
-    <p>{{ role.text }}</p>
-    {% endfor %}
-    {% endif %}
-</div>
+<!-- Intro section -->
+<section class="ts-about-sections1 ts-section-padding">
+    <div class="container mt-5">
+        <!-- <h3>{{ consultant.first_name }} {{ consultant.last_name }}</h3>
+        <p>{{ consultant.city }}.{{ consultant.country }}</p> -->
+        <div class="row mb-5">
+            <div class="col-3">
 
-<!-- About section -->
-<div class="container mt-5">
-    <h2>ABOUT</h2>
-    {% if show_tools %}
-    <h3>Tools</h3>
-    {% for t in tools %}
-    <p>{{ t.label }}</p>
-    <p>{{ t.text }}</p>
-    <p>{{ t.proficiency }}</p>
-    {% endfor %}
-    {% endif %}
-    {% if show_interests %}
-    <h3>Interests</h3>
-    {% for interest in interests %}
-    <p>{{ interest.label }}</p>
-    <p>{{ interest.text }}</p>
-    {% endfor %}
-    {% endif %}
-    {% if show_skills %}
-    <h3>Skills</h3>
-    {% for skill in skills %}
-    <p>{{ skill.label }}</p>
-    <p>{{ skill.text }}</p>
-    <p>{{ skill.proficiency }}</p>
-    {% endfor %}
-    {% endif %}
-</div>
+            </div>
+            <div class="col-9 ps-2">
+                <p class="ts-about-aboutme">{{ consultant.about_me }}</p>
+            </div>
+        </div>
+        {% for role in roles %}
+        <div class="row">
+            <div class="col-12 px-5 mb-2">
+                <div class="d-flex justify-content-center align-items-center">
+                    <i class="{{ role.icon }}"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row"></div>
+            <div class="col-12 px-5 mb-3">
+                <div class="d-flex justify-content-center align-items-center">
+                    <p class="ts-p-std">{{ role.label }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row"></div>
+            <div class="col-12 px-5 mb-3">
+                <div class="d-flex justify-content-center align-items-center">
+                    <p class="ts-p-std text-center">{{ role.text }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
 <!-- Employment History -->
-<div class="container mt-5">
-    {% if show_pastemployments %}
-    <h2>LATEST POSITIONS</h2>
-    {% for pastemployment in pastemployments %}
-    <h3>{{ pastemployment.role }} | {{ pastemployment.company }}</h3>
-    <p>{{ pastemployment.start }} - {{ pastemployment.end }}</p>
-    <p>{{ pastemployment.city }}.{{ pastemployment.country }}</p>
-    <p>{{ pastemployment.text }}</p>
-    {% endfor %}
-    {% endif %}
-</div>
+<section class="ts-about-sections2 ts-section-padding">
+    <div class="container mt-5">
+        {% if show_pastemployments %}
+        <h2>LATEST POSITIONS</h2>
+        {% for pastemployment in pastemployments %}
+        <h3>{{ pastemployment.role }} | {{ pastemployment.company }}</h3>
+        <p>{{ pastemployment.start }} - {{ pastemployment.end }}</p>
+        <p>{{ pastemployment.city }}.{{ pastemployment.country }}</p>
+        <p>{{ pastemployment.text }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+</section>
+
+<!-- skilss section -->
+<section class="ts-about-sections3 ts-section-padding">
+    <div class="container mt-5">
+
+        {% if show_tools %}
+        <h3>Tools</h3>
+        {% for t in tools %}
+        <p>{{ t.label }}</p>
+        <p>{{ t.text }}</p>
+        <p>{{ t.proficiency }}</p>
+        {% endfor %}
+        {% endif %}
+        {% if show_interests %}
+        <h3>Interests</h3>
+        {% for interest in interests %}
+        <p>{{ interest.label }}</p>
+        <p>{{ interest.text }}</p>
+        {% endfor %}
+        {% endif %}
+        {% if show_skills %}
+        <h3>Skills</h3>
+        {% for skill in skills %}
+        <p>{{ skill.label }}</p>
+        <p>{{ skill.text }}</p>
+        <p>{{ skill.proficiency }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+</section>
 
 <!-- Press Links -->
+<section class="ts-section-padding">
 <div class="container mt-5">
     {% if show_presslinks %}
     <h2>Press Links</h2>
@@ -68,6 +96,6 @@
     {% endfor %}
     {% endif %}
 </div>
-
+</section>
 
 {% endblock content %}
