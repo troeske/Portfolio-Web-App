@@ -67,7 +67,7 @@
     <div class="container pt-4 pb-4 px-3">
         <div class="d-flex flex-wrap justify-content-around px-0">   
             {% if show_skills %}
-            <div class="shadow rounded m-1 p-3 ts-skills-container">
+            <div class="shadow-sm rounded m-1 p-3 ts-skills-container">
                 <p class="ts-skills-heading mb-1">Skills</h4>
                 {% for skill in skills %}
                 <p class="ts-skills-text mb-0" >{{ skill.label }}</p>
@@ -99,23 +99,23 @@
 
 <!-- How section -->
 <section class="ts-about-section4 ts-section-padding">
-    <div class="container px-3">
-        <div class="d-flex flex-wrap justify-content-around text-center px-0">   
-            {% if show_how %}
-            <div class="m-1 px-5 py-5 ">
-                <p class="ts-h4 mb-5 text-center">How I work *</p>
-            
-                {% for how in hows %}
+    {% if show_how %}
+    <div class="container px-3 py-4">
+        <div class="m-1 px-5 py-2 ">
+            <p class="ts-h4 mb-5 text-center">How I work *</p>
+        </div>  
+        <div class="d-flex flex-wrap justify-content-around text-center px-0">       
+            {% for how in hows %}
+            <div class="container ts-about-how-container text-center">
                 <img class="ts-about-section4-img" src="{{ how.icon.url }}" alt="how I work">
                 <p class="ts-about-section4-heading fw-bold mb-0" >{{ how.heading }}</p>
                 <p class="ts-about-section4-text mb-4" >{{ how.text }}</p>
-                {% endfor %}
-  
-                <p class="ts-about-section4-text mt-5 mb-3">* Big fan of bringing AI into the process!</p>
             </div>
-            {% endif %}
+            {% endfor %}
         </div>
+        <p class="ts-about-section4-text py-2">* Big fan of bringing AI into the process!</p>
     </div>
+    {% endif %}
 </section>
 
 <!-- Press Links -->

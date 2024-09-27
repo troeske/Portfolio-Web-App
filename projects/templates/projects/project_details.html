@@ -17,11 +17,8 @@
         <div class="row">
             <div class="container-fluid d-none d-sm-block col-sm-4 ts-lg-padding-left pe-5 ">
                 <div class="row">
-                    <p>ICH HABE SOPHIE GANZ DOLL LIEB</p>
-                </div>
-                <div class="row">
-                    <div class="col mt-5">
-                        <h4 class="border-top border-dark pt-2 mb-0">CUSTOMER</h4>
+                    <div class="col mt-0">
+                        <h4 class="border-top border-dark pt-0 mb-0">CUSTOMER</h4>
                         <a href="{{ project.link }}" target="_blank" alt="{{ project.text }}"><p class="ts-p-std mb-2 pt-0">{{ project.customer }}</p></a>
                         <p class="border-top border-dark ts-p-std pt-2"> <span>{{ project.start|date:"m/y" }}</span> - <span>{{ project.end|date:"m/y" }}</span> </p>
                         <p class="border-top border-dark ts-p-std pt-2">{{ project.sub_heading }}</p>
@@ -108,12 +105,12 @@
     </div>           
     
     {% if show_videos %}
-    <div class="container mt-4">
+    <div class="container mt-2 mb-3">
         <div class="row">
             <div class="col px-4">
                 {% for video in videos %}
                 {% if video.section.id == section.id %}
-                <video source src="{{ video.video.url }}" class="ts-video border rounded" alt="{{ video.alt_text }}" 
+                <video source src="{{ video.video.url }}" class="w-50 border rounded" alt="{{ video.alt_text }}" 
                 type="video/mp4" controls>Your browser does not support the video tag.</video>
                 {% endif %}
                 {% endfor %}
@@ -131,11 +128,11 @@
 <!-- learnings section -->
 <section class="section-padding">
     {% if show_learnings %}
-    <div class="container px-3">
+    <div class="container px-1">
         <h4 class="ts-h4 ts-learning-section-heading pb-2">Learnings</h4>
         <div class="d-flex flex-wrap justify-content-around px-0">   
             {% for learning in learnings %}
-            <div class="m-1 p-2 border ts-learning-container">
+            <div class="shadow-sm rounded mx-4 my-2 p-2 border ts-learning-container">
                 <h4 class="ts-learning-heading border-bottom border-dark">{{ learning.header }}</h4>
                 <p class="ts-p-std">{{ learning.text }}</p>
             </div>

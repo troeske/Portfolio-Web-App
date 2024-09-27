@@ -99,7 +99,7 @@ body {
 }
 
 .ts-home-proj-container {
-   max-width: 400px;
+   max-width: 300px;
    margin-left: 0;
    margin-right: 0;
 }
@@ -206,6 +206,12 @@ body {
     color: var(--ts-about-section4-text-color);
 }
 
+.ts-about-how-container {
+    width: 250px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
 .ts-about-section4-img {
     width: 20px;
     height: auto;
@@ -266,12 +272,6 @@ body {
 .ts-image-caption-light {
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 4px;
-}
-
-.ts-video {
-    width: 80%;
-    height: auto;
-    padding: 0 auto;
 }
 
 .ts-learning-container {
