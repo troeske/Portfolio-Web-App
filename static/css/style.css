@@ -99,13 +99,6 @@ body {
     background-color: var(--ts-bg-alt-color);
 }
 
-.ts-home-carousel {
-    display: flex;
-    padding-right: 170px;
-    justify-content: center;
-    align-items: center;
-}
-
 /* about */
 .ts-about-section1 {
     background-color: var(--ts-about-section1-bg-color);
