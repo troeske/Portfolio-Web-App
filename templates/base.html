@@ -133,11 +133,11 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><span class="ts-brand">{{ consultant_fname }}</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarText">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ts-padding-left">
                     <li class="nav-item ts_navbar">
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="home"
@@ -171,17 +171,15 @@
                     </li>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <li class="nav-item ts_navbar"> 
-                        <a class="nav-link {% if request.path ==  registrations_url %}active{% endif %}" aria-current="registrations" 
-                            href="{% url 'client_registration_list' %}">Registrations</a>
-                    </li>
-                    <li class="nav-item ts_navbar"> 
-                        <a class="nav-link {% if request.path ==  collaborations_url %}active{% endif %}" aria-current="collaborations"
-                             href="{% url 'collaboration_request_list' %}">Collaborations</a>
-                    </li>
-                    <li class="nav-item ts_navbar"> 
-                        <a class="nav-link ts_navbar" aria-current="reload config" 
-                            href="{% url 'reload_config' %}">Reload Config</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Site Admin
+                        </a>
+                        <ul class="dropdown-menu bg-transparent border-0 navbar-light">
+                          <li><a class="dropdown-item" href="{% url 'client_registration_list' %}">Registrations</a></li>
+                          <li><a class="dropdown-item" href="{% url 'collaboration_request_list' %}">Collaborations</a></li>
+                          <li><a class="dropdown-item" href="{% url 'reload_config' %}">Reload Config</a></li>
+                        </ul>
                     </li>
                     {% endif %}
                 </ul>
