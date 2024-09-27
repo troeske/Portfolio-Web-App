@@ -4,12 +4,12 @@
 
 <!-- intro section -->
 <section>
-    <div class="container mt-4">
+    <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-3 col-sm-7">
                 <div class="row">
                     <div class="col d-none d-sm-block">
-                        <h3 class="ts-h3">{{ consultant.intro_text_heading }}</h3>
+                        <h3 class="ts-h3 ts-lg-padding-left">{{ consultant.intro_text_heading }}</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -36,7 +36,7 @@
                 </div>
                 </div>
             </div>
-            <div class="col-9 col-sm-5 container-fluid">
+            <div class="col-9 col-sm-5 container-fluid px-0">
                 <img src="{{consultant.profile_image.url}}" class="img-fluid rounded float-end" alt="picture of the consultant">
             </div>
         </div>
@@ -44,7 +44,7 @@
         
         <div class="row">
             <div class="col d-sm-none">
-                <h3 class="ts-h3">{{ consultant.intro_text_heading }}</h3>
+                <h3 class="ts-h3 ts-std-padding-left">{{ consultant.intro_text_heading }}</h3>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
             <div class="col-3 d-sm-none">
 
             </div>
-            <div class="col-9 d-sm-none">
+            <div class="col-9 d-sm-none ps-0">
                 <p class="text-start ts-p-std">{{ consultant.intro_text }}</p>
                 <br>
                 <p class="text-start ts-p-std"><span class="fw-bold">Not enough?   </span>

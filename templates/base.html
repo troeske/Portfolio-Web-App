@@ -60,7 +60,8 @@
             --ts-brand-font-family: {{ ts_brand_font_family }};
             --ts-brand-padding-left: {{ ts_brand_padding_left }};
 
-            --ts-std-padding-left: {{ ts_std_padding_left }};
+            --ts-std-padding: {{ ts_std_padding }};
+            --ts-lg-padding: {{ ts_lg_padding }};
 
             {% if request.path == home_url %};
             --ts-bg-alt-color: {{ ts_bg_alt_color }};
@@ -198,7 +199,7 @@
     <!-- Footer -->
     <footer class="footer bg-transparent">
         <div class="ts-divider-footer">
-            <p class="text-center ts_footer"><i class="fa-regular fa-copyright"></i> Thorsten Roeske</p>
+            <p class="text-center ts-footer"><i class="fa-regular fa-copyright"></i> Thorsten Roeske</p>
         </div>
     </footer>
 
