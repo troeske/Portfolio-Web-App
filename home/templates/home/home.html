@@ -126,7 +126,7 @@
         <h4 class="ts-h4 d-sm-none">customers, employers</h4>
         <h4 class="ts-h4 d-none d-sm-block">customers, clients, employers</h4>
     
-        <div class="d-flex flex-wrap justify-content-center ts-padding-left">
+        <div class="d-flex flex-wrap justify-content-center ts-padding-left my-5">
             {% for customer in customers %}
             <div class="">
                 <a href="{{customer.link.url}}" target="_blank" class="">
@@ -137,5 +137,5 @@
     </div> 
     {% endif %}
     
-</section>
+</section> 
 {% endblock content %}

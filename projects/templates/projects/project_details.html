@@ -4,9 +4,37 @@
 {% block content %}
 
 <!-- general about project section -->
-<section class="section-padding">
-    <div class="container">
-        <h4 class="text-center">{{ project.title }}</h4>
+<section class="">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="d-none col-sm-4">
+                <div class="row">
+                    <p>CATEGORIES</p>
+                </div>
+                <div class="row">
+                    <div class="col mt-5">
+                        <h4 class="border-top border-dark pt-2 mb-0">CUSTOMER</h4>
+                        <a href="{{ project.link }}" target="_blank" alt="{{ project.text }}"><p class="ts-p-std mb-2 pt-0">{{ project.customer }}</p></a>
+                        <p class="border-top border-dark ts-p-std pt-2"> <span>{{ project.start|date:"m/y" }}</span> - <span>{{ project.end|date:"m/y" }}</span> </p>
+                        <p class="border-top border-dark ts-p-std pt-2">{{ project.sub_heading }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-8 container-fluid">
+                <p class="text-center ts-h3 mb-3">{{ project.title }}</p>
+                <img src="{{ project.detail_image.url }}" class="img-fluid rounded" alt="{{ project.detail_image_alt }}">
+                <div class="row">
+                    <div class="col">
+                        <p class="ts-p-std mt-4">{{ project.summary }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+            
+        
+    
+        
+       <!--  <h4 class="text-center">{{ project.title }}</h4>
         <div class="container-fluid">
             <img src="{{ project.detail_image.url }}" class="img-fluid rounded" alt="{{ project.detail_image_alt }}">
         </div>
@@ -22,7 +50,7 @@
                     <p class="mt-4 ts-p-std">{{ project.summary }}</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>    
 
