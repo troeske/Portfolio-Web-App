@@ -6,26 +6,53 @@
 <section>
     <div class="container mt-4">
         <div class="row">
-            <div class="col-3">
-
+            <div class="col-3 col-sm-7">
+                <div class="row">
+                    <div class="col d-none d-sm-block">
+                        <h3 class="ts-h3">{{ consultant.intro_text_heading }}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-none d-sm-block">
+                        <p class="text-start ts-p-std ts-home-p-sm-lp">{{ consultant.intro_text }}</p>
+                        <br>
+                        <p class="text-start ts-p-std ts-home-p-sm-lp"><span class="fw-bold">Not enough?   </span>
+                            <a href="{% url 'about' %}" class="ts_icon_link">
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a> 
+                        </p> 
+                        
+                        <div class="ts-home-p-sm-lp">
+                            {% for social in socials %}
+                            <a target="_blank" href="{{ social.link }}" class="ts_icon_link">
+                                <i class="{{ social.fa_icon }}"></i>
+                            </a>
+                            {% endfor %}
+            
+                            <a href="{% url 'contact' %}" class="ts_icon_link">
+                                <i class="fa-regular fa-envelope"></i>
+                            </a>
+                        </div>
+                </div>
+                </div>
             </div>
-            <div class="col-9 container-fluid">
+            <div class="col-9 col-sm-5 container-fluid">
                 <img src="{{consultant.profile_image.url}}" class="img-fluid rounded float-end" alt="picture of the consultant">
             </div>
         </div>
         <br>
         
         <div class="row">
-            <div class="col">
+            <div class="col d-sm-none">
                 <h3 class="ts-h3">{{ consultant.intro_text_heading }}</h3>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-3">
+            <div class="col-3 d-sm-none">
 
             </div>
-            <div class="col-9">
+            <div class="col-9 d-sm-none">
                 <p class="text-start ts-p-std">{{ consultant.intro_text }}</p>
                 <br>
                 <p class="text-start ts-p-std"><span class="fw-bold">Not enough?   </span>
@@ -55,32 +82,36 @@
         <h4 class="ts-h4">projects</h4>
         <br>
         {% if show_projects %}
-        {% for project in projects %}
-        <div class="row">
-            <div class="col container-fluid">
-                <a href="{% url 'project_details' project.slug %}" class="project-link">
-                    <img src="{{project.project_image.url}}" class="img-fluid rounded" alt="{{project.image_alt_text}}">
-                </a>
+        <div class="d-flex flex-wrap justify-content-center">
+            {% for project in projects %}
+            <div class="container ts-home-proj-container mx-sm-2">
+                <div class="row">
+                    <div class="col container-fluid">
+                        <a href="{% url 'project_details' project.slug %}" class="project-link">
+                            <img src="{{project.project_image.url}}" class="img-fluid rounded" alt="{{project.image_alt_text}}">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-9 ts-home-neg-mar">
+                        <a href="{% url 'project_details' project.slug %}" class="project-link">
+                            <h6 class="ts-h7 fw-bold text-decoration-none">{{ project.title }}</h6>
+                        </a>
+                        <p class="ts-p-std ts-padding-left">{{ project.sub_heading }}</p>
+                    </div>
+                </div>
+                <div class="col-4 ts-divider-black"></div>
+                <div class="row">
+                    <div class="col">
+                        <p class="ts-p-std ts-padding-left">{{ project.summary }} </p>
+                    </div>
+                </div>
+                <br>
             </div>
+            {% endfor %}
         </div>
-        
-        <div class="row">
-            <div class="col-9 ts-home-neg-mar">
-                <a href="{% url 'project_details' project.slug %}" class="project-link">
-                    <h6 class="ts-h7 fw-bold text-decoration-none">{{ project.title }}</h6>
-                </a>
-                <p class="ts-p-std ts-padding-left">{{ project.sub_heading }}</p>
-            </div>
-        </div>
-        <div class="col-4 ts-divider-black"></div>
-        <div class="row">
-            <div class="col">
-                <p class="ts-p-std ts-padding-left">{{ project.summary }} </p>
-            </div>
-        </div>
-        <br>
-        {% endfor %}
-        <p class="text-start ts-p-std ts-padding-left"><span class="fw-bold">More? This way. </span>
+        <p class="text-sm-center ts-p-std ts-padding-left"><span class="fw-bold">More? This way. </span>
             <a href="{% url 'projects_list' %}" class="ts_icon_link">
                 <i class="fa-solid fa-arrow-right-long"></i>
             </a> 
@@ -89,45 +120,22 @@
 </section>
 
 <!-- customer logo section -->
-<section>
+<section class="container section-padding">
     {% if show_customers %}
-    <div class="container section-padding">
-        <h4 class="ts-h4">customers</h4>
-    </div>  
+    <div class="container">
+        <h4 class="ts-h4 d-sm-none">customers, employers</h4>
+        <h4 class="ts-h4 d-none d-sm-block">customers, clients, employers</h4>
     
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner ts-home-carousel">
+        <div class="d-flex flex-wrap justify-content-center ts-padding-left">
             {% for customer in customers %}
-            <div class="carousel-item {% if customer.id == 1 %}active{% endif %}">
-                <a href="{{customer.link.url}}" target="_blank" class="ts-padding-left">
+            <div class="">
+                <a href="{{customer.link.url}}" target="_blank" class="">
                     <img class="ts-logo" src="{{customer.logo.url}}" alt="{{customer.logo_alt_text}}">
                 </a> 
             </div>
             {% endfor %}
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-        </div>
+    </div> 
     {% endif %}
-
+    
 </section>
-
-<!-- Employment History -->
-<div class="container mt-5">
-    {% if show_pastemployments %}
-    <h2>LATEST POSITIONS</h2>
-    {% for pastemployment in pastemployments %}
-    <h3>{{ pastemployment.role }} | {{ pastemployment.company }}</h3>
-    <p>{{ pastemployment.start }} - {{ pastemployment.end }}</p>
-    <p>{{ pastemployment.city }}.{{ pastemployment.country }}</p>
-    <p>{{ pastemployment.text }}</p>
-    {% endfor %}
-    {% endif %}
-</div>
 {% endblock content %}
