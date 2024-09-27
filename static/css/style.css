@@ -239,6 +239,10 @@ body {
     text-decoration: none;
 }
 
+.ts-about-how-footer {
+    font-size: 10px;
+}
+
 /* projects */
 
 .ts-proj-neg-mar {

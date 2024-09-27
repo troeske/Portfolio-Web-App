@@ -47,19 +47,31 @@
 <!-- Employment History -->
 <section class="ts-about-section2 ts-section-padding">
     {% if show_pastemployments %}
-    <div class="container pt-2 pb-4 ps-4">
+    <div class="container w-100 pb-4">
         <p class="ts-about-section2-h pt-4">LATEST POSITIONS</p>
-        <div class="row pb-5">
-            <div class="col-9">
-                {% for pastemployment in pastemployments %}
-                <p class="ts-about-section2-h mb-0 mt-3">{{ pastemployment.company }}</p>
+        
+        {% for pastemployment in pastemployments %}
+        <div class="row">
+            <div class="col-9 col-sm-5 ps-3">
+                <p class="ts-about-section2-h mb-0 text-start text-sm-end">{{ pastemployment.company }}</p>
+            </div>
+            <div class="col-9 d-none col-sm-7 d-sm-block ps-3">
                 <p class="ts-about-section2-p mb-0">{{ pastemployment.role }}</p>
                 <p class="ts-about-section2-p mb-0">{{ pastemployment.city }}, {{ pastemployment.start|date:"m/y" }} - {{ pastemployment.end|date:"m/y" }}</p>
-                {% endfor %}
-                {% endif %}
             </div>
         </div>
+        <div class="row">
+            <div class="d-none col-sm-12 d-sm-block text-center text-white">---------------------</div>
+        </div>
+        <div class="row">
+            <div class="col-9 d-sm-none ps-3 mb-3">
+                <p class="ts-about-section2-p mb-0">{{ pastemployment.role }}</p>
+                <p class="ts-about-section2-p mb-0">{{ pastemployment.city }}, {{ pastemployment.start|date:"m/y" }} - {{ pastemployment.end|date:"m/y" }}</p>
+            </div>
+        </div>
+        {% endfor %}    
     </div>
+    {% endif %}
 </section>
 
 <!-- skilss section -->
@@ -113,7 +125,7 @@
             </div>
             {% endfor %}
         </div>
-        <p class="ts-about-section4-text py-2">* Big fan of bringing AI into the process!</p>
+        <p class="ts-about-how-footer py-2">* Big fan of bringing AI into the process!</p>
     </div>
     {% endif %}
 </section>
