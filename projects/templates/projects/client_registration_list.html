@@ -3,42 +3,63 @@
 
 {% block content %}
 
-<div class="container mt-5">
-    <h2>Client Registratgions</h2>
-    <br>
-    
-    {% if user.is_superuser %}
+<section>
+    <div class="container-fluid mt-5 pt-5">
+        <h2>Client Registratgions</h2>
+        <br>
+        
+        {% if user.is_superuser %}
 
-    {% if show_registrations %}
-    
-    {% for registration in registrations %}
-    <p>{{ registration.id }} | {{ registration.client }} | {{ registration.email }} | {{ registration.approved }} |
-        {% if registration.approved %} {{ registration.approval_date }} {% endif %}</p>
-    
-    {% if registration.allow_delete %} 
-    <button class="btn btn-delete" data-user="{{ registration.client }}">Delete</button>
-    {% endif %}
-    {% if not registration.approved %} 
-    <a id="approveClient" href="{% url 'approve_client' registration.id %}" class="btn btn-danger">Approve</a>
-    {% endif %}
-    <br>
-    <p>------------------------</p>
-    <br>
-    {% endfor %}
-    
-    {% else %} 
-    <!-- for show_registrations -->
-    <p>no registrations to display</p>
-    
-    {% endif %}
-    
+        {% if show_registrations %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">eMail</th>
+                    <th scope="col">Approved</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registration in registrations %}
+                <tr>
+                    <th scope="row">{{ registration.id }}</th>
+                    <td>{{ registration.client }}</td>
+                    <td>{{ registration.email }}</td>
+                    <td>{{ registration.approved }}</td>
+                    {% if registration.approved %}
+                    <td>{{ registration.approval_date|date:"d/m/y"  }}</td>
+                    {% else %}
+                    <td> </td>
+                    {% endif %}
+                    <td>
+                        {% if registration.allow_delete %} 
+                        <button class="btn btn-delete" data-user="{{ registration.client }}">Delete</button>
+                        {% endif %}
+                        {% if not registration.approved %} 
+                        <a id="approveClient" href="{% url 'approve_client' registration.id %}" class="btn btn-danger">Approve</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    {% else %} 
-    <!--  for is_superuser -->
-    <p>login as superuser to see registrations</p>
-    
-    {% endif %}
-</div>
+        {% else %} 
+        <!-- for show_registrations -->
+        <p>no registrations to display</p>
+
+        {% endif %}
+
+        {% else %} 
+        <!--  for is_superuser -->
+        <p>login as superuser to see registrations</p>
+        
+        {% endif %}
+    </div>
+</section>
 
 <!-- Delete confirmation modal - re-used from CodeStar project -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
