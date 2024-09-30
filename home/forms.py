@@ -1,6 +1,7 @@
 from allauth.account.forms import SignupForm
 from django import forms
 from collections import OrderedDict
+from django.core.mail import send_mail
 
 class CustomSignupForm(SignupForm):
     """

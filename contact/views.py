@@ -4,7 +4,6 @@ from .models import CollaborationRequest
 from .forms import CollaborationForm
 from django.core.mail import send_mail
 from django.db import DatabaseError
-from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.conf import settings
 
