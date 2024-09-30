@@ -3,15 +3,47 @@
 
 {% block content %}
 
-<div class="container mt-5">
-    <h2>Open Collaboration requests</h2>
+<div class="container-fluid mt-5">
+    <p class="ts-h3">Collaboration Requests</p>
     <br>
-    {% for cr in crs %}
-    <p>{{ cr.id }} | {{ cr.first_name }} {{ cr.last_name }} | {{ cr.email }} | {{ cr.request_date }}</p>
-    <p>{{ cr.message }}</p>
-    <p>------------------------</p>
-    <br>
-    {% endfor %}
+    
+    {% if user.is_superuser %}
+
+    {% if show_crs %}
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="align-top">#</th>
+                <th scope="col" class="align-top">Name</th>
+                <th scope="col" class="d-none d-sm-table-cell align-top">eMail</th>
+                <th scope="col" class="align-top">Request Date</th>
+                <th scope="col" class="align-top">Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cr in crs %}
+            <tr>
+                <th scope="row">{{ cr.id }}</th>
+                <td>{{ cr.last_name }}, {{ cr.first_name }}</td>
+                <td  class="d-none d-sm-table-cell">{{ cr.email }}</td>
+                <td>{{ cr.request_date|date:"d/m/y" }}</td>
+                <td>{{ cr.message }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %} 
+    <!-- for show_crs -->
+    <p>no registrations to display</p>
+
+    {% endif %}
+
+    {% else %} 
+    <!--  for is_superuser -->
+    <p>login as superuser to see registrations</p>
+    
+    {% endif %}
 
 </div>
 

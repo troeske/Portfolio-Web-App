@@ -13,18 +13,31 @@ def collaboration_request_list(request):
     """
     Renders the CR list page
     """
-    crs = CollaborationRequest.objects.filter(open=True).order_by("-request_date")
+    try:
+        current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
+        
+        crs = CollaborationRequest.objects.filter(consultant_id = current_consultant).order_by("-request_date", "last_name")      
+        show_crs = False if crs.count() == 0 else True
     
-    context = {"crs": crs}
+    except Exception as e:
+        error_message = f"A general error occurred in collaboration request list: {e}. Please try again later."
+        print(error_message)
+        print(type(e))
+        return HttpResponse(error_message, status=500)  
+    
+    context = {"crs": crs,
+                "show_crs": show_crs
+               }
+
     # let's append the config data for CSS custom properties to the context dictionary
     context.update(settings.CONTEXT_CONFIG_DATA)
-
+    
     return render(
         request,
         "contact/collaboration_request_list.html",
         context,
     )
-
+    
 def contact(request):
     """Handle collaboration requests."""
     if request.method == "POST":

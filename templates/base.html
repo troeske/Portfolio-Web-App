@@ -71,6 +71,10 @@
             {% if request.path == about_url %};
             --ts-bg-std-color: {{ ts_bg_std_color }};
             {% endif %};
+
+            {% if request.path == contact_url %};
+            --ts-bg-std-color: {{ ts_bg_std_color }};
+            {% endif %};
             
             {% if request.path == projects_url %};
             --ts-bg-alt-color: {{ ts_bg_std_color }};
