@@ -90,7 +90,22 @@
             --ts-bg-alt-color: {{ ts_bg_alt_color }};
             --ts-bg-std-color: {{ ts_bg_std_color }};
             {% endif %};
+            
+            {% if request.path == login_url %};
+            --ts-bg-alt-color: {{ ts_bg_alt_color }};
+            --ts-bg-std-color: {{ ts_bg_std_color }};
+            {% endif %};
 
+            {% if request.path == signup_url %};
+            --ts-bg-alt-color: {{ ts_bg_alt_color }};
+            --ts-bg-std-color: {{ ts_bg_std_color }};
+            {% endif %};
+
+            {% if request.path == logout_url %};
+            --ts-bg-alt-color: {{ ts_bg_alt_color }};
+            --ts-bg-std-color: {{ ts_bg_std_color }};
+            {% endif %};
+            
             --ts-section-padding: {{ ts_section_padding }};
             --ts-section-padding-b: {{ ts_section_padding_b }};
             

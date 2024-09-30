@@ -32,6 +32,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SMTP KEY for sending emails
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
 
+# SMTP KEY for sending emails
+CURRENT_CONSULTANT = os.environ.get("CURRENT_CONSULTANT")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -71,7 +74,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'home.middleware.LoadConfigMiddleware',
+    'portfolio.middleware.LoadConfigMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

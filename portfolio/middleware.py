@@ -1,5 +1,5 @@
 from django.conf import settings
-from .models import Config, Consultant
+from home.models import Config, Consultant
 
 class LoadConfigMiddleware:
     """
@@ -17,9 +17,9 @@ class LoadConfigMiddleware:
     def load_config(self):
         if not hasattr(settings, 'CONTEXT_CONFIG_DATA'):
             settings.CONTEXT_CONFIG_DATA = {}
-            CURRENT_CONSULTANT = Config.objects.get(key="CURRENT_CONSULTANT").value
+            CURRENT_CONSULTANT = settings.CURRENT_CONSULTANT
             
-            # let's add data about the current consultant into the dictionary
+            # let's add data of the current consultant into the dictionary
             consultant = Consultant.objects.get(consultant_id=CURRENT_CONSULTANT)
             settings.CONTEXT_CONFIG_DATA['consultant_fname'] = consultant.first_name
             settings.CONTEXT_CONFIG_DATA['consultant_lname'] = consultant.last_name
