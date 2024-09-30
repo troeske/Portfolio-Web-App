@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% load static %}
+{% load custom_filters %}
 
 {% block content %}
 
@@ -51,6 +52,7 @@
 <section> 
     {% if show_sections %}
     {% for section in sections %}
+    {% if section.heading_1 or section.heading_2 or section.text %}
     <div class="container-fluid mt-5">
         <div class="row mt-4">
             <div class="col-3 col-sm-5">
@@ -70,39 +72,42 @@
             </div>
         </div>
     </div>
+    {% endif %}
         
     {% if show_images %}
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col px-4">
-                <div id="carouselExampleCaptions" class="carousel slide">
-                    <div class="carousel-inner">
-                        {% for image in images %}
-                        {% if image.section.id == section.id %}
-                        <!-- only images for this section -->
-                        <div class="carousel-item {% if image.display_order == 1 %}active{% endif %}">
-                            <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="{{ image.alt_text }}">
-                            <div class="carousel-caption d-md-block {% if image.image_caption_mode == 'light' %}ts-image-caption-light{% endif %}">
-                                <p class="{% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %} ts-image-caption">{{ image.image_caption_heading }}</p>
-                                <p class="{% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %} ts-image-caption">{{ image.image_caption_text }}</p>
-                            </div>
+    <!-- from my organic store project-->
+        {% if section_image_counts|get_item:section.id > 0 %}
+        <div id="ts-images-carousel">
+            <div class="list-wrapper" id="ts-image-cards"></div>
+            <ul class="ts-list">
+                {% for image in images %}
+                {% if image.section.id == section.id %}
+                <!-- only images for this section -->
+                <li class="ts-item mw-100 h-100">
+                    <div class="d-flex ts-content position-relative">  <!-- Add position-relative -->
+                        <img class="ts-slide-image" src="{{ image.image.url }}" alt="{{ image.alt_text }}">
+                        {% if image.image_caption_heading or image.image_caption_text %}
+                        <div class="ts-image-caption-pos {% if image.image_caption_mode == 'light' %}ts-image-caption-light{% endif %}">
+                            <p class="{% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %} ts-image-caption">
+                                {{ image.image_caption_heading }}
+                            </p>
+                            <p class="{% if image.image_caption_mode == 'dark' %}text-light{% else %}text-black{% endif %} ts-image-caption">
+                                {{ image.image_caption_text }}
+                            </p>
                         </div>
                         {% endif %}
-                        {% endfor %}
                     </div>
-                    
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>           
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <!-- custom filter approach suggested by ChatGPT -->
+            {% if section_image_counts|get_item:section.id > 1 %}
+            <button id="previous-card" class="ts-button ts-button--previous" type="button"><i class="fa fa-arrow-left-long"></i></button>
+            <button id="next-card" class="ts-button ts-button--next" type="button"><i class="fa fa-arrow-right-long"></i></button>
+            {% endif %}
+        </div> 
+        {% endif %} 
     
     {% if show_videos %}
     <div class="container mt-2 mb-3">
@@ -144,3 +149,7 @@
 </section>
 
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/project_details.js' %}"></script>
+{% endblock extras %}

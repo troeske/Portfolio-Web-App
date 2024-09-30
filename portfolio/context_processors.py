@@ -60,4 +60,5 @@ def context_config_data(request):
         'ts_pdetails_sheading2_color': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_sheading2_color', 'default_value'),
         'ts_pdetails_sheading2_font_size': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_sheading2_font_size', 'default_value'),
         'ts_pdetails_sheading_font_family': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_sheading_font_family', 'default_value'),
+        'ts_pdetails_learning_card_bg': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_learning_card_bg', 'default_value'),
     }

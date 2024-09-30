@@ -3,8 +3,17 @@ body {
     background-color: var(--ts-bg-std-color);
 }
 
+main {
+    background-color: #cccaca;
+}
+
 .ts_navbar {
     font-family: var(--ts-p-std-font-family), sans-serif;
+}
+
+.ts-dropdown-nav {
+    color: rgba(0, 0, 0, .55);
+    background-color: var(--ts-bg-std-color);
 }
 
 .ts-footer {
@@ -24,7 +33,7 @@ body {
 }
 
 .ts-lg-padding-left{
-    padding-left: var(--ts-lg-padding);
+    padding-left: 12px; /* var(--ts-lg-padding); */
 }
 .ts-brand {
     font-family: var(--ts-brand-font-family), sans-serif;
@@ -61,8 +70,6 @@ body {
 }
 
 .ts-divider-footer {
-    margin-left: var(--ts-std-padding);
-    margin-right: var(--ts-std-padding);
     padding-bottom: 9px;
     border-top: 0.5px solid var(--ts-p-std-font-color);
 }
@@ -76,7 +83,6 @@ body {
     font-size: var(--ts-h7-std-font-size);   
     font-family: var(--ts-h7-std-font-family), sans-serif;
     color: var(--ts-p-std-font-color);
-    padding-left: var(--ts-std-padding);
     padding-top: var(--ts-std-padding);
 }
 
@@ -273,6 +279,87 @@ body {
     margin: 0;
 }
 
+.ts-image-caption-pos {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    padding: 10px;
+    text-align: center; /* Center align text */
+}
+
+/* from my organic store project  */
+#ts-images-carousel {
+    overflow: visible;
+    justify-content: space-around;
+    margin: 0;
+    position: relative;
+    padding-bottom: 15px;
+  }
+
+#ts-image-cards {
+    position: relative;
+}
+
+.ts-list {
+    display: flex;
+    gap: 8px;
+    padding: 16px 16px 40px 10px;
+    list-style: none;
+    overflow-x: auto; /* Changed from scroll to auto */
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;  /* For Firefox */
+}
+
+  /* For Chrome, Safari, and other WebKit-based browsers */
+.ts-list::-webkit-scrollbar {
+    display: none;
+}
+
+.ts-item {
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    border-radius: 5%;
+}
+
+.ts-content {
+    align-items: center;
+    justify-content: left;
+    height: 100%;
+
+    position: relative; /* Parent container needs to be relative for absolute children */
+    display: inline-block;
+}
+
+.ts-slide-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+    
+    display: block;
+  }
+
+ .ts-button {
+    position: absolute;
+    top: 85%;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--ts-bg-std-color);
+    border: none;
+}
+  
+.ts-button--previous {
+    left: 80%;
+}
+  
+.ts-button--next {
+    right: 5%;
+  }
+
 .ts-image-caption-light {
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 4px;
@@ -280,6 +367,7 @@ body {
 
 .ts-learning-container {
     width: 175px;
+    background-color: var(--ts-learning-card-bg-color);
 }
 
 .ts-learning-section-heading {

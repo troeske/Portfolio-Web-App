@@ -2,6 +2,8 @@ from allauth.account.forms import SignupForm
 from django import forms
 from collections import OrderedDict
 from django.core.mail import send_mail
+from django.conf import settings
+
 
 class CustomSignupForm(SignupForm):
     """
@@ -43,4 +45,25 @@ class CustomSignupForm(SignupForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
+
+        # Send email to consultant
+        consultant_message = (
+            f"Hi {settings.CONTEXT_CONFIG_DATA['consultant_fname']}!\n\n"
+            "You have a new registration request:\n\n"
+            "----------------------\n"
+            f"Name (last, first): {user.last_name}, {user.first_name}\n" 
+            "----------------------\n"
+            f"eMail: {user.email}\n"
+            "----------------------\n"
+            
+            "\nYour friendly Portfolio App django"
+        )
+        subject = '[NO-REPLY] you have new registration'
+        send_mail(
+            subject, 
+            consultant_message, 
+            "", 
+            [settings.CONTEXT_CONFIG_DATA['consultant_email']]
+            )
+
         return user
