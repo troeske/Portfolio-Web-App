@@ -14,7 +14,7 @@ class CollaborationRequest(models.Model):
     email = models.EmailField(null=True, blank=False)
     message = models.TextField(blank=False)
     request_date = models. DateTimeField(auto_now_add=True)
-    open = models.BooleanField(default=True)
+    open = models.BooleanField(default=True) #for future use
     
     class Meta:
         ordering = ["consultant_id", "-request_date", "last_name","first_name"]

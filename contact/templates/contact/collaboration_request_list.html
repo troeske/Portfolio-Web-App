@@ -23,7 +23,7 @@
         <tbody>
             {% for cr in crs %}
             <tr>
-                <th scope="row">{{ cr.id }}</th>
+                <th scope="row">{{ cr.cr_id }}</th>
                 <td>{{ cr.last_name }}, {{ cr.first_name }}</td>
                 <td  class="d-none d-sm-table-cell">{{ cr.email }}</td>
                 <td>{{ cr.request_date|date:"d/m/y" }}</td>
