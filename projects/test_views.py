@@ -44,10 +44,9 @@ class TestProjectsListView(TestCase):
         self.project.save()
 
 
-    @patch('projects.views.get_consultant')
+    @patch.dict('django.conf.settings.CONTEXT_CONFIG_DATA', {'CURRENT_CONSULTANT': 1})
     @patch('projects.views.client_approved')
-    def test_render_confidential_projects(self, mock_client_approved, mock_get_consultant):
-        mock_get_consultant.return_value = self.consultant.consultant_id
+    def test_render_confidential_projects(self, mock_client_approved):
         mock_client_approved.return_value = self.client_instance.approved
         self.client.login(username="testuser", password="password123")
         response = self.client.get(reverse('projects_list'))
@@ -55,10 +54,9 @@ class TestProjectsListView(TestCase):
         self.assertIn(b"Project title", response.content)
         self.assertIn(b"super project", response.content)
 
-    @patch('projects.views.get_consultant')
+    @patch.dict('django.conf.settings.CONTEXT_CONFIG_DATA', {'CURRENT_CONSULTANT': 1})
     @patch('projects.views.client_approved')
-    def test_dont_render_confidential_projects(self, mock_client_approved, mock_get_consultant):
-        mock_get_consultant.return_value = self.consultant.consultant_id
+    def test_dont_render_confidential_projects(self, mock_client_approved):
         mock_client_approved.return_value = False
         self.client.login(username="testuser", password="password123")
         response = self.client.get(reverse('projects_list'))
@@ -129,12 +127,16 @@ class TestApproveClientView(TestCase):
             email="test@test.com"
         )
     
-    def test_superuser_can_approve_client(self):
+    @patch('home.middleware.Config.objects.get')
+    def test_superuser_can_approve_client(self, mock_get_config):
+        mock_get_config.return_value.value = self.consultant.consultant_id
         self.test_client.login(username='superuser', password='password123')
         response = self.test_client.post(reverse('approve_client', args=[self.client_instance.id]))
         self.assertTrue(Client.objects.get(client=self.normal_user).approved)
     
-    def test_normaluser_cannot_approve_client(self):
-       self.test_client.login(username='normaluser', password='password123')
-       response = self.test_client.post(reverse('approve_client', args=[self.client_instance.id]))
-       self.assertFalse(Client.objects.get(client=self.normal_user).approved)
+    @patch('home.middleware.Config.objects.get')
+    def test_normaluser_cannot_approve_client(self, mock_get_config):
+        mock_get_config.return_value.value = self.consultant.consultant_id
+        self.test_client.login(username='normaluser', password='password123')
+        response = self.test_client.post(reverse('approve_client', args=[self.client_instance.id]))
+        self.assertFalse(Client.objects.get(client=self.normal_user).approved)

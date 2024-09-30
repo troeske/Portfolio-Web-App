@@ -244,7 +244,7 @@ def approve_client(request, id):
         return HttpResponse(error_message, status=500)
 
     except Exception as e:
-        error_message = f"A general error occurred:: {e}. Please try again later."
+        error_message = f"A general error occurred in approve_client(): {e}. Please try again later."
         print(error_message)
         print(type(e))
         return HttpResponse(error_message, status=500)  
