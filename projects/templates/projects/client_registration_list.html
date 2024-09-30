@@ -4,7 +4,7 @@
 {% block content %}
 
 <section>
-    <div class="container-fluid mt-5 pt-5">
+    <div class="container-fluid text-start w-100 mt-5 pt-5">
         <h2>Client Registratgions</h2>
         <br>
         
@@ -14,12 +14,12 @@
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">eMail</th>
-                    <th scope="col">Approved</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" class="align-top">#</th>
+                    <th scope="col" class="align-top">Name</th>
+                    <th scope="col" class="d-none d-sm-table-cell align-top">eMail</th>
+                    <th scope="col"  class="d-none d-sm-table-cell align-top">Approved</th>
+                    <th scope="col" class="align-top">Approval Date</th>
+                    <th scope="col" class="align-top">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,8 +27,8 @@
                 <tr>
                     <th scope="row">{{ registration.id }}</th>
                     <td>{{ registration.client }}</td>
-                    <td>{{ registration.email }}</td>
-                    <td>{{ registration.approved }}</td>
+                    <td  class="d-none d-sm-table-cell">{{ registration.email }}</td>
+                    <td  class="d-none d-sm-table-cell">{{ registration.approved }}</td>
                     {% if registration.approved %}
                     <td>{{ registration.approval_date|date:"d/m/y"  }}</td>
                     {% else %}
@@ -36,10 +36,10 @@
                     {% endif %}
                     <td>
                         {% if registration.allow_delete %} 
-                        <button class="btn btn-delete" data-user="{{ registration.client }}">Delete</button>
+                        <button class="btn btn-delete mb-2 me-2" data-user="{{ registration.client }}">Delete</button>
                         {% endif %}
                         {% if not registration.approved %} 
-                        <a id="approveClient" href="{% url 'approve_client' registration.id %}" class="btn btn-danger">Approve</a>
+                        <a id="approveClient" href="{% url 'approve_client' registration.id %}" class="btn btn-danger mb-2 me-2">Approve</a>
                         {% endif %}
                     </td>
                 </tr>

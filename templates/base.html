@@ -76,6 +76,16 @@
             --ts-bg-alt-color: {{ ts_bg_std_color }};
             --ts-bg-std-color: {{ ts_bg_std_color }};
             {% endif %};
+            
+            {% if request.path == registrations_url %};
+            --ts-bg-alt-color: {{ ts_bg_alt_color }};
+            --ts-bg-std-color: {{ ts_bg_std_color }};
+            {% endif %};
+
+            {% if request.path == collaborations_url %};
+            --ts-bg-alt-color: {{ ts_bg_alt_color }};
+            --ts-bg-std-color: {{ ts_bg_std_color }};
+            {% endif %};
 
             --ts-section-padding: {{ ts_section_padding }};
             --ts-section-padding-b: {{ ts_section_padding_b }};
@@ -176,7 +186,7 @@
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Site Admin
                         </a>
-                        <ul class="dropdown-menu bg-transparent border-0 navbar-light">
+                        <ul class="dropdown-menu bg-transparent border-0">
                           <li><a class="dropdown-item" href="{% url 'client_registration_list' %}">Registrations</a></li>
                           <li><a class="dropdown-item" href="{% url 'collaboration_request_list' %}">Collaborations</a></li>
                           <li><a class="dropdown-item" href="{% url 'reload_config' %}">Reload Config</a></li>
@@ -199,7 +209,7 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 bg-transparent">
-        <div class="container ts-divider-footer">
+        <div class="container-fluid ts-divider-footer">
             <p class="text-center ts-footer"><i class="fa-regular fa-copyright"></i> Thorsten Roeske</p>
         </div>
     </footer>
