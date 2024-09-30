@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
 
 # SMTP KEY for sending emails
-CURRENT_CONSULTANT = os.environ.get("CURRENT_CONSULTANT")
+CURRENT_CONSULTANT = os.environ.get("CURRENT_CONSULTANT", "1")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -97,6 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'portfolio.context_processors.context_config_data',
             ],
         },
     },

@@ -41,9 +41,6 @@ def projects_list(request):
                 "show_projects": show_projects
                }
 
-    # let's append the config data for CSS custom properties to the context dictionary
-    context.update(settings.CONTEXT_CONFIG_DATA)
-    
     return render(
         request,
         "projects/projects_list.html",
@@ -106,8 +103,6 @@ def project_details(request, slug):
         "show_videos": show_videos
         }
 
-    # let's append the config data for CSS custom properties to the context dictionary
-    context.update(settings.CONTEXT_CONFIG_DATA)
     
     return render(
         request,
@@ -150,9 +145,6 @@ def client_registration_list(request):
                     "show_registrations": show_registrations
                 }
 
-        # let's append the config data for CSS custom properties to the context dictionary
-        context.update(settings.CONTEXT_CONFIG_DATA)
-
         return render(
                 request,
                 "projects/client_registration_list.html",
@@ -164,8 +156,6 @@ def client_registration_list(request):
         
         context = {"show_registrations": show_registrations}
 
-        # let's append the config data for CSS custom properties to the context dictionary
-        context.update(settings.CONTEXT_CONFIG_DATA)
         return render(
                 request,
                 "projects/client_registration_list.html",

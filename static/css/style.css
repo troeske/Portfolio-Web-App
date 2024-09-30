@@ -3,11 +3,6 @@ body {
     background-color: var(--ts-bg-std-color);
 }
 
-.ts-test {
-    font-family: "Rychardwalker", sans-serif ;
-    font-size: 24px;
-}
-
 .ts_navbar {
     font-family: var(--ts-p-std-font-family), sans-serif;
 }

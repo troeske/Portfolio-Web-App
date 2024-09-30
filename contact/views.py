@@ -29,9 +29,6 @@ def collaboration_request_list(request):
                 "show_crs": show_crs
                }
 
-    # let's append the config data for CSS custom properties to the context dictionary
-    context.update(settings.CONTEXT_CONFIG_DATA)
-    
     return render(
         request,
         "contact/collaboration_request_list.html",
@@ -47,7 +44,6 @@ def contact(request):
                 collaboration_form.save()
                 
                 current_cr = CollaborationRequest.objects.filter(open=True).order_by("-request_date").first()
-                #consultant_id, consultant_first_name, consultant_last_name, consultant_email = get_consultant(False)
                 
                 # Send email to potential client
                 client_message = (
@@ -98,7 +94,7 @@ def contact(request):
                return HttpResponse(error_message, status=500)    
             
             except Exception as e:
-               error_message = f"A general error occurred:: {e}. Please try again later."
+               error_message = f"A general error occurred in contact(): {e}. Please try again later."
                print(error_message)
                print(type(e))
                return HttpResponse(error_message, status=500)  
@@ -112,8 +108,6 @@ def contact(request):
     context = {        
                 "collaboration_form": collaboration_form
                 }
-    # let's append the config data for CSS custom properties to the context dictionary
-    context.update(settings.CONTEXT_CONFIG_DATA)
     
     return render(
         request,

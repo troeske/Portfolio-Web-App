@@ -4,7 +4,7 @@ from home.models import Config, Consultant
 class LoadConfigMiddleware:
     """
     loads up CSS custom properties from the database
-    approach suggested by Github Copilot
+    approach suggested by Github Copilot modified to suit my needs
     """
     def __init__(self, get_response):
         self.get_response = get_response

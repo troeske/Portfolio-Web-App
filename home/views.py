@@ -49,9 +49,6 @@ def consultant_home(request):
                 "show_projects": show_projects
                 }
     
-    # let's append the config data for CSS custom properties to the context dictionary
-    context.update(settings.CONTEXT_CONFIG_DATA)
-    
     return render(
         request,
         "home/home.html",
@@ -110,10 +107,7 @@ def consultant_about(request):
                 "hows": hows,
                 "show_how": show_how
                 }
-    
-    # let's append the config data for CSS custom properties to the context dictionary
-    context.update(settings.CONTEXT_CONFIG_DATA)
-    
+
     return render(
         request,
         "home/about.html",
