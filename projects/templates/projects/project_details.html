@@ -79,7 +79,7 @@
     {% if section_image_counts|get_item:section.id > 0 %}
     <div id="ts-images-carousel">
         <div class="list-wrapper ts-image-cards" id="ts-image-cards-{{ section.id }}"></div>
-        <ul class="ts-list {% if section.orientation_right %}ts-list-aligmnet-right{% else %}ts-list-aligmnet-left{% endif %} " id="ts-list-{{ section.id }}">
+        <ul class="ts-list ts-list-aligmnet-left" id="ts-list-{{ section.id }}">
             {% for image in images %}
             {% if image.section.id == section.id %}
                 <li class="ts-item mw-100 h-100">
@@ -97,19 +97,13 @@
                         {% endif %}
                     </div>
                 </li>
-                {% endif %}
+            {% endif %}
             {% endfor %}
         </ul>
-
-        {% if section_image_counts|get_item:section.id > 1 %}
-        <!-- Replace IDs with classes and data attribute -->
-        <button class="ts-button ts-button--previous" data-section-id="{{ section.id }}" type="button">
-            <i class="fa fa-arrow-left-long"></i>
-        </button>
-        <button class="ts-button ts-button--next" data-section-id="{{ section.id }}" type="button">
-            <i class="fa fa-arrow-right-long"></i>
-        </button>
-        {% endif %}
+        <div class="ts-carousel-buttons" data-section-id="{{ section.id }}">
+            <button class="ts-button ts-button--previous" type="button" data-section-id="{{ section.id }}"><i class="fa fa-arrow-left"></i></button>
+            <button class="ts-button ts-button--next" type="button" data-section-id="{{ section.id }}"><i class="fa fa-arrow-right"></i></button>
+        </div>
     </div>
     {% endif %}
     

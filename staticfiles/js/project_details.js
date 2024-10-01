@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const buttonsContainer = document.querySelector(`.ts-carousel-buttons[data-section-id="${sectionId}"]`);
             if (totalItemsWidth > listWidth) {
                 buttonsContainer.style.display = 'flex';
-            } else {
-                buttonsContainer.style.display = 'none';
             }
 
             function handleClick(direction) {

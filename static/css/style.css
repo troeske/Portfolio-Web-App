@@ -312,10 +312,6 @@ main {
     scrollbar-width: none;  /* For Firefox */
 }
 
-.ts-list-aligmnet-right {
-    justify-content: end;
-}
-
 .ts-list-aligmnet-left {
     justify-content: start;
 }
@@ -351,22 +347,33 @@ main {
     display: block;
   }
 
- .ts-button {
+
+.ts-carousel-buttons {
+    display: none; /* Initially hide the buttons */
     position: absolute;
-    top: 85%;
-    width: 2rem;
-    height: 2rem;
-    background-color: var(--ts-bg-std-color);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.ts-button {
+    background: rgba(0, 0, 0, 0.5);
     border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
 }
-  
+
 .ts-button--previous {
-    left: 80%;
+    left: 0;
 }
-  
+
 .ts-button--next {
-    right: 5%;
-  }
+    right: 0;
+}
 
 .ts-image-caption-light {
     background-color: rgba(255, 255, 255, 0.6);
