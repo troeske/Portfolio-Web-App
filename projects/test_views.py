@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.test import TestCase, Client as TestClient
 from unittest.mock import patch
 from .models import Project, Client
-from home.models import Consultant
+from home.models import Consultant, User
 
 
 class TestProjectsListView(TestCase):
@@ -39,6 +39,7 @@ class TestProjectsListView(TestCase):
                             sub_heading="super project",
                             customer="Project customer", 
                             confidential=True,
+                            project_image="http://res.cloudinary.com/demo/image/upload/sample.jpg",  # Mock Cloudinary URL
                             )
         
         self.project.save()
@@ -46,13 +47,14 @@ class TestProjectsListView(TestCase):
 
     @patch.dict('django.conf.settings.CONTEXT_CONFIG_DATA', {'CURRENT_CONSULTANT': 1})
     @patch('projects.views.client_approved')
-    def test_render_confidential_projects(self, mock_client_approved):
+    def test_render_confidential_projects_for_approved(self, mock_client_approved):
         mock_client_approved.return_value = self.client_instance.approved
         self.client.login(username="testuser", password="password123")
         response = self.client.get(reverse('projects_list'))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Project title", response.content)
         self.assertIn(b"super project", response.content)
+        self.assertIn(b"http://res.cloudinary.com/demo/image/upload/sample", response.content)
 
     @patch.dict('django.conf.settings.CONTEXT_CONFIG_DATA', {'CURRENT_CONSULTANT': 1})
     @patch('projects.views.client_approved')
@@ -62,6 +64,7 @@ class TestProjectsListView(TestCase):
         response = self.client.get(reverse('projects_list'))
         self.assertEqual(response.status_code, 200)
         self.assertNotIn(b"Project title", response.content)
+        self.assertNotIn(b"http://res.cloudinary.com/demo/image/upload/sample", response.content)
 
 
 class TestClientDeleteView(TestCase):
@@ -127,16 +130,13 @@ class TestApproveClientView(TestCase):
             email="test@test.com"
         )
     
-    @patch('home.middleware.Config.objects.get')
-    def test_superuser_can_approve_client(self, mock_get_config):
-        mock_get_config.return_value.value = self.consultant.consultant_id
+    def test_superuser_can_approve_client(self):
         self.test_client.login(username='superuser', password='password123')
         response = self.test_client.post(reverse('approve_client', args=[self.client_instance.id]))
         self.assertTrue(Client.objects.get(client=self.normal_user).approved)
     
-    @patch('home.middleware.Config.objects.get')
-    def test_normaluser_cannot_approve_client(self, mock_get_config):
-        mock_get_config.return_value.value = self.consultant.consultant_id
+    def test_normaluser_cannot_approve_client(self):
         self.test_client.login(username='normaluser', password='password123')
         response = self.test_client.post(reverse('approve_client', args=[self.client_instance.id]))
         self.assertFalse(Client.objects.get(client=self.normal_user).approved)
+        

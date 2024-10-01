@@ -225,7 +225,12 @@
     <!-- Footer -->
     <footer class="footer mt-auto pb-3 bg-transparent">
         <div class="container-fluid ts-divider-footer">
-            <p class="text-center ts-footer"><i class="fa-regular fa-copyright"></i> Thorsten Roeske</p>
+            {% if user.is_authenticated %}
+                <p class="text-center ts-footer py-0 my-0">you are loggin in as: {{ user.username }} </p>
+            {% else %}
+                <p class="text-center ts-footer py-0 my-0">you are not logged in</p>
+            {% endif %}
+            <p class="text-center ts-footer my-0"><i class="fa-regular fa-copyright"></i> Thorsten Roeske</p>
         </div>
     </footer>
 
