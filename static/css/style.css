@@ -33,7 +33,7 @@ main {
 }
 
 .ts-lg-padding-left{
-    padding-left: 12px; /* var(--ts-lg-padding); */
+    padding-left: var(--ts-lg-padding); 
 }
 .ts-brand {
     font-family: var(--ts-brand-font-family), sans-serif;
@@ -139,8 +139,12 @@ main {
     color: var(--ts-p-std-font-color);
 }
 
+.ts-about-roles-container {
+    width: 315px;
+    background-color: var(--ts-about-roles-card-bg-color);
+}
 .ts-about-section2-h {
-    font-size: var(--ts-about-section2-heading-size);   
+    font-size: var(--ts-about-section2-heading-size);
     font-family: var(--ts-about-section2-heading-font), sans-serif; 
     color: var(--ts-about-section2-text-color);
 }

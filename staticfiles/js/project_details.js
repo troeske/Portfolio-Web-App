@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // For the next and previous buttons on the image carousels
+    // For the next and previous buttons on the image carousels proposed by Copilot
     const carousels = document.querySelectorAll(".ts-list"); // Select all carousels
 
     carousels.forEach(function(list) {
@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const buttonsContainer = document.querySelector(`.ts-carousel-buttons[data-section-id="${sectionId}"]`);
             if (totalItemsWidth > listWidth) {
                 buttonsContainer.style.display = 'flex';
+            } else {
+                buttonsContainer.style.display = 'none';
             }
 
             function handleClick(direction) {

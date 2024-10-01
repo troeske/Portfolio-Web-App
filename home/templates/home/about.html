@@ -3,70 +3,88 @@
 {% load static %}
 
 <!-- Intro section -->
-<section class="ts-about-section1 ts-section-padding">
-    <div class="container mt-5 pb-4">
-        <div class="row mb-5">
-            <div class="col-3">
+<section class="ts-about-section1">
+    <div class="container-fluid mt-5 pb-2">
+        <div class="row">
+            <div class="col-3 col-sm-1">
+                <!-- intentionally left blank for later design improvements -->
             </div>
-            <div class="col-9 ps-2">
+            <div class="col-9 col-sm-11 ps-0">
                 <p class="ts-about-aboutme">{{ consultant.about_me }}</p>
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <p class="ts-p-std text-center fw-bold mb-0">{{ consultant.first_name }} {{ consultant.last_name }}</p>
-                <p class="ts-p-std text-center">{{ consultant.city }}.{{ consultant.country }}</p>
+            <div class="col-3 col-sm-1 ps-0">
+                <!-- intentionally left blank for later design improvements -->
+            </div>
+            <div class="col-9 col-sm-11 ps-0">
+                <p class="ts-p-std text-start text-sm-start fw-bold ps-0 mb-0">{{ consultant.first_name }} {{ consultant.last_name }}</p>
+                <p class="ts-p-std text-start text-sm-start ps-0">{{ consultant.city }}.{{ consultant.country }}</p>
             </div>
         </div>
-        {% for role in roles %}
-        <div class="row">
-            <div class="col-12 px-5 mb-1 mt-3">
-                <div class="d-flex justify-content-center align-items-center fw-bold">
-                    <i class="{{ role.icon }}"></i>
+        
+        <!-- roles -->
+        {% if show_roles %}
+        <div class="row mt-4">
+            <div class="col-0 col-sm-1 ps-0">
+            <!-- intentionally left blank for later design improvements -->
+            </div>
+            <div class="col-12 col-sm-11 ps-4 ps-sm-0">
+                <div class="d-flex flex-wrap justify-content-around ps-0"> 
+                    {% for role in roles %}
+                    <div class="container ts-about-roles-container mt-2">
+                        <div class="d-flex justify-content-center align-items-center fw-bold">
+                            <i class="{{ role.icon }}"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center fw-bold">
+                            <p class="ts-p-std mb-1">{{ role.label }}</p>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <p class="ts-p-std text-center">{{ role.text }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 px-5 mb-1"> 
-                <div class="d-flex justify-content-center align-items-center fw-bold">
-                    <p class="ts-p-std mb-1">{{ role.label }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 px-5 mb-2">
-                <div class="d-flex justify-content-center align-items-center">
-                    <p class="ts-p-std text-center">{{ role.text }}</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
+        {% endif %}
     </div>
 </section>
 
 <!-- Employment History -->
-<section class="ts-about-section2 ts-section-padding">
+<section class="ts-about-section2">
     {% if show_pastemployments %}
-    <div class="container w-100 pb-4">
-        <p class="ts-about-section2-h pt-4">LATEST POSITIONS</p>
-        
+    <div class="container-fluid mt-5 pb-4">
+        <div class="row">
+            <div class="col-1 col-sm-1 ps-0">
+                <!-- intentionally left blank for later design improvements -->
+            </div>
+            <div class="col-11 col-sm-11 ps-0">
+                <p class="ts-about-section2-h pt-4">LATEST POSITIONS</p>
+            </div>
+        </div>
         {% for pastemployment in pastemployments %}
-        <div class="row">
-            <div class="col-9 col-sm-5 ps-3">
-                <p class="ts-about-section2-h mb-0 text-start text-sm-end">{{ pastemployment.company }}</p>
+        <div class="row mt-sm-3">
+            <div class="col-1 col-sm-1 ps-0">
+                <!-- intentionally left blank for later design improvements -->
             </div>
-            <div class="col-9 d-none col-sm-7 d-sm-block ps-3">
-                <p class="ts-about-section2-p mb-0">{{ pastemployment.role }}</p>
-                <p class="ts-about-section2-p mb-0">{{ pastemployment.city }}, {{ pastemployment.start|date:"m/y" }} - {{ pastemployment.end|date:"m/y" }}</p>
+            <div class="col-11 col-sm-5 mt-4 mt-sm-0 ps-0">
+                <p class="ts-about-section2-h fs-4 mb-0 lh-1 text-start">{{ pastemployment.company }}</p>
+            </div>
+            <div class="col-11 d-none col-sm-6 d-sm-block ps-0 justify-content-center">
+                <div>
+                    <p class="ts-about-section2-p mb-0">{{ pastemployment.role }}</p>
+                    <p class="ts-about-section2-p mb-0">{{ pastemployment.city }}, {{ pastemployment.start|date:"m/y" }} - {{ pastemployment.end|date:"m/y" }}</p>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="d-none col-sm-12 d-sm-block text-center text-white">---------------------</div>
-        </div>
-        <div class="row">
-            <div class="col-9 d-sm-none ps-3 mb-3">
-                <p class="ts-about-section2-p mb-0">{{ pastemployment.role }}</p>
-                <p class="ts-about-section2-p mb-0">{{ pastemployment.city }}, {{ pastemployment.start|date:"m/y" }} - {{ pastemployment.end|date:"m/y" }}</p>
+            <div class="col-1 col-sm-1 ps-0">
+                <!-- intentionally left blank for later design improvements -->
+            </div>
+            <div class="col-11 d-sm-none ps-0 py-0">
+                <p class="ts-about-section2-p lh-1 py-0 my-0">{{ pastemployment.role }}</p>
+                <p class="ts-about-section2-p lh-1 py-0 my-0">{{ pastemployment.city }}, {{ pastemployment.start|date:"m/y" }} - {{ pastemployment.end|date:"m/y" }}</p>
             </div>
         </div>
         {% endfor %}    
@@ -74,33 +92,33 @@
     {% endif %}
 </section>
 
-<!-- skilss section -->
-<section class="ts-about-section3 ts-section-padding">
-    <div class="container pt-4 pb-4 px-3">
-        <div class="d-flex flex-wrap justify-content-around px-0">   
+<!-- skills section -->
+<section class="ts-about-section3">
+    <div class="container-fluid pt-4 pb-4">
+        <div class="d-flex flex-wrap justify-content-around ps-0">   
             {% if show_skills %}
             <div class="shadow-sm rounded m-1 p-3 ts-skills-container">
-                <p class="ts-skills-heading mb-1">Skills</h4>
+                <p class="ts-skills-heading mb-1">Skills</p>
                 {% for skill in skills %}
-                <p class="ts-skills-text mb-0" >{{ skill.label }}</p>
+                <p class="ts-skills-text mb-0">{{ skill.label }}</p>
                 {% endfor %}
             </div>
             {% endif %}
 
             {% if show_tools %}
             <div class="shadow-sm rounded m-1 p-3 ts-tools-container">
-                <p class="ts-tools-heading mb-1">Tools</h4>
-                    {% for t in tools %}
-                <p class="ts-tools-text mb-0" >{{ t.label }}</p>
+                <p class="ts-tools-heading mb-1">Tools</p>
+                {% for t in tools %}
+                <p class="ts-tools-text mb-0">{{ t.label }}</p>
                 {% endfor %}
             </div>
             {% endif %}
 
             {% if show_interests %}
             <div class="shadow-sm rounded m-1 p-3 ts-interests-container">
-                <p class="ts-interests-heading mb-1">Skills</h4>
-                    {% for interest in interests %}
-                <p class="ts-interests-text mb-0" >{{ interest.label }}</p>
+                <p class="ts-interests-heading mb-1">Interests</p>
+                {% for interest in interests %}
+                <p class="ts-interests-text mb-0">{{ interest.label }}</p>
                 {% endfor %}
             </div>
             {% endif %}
@@ -110,18 +128,18 @@
 </section>
 
 <!-- How section -->
-<section class="ts-about-section4 ts-section-padding">
+<section class="ts-about-section4">
     {% if show_how %}
-    <div class="container px-3 py-4">
-        <div class="m-1 px-5 py-2 ">
+    <div class="container-fluid ps-3 py-4">
+        <div class="m-1 py-2">
             <p class="ts-h4 mb-5 text-center">How I work *</p>
         </div>  
-        <div class="d-flex flex-wrap justify-content-around text-center px-0">       
+        <div class="d-flex flex-wrap justify-content-around text-center ps-0">       
             {% for how in hows %}
             <div class="container ts-about-how-container text-center">
                 <img class="ts-about-section4-img" src="{{ how.icon.url }}" alt="how I work">
-                <p class="ts-about-section4-heading fw-bold mb-0" >{{ how.heading }}</p>
-                <p class="ts-about-section4-text mb-4" >{{ how.text }}</p>
+                <p class="ts-about-section4-heading fw-bold mb-0">{{ how.heading }}</p>
+                <p class="ts-about-section4-text mb-4">{{ how.text }}</p>
             </div>
             {% endfor %}
         </div>
@@ -131,8 +149,8 @@
 </section>
 
 <!-- Press Links -->
-<section class="ts-about-section5 ts-section-padding">
-    <div class="container pt-4 pb-4 ps-4 pe-5">
+<section class="ts-about-section5">
+    <div class="container-fluid pt-4 pb-4">
         {% if show_presslinks %}
         <p class="ts-about-section5-heading mb-2">Press</p>
         {% for presslink in presslinks %}
