@@ -11,21 +11,45 @@ document.addEventListener('DOMContentLoaded', function () {
             const itemWidth = item.offsetWidth;
 
             function handleClick(direction) {
-                // Based on the direction we call `scrollBy` with the item width we got earlier
-                if (direction === "previous") {
-                    list.scrollBy({
-                        left: -itemWidth,
-                        behavior: "smooth"
-                    });
+                // Get current scroll position
+                let currentScroll = list.scrollLeft;
+                const maxScroll = list.scrollWidth - list.clientWidth; // Calculate max scroll distance
+
+                // Check if the list is right-aligned
+                const isRightAligned = list.classList.contains('ts-list-aligmnet-right');
+
+                if (isRightAligned) {
+                    // Reverse scroll direction for right-aligned lists
+                    if (direction === "previous") {
+                        // Scroll towards the right, moving left in the UI
+                        list.scrollTo({
+                            left: Math.min(currentScroll + itemWidth, maxScroll), // Ensure we don't scroll past max
+                            behavior: "smooth"
+                        });
+                    } else {
+                        // Scroll towards the left, moving right in the UI
+                        list.scrollTo({
+                            left: Math.max(currentScroll - itemWidth, 0), // Ensure we don't scroll past 0
+                            behavior: "smooth"
+                        });
+                    }
                 } else {
-                    list.scrollBy({
-                        left: itemWidth,
-                        behavior: "smooth"
-                    });
+                    // Standard behavior for left-aligned lists
+                    if (direction === "previous") {
+                        list.scrollTo({
+                            left: Math.max(currentScroll - itemWidth, 0),
+                            behavior: "smooth"
+                        });
+                    } else {
+                        list.scrollTo({
+                            left: Math.min(currentScroll + itemWidth, maxScroll),
+                            behavior: "smooth"
+                        });
+                    }
                 }
             }
 
-            // Attach event listeners to the respective buttons for this section proposed by ChatGpt
+            // Attach event listeners to the respective buttons for this section
             const prevButton = document.querySelector(`.ts-button--previous[data-section-id="${sectionId}"]`);
             const nextButton = document.querySelector(`.ts-button--next[data-section-id="${sectionId}"]`);
 

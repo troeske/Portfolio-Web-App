@@ -312,6 +312,14 @@ main {
     scrollbar-width: none;  /* For Firefox */
 }
 
+.ts-list-aligmnet-right {
+    justify-content: end;
+}
+
+.ts-list-aligmnet-left {
+    justify-content: start;
+}
+
   /* For Chrome, Safari, and other WebKit-based browsers */
 .ts-list::-webkit-scrollbar {
     display: none;
@@ -334,7 +342,7 @@ main {
 
 .ts-slide-image {
     width: 100%;
-    height: auto;
+    height: 250px;
     object-fit: cover;
     justify-content: center;
     align-items: center;

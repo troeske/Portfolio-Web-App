@@ -79,7 +79,7 @@
     {% if section_image_counts|get_item:section.id > 0 %}
     <div id="ts-images-carousel">
         <div class="list-wrapper ts-image-cards" id="ts-image-cards-{{ section.id }}"></div>
-        <ul class="ts-list" id="ts-list-{{ section.id }}">
+        <ul class="ts-list {% if section.orientation_right %}ts-list-aligmnet-right{% else %}ts-list-aligmnet-left{% endif %} " id="ts-list-{{ section.id }}">
             {% for image in images %}
             {% if image.section.id == section.id %}
                 <li class="ts-item mw-100 h-100">
