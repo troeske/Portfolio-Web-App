@@ -138,6 +138,5 @@ class CollaborationFormSubmissionTests(TestCase):
         # Verify the second email content (to the consultant)
         consultant_email_args = mock_send_mail.call_args_list[1][0]
         self.assertIn('Hi Test', consultant_email_args[1])
-        self.assertIn('you have a Collaboration Request',
-                      consultant_email_args[0])
+        self.assertIn('You have a Collaboration Request', consultant_email_args[0])
         self.assertIn(self.consultant.email, consultant_email_args[3])
