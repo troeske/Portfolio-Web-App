@@ -240,3 +240,17 @@ def approve_client(request, id):
         return HttpResponse(error_message, status=500)  
     
     return HttpResponseRedirect(reverse('client_registration_list'))
+
+def new_project(request):
+    """
+    shows new project page 
+    """
+       
+    context = {}
+
+    
+    return render(
+        request,
+        "projects/new_project.html",
+        context,
+    )

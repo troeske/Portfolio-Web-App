@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // For the next and previous buttons on the image carousels
+    // For the next and previous buttons on the image carousels proposed by Copilot
     const carousels = document.querySelectorAll(".ts-list"); // Select all carousels
 
     carousels.forEach(function(list) {
