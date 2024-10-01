@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-8 px-0">
+            <div class="col-12 col-sm-8 px-0 text-sm-start text-md-center">
                 <img src="{{ project.detail_image.url }}" class="img-fluid rounded" alt="{{ project.detail_image_alt }}">
             </div>
         <div class="row mx-0 px-0">
@@ -55,13 +55,16 @@
     {% if section.heading_1 or section.heading_2 or section.text %}
     <div class="container-fluid mt-5">
         <div class="row mt-4">
-            <div class="col-3 col-sm-5">
-                <div class="d-none d-sm-block text-start ms-sm-5 ps-sm-5">
+            <div class="d-none d-sm-block col-sm-3">
+                <!-- intentionally left blank for later design improvements -->
+            </div>
+            <div class="col-3 col-sm-3">
+                <div class="d-none d-sm-block text-start ms-sm-0 ps-sm-0">
                     {% if section.heading_1 %}<h2 class="ts-sheading1 ">{{ section.heading_1 }}</h2>{% endif %}
                     {% if section.heading_2 %}<h2 class="ts-sheading2">{{ section.heading_2 }}</h2>{% endif %}
                 </div>
             </div>
-            <div class="col-9 col-sm-7 ps-0">
+            <div class="col-9 col-sm-5 ps-0">
                 <div class="d-block d-sm-none">
                     {% if section.heading_1 %}<h2 class="ts-sheading1 ">{{ section.heading_1 }}</h2>{% endif %}
                     {% if section.heading_2 %}<h2 class="ts-sheading2">{{ section.heading_2 }}</h2>{% endif %}
@@ -69,6 +72,9 @@
                 <div class="ps-0 pe-3">
                     {% if section.text %}<p class="ts-p-std">{{ section.text }}</p>{% endif %}
                 </div>
+            </div>
+            <div class="d-none d-sm-block col-sm-1"></div>
+                <!-- intentionally left blank for later design improvements -->
             </div>
         </div>
     </div>
