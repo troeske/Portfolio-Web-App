@@ -2,6 +2,7 @@ from .models import CollaborationRequest
 from django.conf import settings
 from django import forms
 
+
 class CollaborationForm(forms.ModelForm):
     first_name = forms.CharField(max_length=200, required=True)
     last_name = forms.CharField(max_length=200, required=True)
@@ -11,7 +12,7 @@ class CollaborationForm(forms.ModelForm):
     class Meta:
         model = CollaborationRequest
         fields = ('first_name', 'last_name', 'email', 'message')
-        
+
     def save(self, commit=True):
         instance = super().save(commit=False)
         current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
