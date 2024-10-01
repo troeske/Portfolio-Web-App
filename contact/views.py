@@ -1,5 +1,4 @@
-import logging
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import CollaborationRequest
 from .forms import CollaborationForm
 from django.core.mail import send_mail
@@ -22,7 +21,7 @@ def collaboration_request_list(request):
         error_message = f"A general error occurred in collaboration request list: {e}. Please try again later."
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)  
+        return redirect('home')   
     
     context = {"crs": crs,
                 "show_crs": show_crs
@@ -87,16 +86,16 @@ def contact(request):
                 )                
 
             except DatabaseError as e:
-               error_message = f"A Database error occurred: {e}. Please try again later."
+               error_message = f"A Database error occurred in contact(): {e}. Please try again later."
                print(error_message)
                print(type(e))
-               return HttpResponse(error_message, status=500)    
+               return redirect('home')    
             
             except Exception as e:
-               error_message = f"A general error occurred in contact(): {e}. Please try again later."
+               error_message = f"A general error occurred in contact(): {e}"
                print(error_message)
                print(type(e))
-               return HttpResponse(error_message, status=500)  
+               return redirect('home') 
         
         else:
             print(f"A form validation error occurred")
@@ -114,4 +113,8 @@ def contact(request):
         context,
     )
     
-  
+def custom_404_view(request, exception):
+    """
+    Custom view to handle 404 errors and redirect to the home page.
+    """
+    return redirect('home') 

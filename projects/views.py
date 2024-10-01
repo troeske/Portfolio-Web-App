@@ -35,7 +35,7 @@ def projects_list(request):
         error_message = f"A general error occurred:: {e}. Please try again later."
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)  
+        return redirect('home')   
     
     context = {"projects": projects,
                 "show_projects": show_projects
@@ -87,7 +87,7 @@ def project_details(request, slug):
         error_message = f"A general error occurred:: {e}. Please try again later."
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)  
+        return redirect('home')   
     
     context = {"project": project,
          "categories": categories,
@@ -139,7 +139,7 @@ def client_registration_list(request):
             error_message = f"A general error occurred:: {e}. Please try again later."
             print(error_message)
             print(type(e))
-            return HttpResponse(error_message, status=500)  
+            return redirect('home')   
     
         context = {"registrations": registrations,
                     "show_registrations": show_registrations
@@ -188,13 +188,13 @@ def client_delete(request, username):
                error_message = f"A Database error occurred: {e}. Please try again later."
                print(error_message)
                print(type(e))
-               return HttpResponse(error_message, status=500)
+               return redirect('home') 
     
     except Exception as e:
         error_message = f"A general error occurred:: {e}. Please try again later."
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)  
+        return redirect('home')   
     
     return HttpResponseRedirect(reverse('client_registration_list'))
 
@@ -231,13 +231,13 @@ def approve_client(request, id):
         error_message = f"A Database error occurred: {e}. Please try again later."
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)
+        return redirect('home') 
 
     except Exception as e:
         error_message = f"A general error occurred in approve_client(): {e}. Please try again later."
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)  
+        return redirect('home')   
     
     return HttpResponseRedirect(reverse('client_registration_list'))
 

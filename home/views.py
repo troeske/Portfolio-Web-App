@@ -39,7 +39,7 @@ def consultant_home(request):
         error_message = f"A general error occurred:: {e}. Please try again later."
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)  
+        return redirect('home')   
     
     context = {"consultant": consultant,
                 "socials": socials,
@@ -89,7 +89,7 @@ def consultant_about(request):
         error_message = f"A general error occurred:: {e}. Please try again later."
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)  
+        return redirect('home')   
     
     context = {"consultant": consultant,
                 "skills": skills,
@@ -136,4 +136,4 @@ def reload_config(request):
         error_message = f"An error occurred while reloading config: {e}"
         print(error_message)
         print(type(e))
-        return HttpResponse(error_message, status=500)
+        return redirect('home') 
