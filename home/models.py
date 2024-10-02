@@ -4,7 +4,12 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
-TYPE = ((1, "Skill"), (2, "Tool"), (3, "Interest"), (4, "Role"))
+TYPE = (
+    (1, "Skill"),
+    (2, "Tool"),
+    (3, "Interest"),
+    (4, "Role")
+)
 
 
 class Consultant(models.Model):
@@ -12,7 +17,9 @@ class Consultant(models.Model):
     first_name = models.CharField(max_length=200, blank=True)
     last_name = models.CharField(max_length=200, blank=True)
     email = models.EmailField(null=True, blank=True)
-    intro_text_heading = models.CharField(max_length=200, blank=False, default="heading.")
+    intro_text_heading = models.CharField(
+        max_length=200, blank=False, default="heading."
+    )
     intro_text = models.TextField(blank=False, default="default intro text.")
     about_me = models.TextField(blank=False, default="default about me text.")
     profile_image = CloudinaryField('image', default='placeholder')
@@ -29,7 +36,7 @@ class Consultant(models.Model):
 class Skill(models.Model):
     consultant_id = models.ForeignKey(
         Consultant, on_delete=models.CASCADE, related_name="home_skills"
-        )
+    )
     label = models.CharField(max_length=200, blank=False)
     type = models.IntegerField(choices=TYPE, default=1)
     proficiency = models.IntegerField(null=True, blank=True)
@@ -38,7 +45,7 @@ class Skill(models.Model):
     display_order = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ["consultant_id","type", "display_order"]
+        ordering = ["consultant_id", "type", "display_order"]
 
     def __str__(self):
         return f"{self.consultant_id} | Type: {self.type} - {self.label}"
@@ -46,8 +53,9 @@ class Skill(models.Model):
 
 class PastEmployment(models.Model):
     consultant_id = models.ForeignKey(
-        Consultant, on_delete=models.CASCADE, related_name="home_pastemployments"
-        )
+        Consultant, on_delete=models.CASCADE,
+        related_name="home_pastemployments"
+    )
     company = models.CharField(max_length=200, blank=False)
     country = models.CharField(max_length=200, blank=False)
     city = models.CharField(max_length=200, blank=False)
@@ -56,7 +64,9 @@ class PastEmployment(models.Model):
     role = models.CharField(max_length=200, blank=True)
     text = models.TextField(blank=True)
     link_text = models.CharField(max_length=250, blank=True)
-    link = models.URLField(max_length=250, blank=False, default="https://www.google.com")
+    link = models.URLField(
+        max_length=250, blank=False, default="https://www.google.com"
+    )
     logo = CloudinaryField('image', default='placeholder')
     logo_alt_text = models.CharField(max_length=200, blank=True)
 
@@ -64,12 +74,15 @@ class PastEmployment(models.Model):
         ordering = ["consultant_id", "-start"]
 
     def __str__(self):
-        return f"{self.consultant_id} | {self.start} | {self.company} | {self.role}"
+        return_str = f"{self.consultant_id} | {self.start} | {self.company}"
+        return_str += f" | {self.role}"
+        return return_str
+
 
 class How(models.Model):
     consultant_id = models.ForeignKey(
         Consultant, on_delete=models.CASCADE, related_name="home_hows"
-        )
+    )
     heading = models.CharField(max_length=200, blank=False, default="heading.")
     text = models.TextField(blank=False, default="default intro text.")
     icon = CloudinaryField('image', default='placeholder')
@@ -77,21 +90,23 @@ class How(models.Model):
 
     def __str__(self):
         return f"{self.heading}"
-    
+
+
 class PressLink(models.Model):
     consultant_id = models.ForeignKey(
         Consultant, on_delete=models.CASCADE, related_name="home_presslinks"
-        )
+    )
     link_text = models.CharField(max_length=250, blank=False)
     link = models.URLField(max_length=250, blank=False)
 
     def __str__(self):
         return f"{self.consultant_id} | {self.link_text}"
 
+
 class Customer(models.Model):
     consultant_id = models.ForeignKey(
         Consultant, on_delete=models.CASCADE, related_name="home_customers"
-        )
+    )
     link_text = models.CharField(max_length=250, blank=False)
     link = models.URLField(max_length=250, blank=False)
     logo = CloudinaryField('image', default='placeholder')
@@ -104,24 +119,27 @@ class Customer(models.Model):
     def __str__(self):
         return f"{self.consultant_id} | {self.name}"
 
+
 class SocialAccount(models.Model):
     consultant_id = models.ForeignKey(
-        Consultant, on_delete=models.CASCADE, related_name="home_socialaccounts"
-        )
-    name= models.CharField(max_length=250)
+        Consultant, on_delete=models.CASCADE,
+        related_name="home_socialaccounts"
+    )
+    name = models.CharField(max_length=250)
     link = models.URLField(max_length=250)
     fa_icon = models.CharField(max_length=200, blank=True)
-    
+
 
 class Config(models.Model):
     """
     Model for storing configuration data
     """
     consultant_id = models.ForeignKey(
-        Consultant, on_delete=models.CASCADE, related_name="home_config"        )
+        Consultant, on_delete=models.CASCADE, related_name="home_config"
+    )
     key = models.CharField(max_length=200, blank=False)
     value = models.CharField(max_length=200, blank=False)
-    
+
     class Meta:
         ordering = ["key"]
 

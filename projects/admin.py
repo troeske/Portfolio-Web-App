@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Project, Category, Learning, Section, SectionImages, Client, SectionVideo
+from .models import (
+    Project, Category, Learning, Section, SectionImages, Client, SectionVideo
+)
 
 # Register your models here.
 admin.site.register(Project)

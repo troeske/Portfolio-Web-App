@@ -20,7 +20,8 @@ def consultant_home(request):
             consultant_id=current_consultant
         ).first()
 
-        socials = SocialAccount.objects.filter(consultant_id=current_consultant)
+        socials = SocialAccount.objects.filter(
+                consultant_id=current_consultant)
 
         customers = Customer.objects.filter(consultant_id=current_consultant)
         show_customers = customers.exists()
@@ -46,7 +47,7 @@ def consultant_home(request):
         show_projects = projects.exists()
 
     except Exception as e:
-        error_message = f"A general error occurred: {e}. Please try again later."
+        error_message = f"A general error occurred: {e}."
         print(error_message)
         print(type(e))
         return redirect('home')
@@ -110,7 +111,7 @@ def consultant_about(request):
         show_presslinks = presslinks.exists()
 
     except Exception as e:
-        error_message = f"A general error occurred: {e}. Please try again later."
+        error_message = f"A general error occurred: {e}."
         print(error_message)
         print(type(e))
         return redirect('home')
@@ -142,7 +143,8 @@ def reload_config(request):
         # get all config data for the current consultant from the db
         # and update the dictionary
         consultant = Consultant.objects.get(consultant_id=CURRENT_CONSULTANT)
-        settings.CONTEXT_CONFIG_DATA['consultant_fname'] = consultant.first_name
+        settings.CONTEXT_CONFIG_DATA['consultant_fname'] = \
+            consultant.first_name
         settings.CONTEXT_CONFIG_DATA['consultant_lname'] = consultant.last_name
         settings.CONTEXT_CONFIG_DATA['consultant_email'] = consultant.email
 

@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Consultant, Skill, PastEmployment, PressLink, Config, Customer, SocialAccount, How
+from .models import (
+    Consultant, Skill, PastEmployment, PressLink, Config, 
+    Customer, SocialAccount, How
+)
 
 # Register your models here.
 admin.site.register(Consultant)

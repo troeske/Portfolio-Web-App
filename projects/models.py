@@ -4,11 +4,13 @@ from cloudinary.models import CloudinaryField
 from home.models import Consultant
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Project(models.Model):
     project_id = models.AutoField(primary_key=True)
     consultant_id = models.ForeignKey(
-        Consultant, on_delete=models.CASCADE, related_name="consultant_projects"
+        Consultant, on_delete=models.CASCADE,
+        related_name="consultant_projects"
         )
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -27,12 +29,12 @@ class Project(models.Model):
     end = models.DateField(default=date.today)
     show_in_home = models.BooleanField(default=True)
 
-
     class Meta:
         ordering = ["consultant_id", "display_order"]
 
     def __str__(self):
-       return f"{self.consultant_id} | {self.title}"
+        return f"{self.consultant_id} | {self.title}"
+
 
 class Client(models.Model):
     client = models.ForeignKey(
@@ -40,18 +42,18 @@ class Client(models.Model):
         )
     allow_delete = models.BooleanField()
     consultant = models.ForeignKey(
-        Consultant, on_delete=models.CASCADE, related_name="client_access", default=1
+        Consultant, on_delete=models.CASCADE, related_name="client_access",
+        default=1
         )
     email = models.EmailField(null=True, blank=True)
     approved = models.BooleanField(default=False)
     approval_date = models.DateTimeField(auto_now=True)
 
-
     class Meta:
         ordering = ["client", "approval_date"]
 
     def __str__(self):
-       return f"{self.client} | {self.email} | {self.approved}"
+        return f"{self.client} | {self.email} | {self.approved}"
 
 
 class Category(models.Model):
@@ -65,8 +67,9 @@ class Category(models.Model):
         ordering = ["project_id", "display_order"]
 
     def __str__(self):
-       return f"{self.project_id} | {self.category}"
-    
+        return f"{self.project_id} | {self.category}"
+
+
 class Learning(models.Model):
     project_id = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name="projects_learnings"
@@ -79,8 +82,8 @@ class Learning(models.Model):
         ordering = ["project_id", "display_order"]
 
     def __str__(self):
-       return f"{self.project_id} | {self.header}"
-    
+        return f"{self.project_id} | {self.header}"
+
 
 class Section(models.Model):
     project_id = models.ForeignKey(
@@ -96,8 +99,8 @@ class Section(models.Model):
         ordering = ["project_id", "display_order"]
 
     def __str__(self):
-       return f"{self.project_id} | {self.heading_1}"
-    
+        return f"{self.project_id} | {self.heading_1}"
+
 
 class SectionImages(models.Model):
     section = models.ForeignKey(
@@ -105,28 +108,36 @@ class SectionImages(models.Model):
         )
     image = CloudinaryField('image', default='placeholder')
     alt_text = models.CharField(max_length=200, default='placeholder')
-    image_caption_heading = models.CharField(max_length=250, blank=True, default='Caption Heading')
-    image_caption_text = models.CharField(max_length=250,  blank=True, default='Caption Text')
-    image_caption_mode = models.CharField(max_length=100,  blank=True, default='light')
+    image_caption_heading = models.CharField(max_length=250, blank=True,
+                                             default='Caption Heading')
+    image_caption_text = models.CharField(max_length=250,  blank=True,
+                                          default='Caption Text')
+    image_caption_mode = models.CharField(max_length=100,  blank=True,
+                                          default='light')
     display_order = models.IntegerField(default=0)
+
     class Meta:
         ordering = ["section_id", "display_order"]
 
     def __str__(self):
-       return f"{self.section} | {self.alt_text} | {self.display_order}"
-   
+        return f"{self.section} | {self.alt_text} | {self.display_order}"
+
+
 class SectionVideo(models.Model):
     section = models.ForeignKey(
         Section, on_delete=models.CASCADE, related_name="section_videos"
         )
-    video = CloudinaryField('video', resource_type='video', default='placeholder')
+    video = CloudinaryField('video', resource_type='video',
+                            default='placeholder')
     video_alt_text = models.CharField(max_length=200, default='placeholder')
     display_order = models.IntegerField(default=0)
+
     class Meta:
         ordering = ["section_id", "display_order"]
 
     def __str__(self):
-       return f"{self.section} | {self.video_alt_text} | {self.display_order}"
+        return f"{self.section} | {self.video_alt_text} | {self.display_order}"
+
 
 class SectionURLS(models.Model):
     section = models.ForeignKey(
@@ -140,5 +151,4 @@ class SectionURLS(models.Model):
         ordering = ["section_id", "display_order"]
 
     def __str__(self):
-       return f"{self.section_id} | {self.alt_text}"
-    
+        return f"{self.section_id} | {self.alt_text}"

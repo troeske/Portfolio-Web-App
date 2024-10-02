@@ -1,64 +1,121 @@
 from django.conf import settings
 
+
 def context_config_data(request):
-    """ 
-    needed to pass all config data to all views incl. the allauth package forms/views. Suggested by Github Copilot
     """
-    
+    needed to pass all config data to all views incl.
+    the allauth package forms/views. Suggested by Github Copilot
+    """
+
     return {
-        'consultant_fname': settings.CONTEXT_CONFIG_DATA.get('consultant_fname', 'default_value'),
-        'consultant_lname': settings.CONTEXT_CONFIG_DATA.get('consultant_lname', 'default_value'),
-        'consultant_email': settings.CONTEXT_CONFIG_DATA.get('consultant_email', 'default_value'),
-        'ts_p_std_font_size': settings.CONTEXT_CONFIG_DATA.get('ts_p_std_font_size', 'default_value'),
-        'ts_p_std_font_family': settings.CONTEXT_CONFIG_DATA.get('ts_p_std_font_family', 'default_value'),
-        'ts_p_std_font_color': settings.CONTEXT_CONFIG_DATA.get('ts_p_std_font_color', 'default_value'),
-        'ts_h7_font_size': settings.CONTEXT_CONFIG_DATA.get('ts_h7_font_size', 'default_value'),
-        'ts_h7_font_color': settings.CONTEXT_CONFIG_DATA.get('ts_h7_font_color', 'default_value'),
-        'ts_h7_font_family': settings.CONTEXT_CONFIG_DATA.get('ts_h7_font_family', 'default_value'),
-        'ts_h4_font_size': settings.CONTEXT_CONFIG_DATA.get('ts_h4_font_size', 'default_value'),
-        'ts_h4_font_color': settings.CONTEXT_CONFIG_DATA.get('ts_h4_font_color', 'default_value'),
-        'ts_h4_font_family': settings.CONTEXT_CONFIG_DATA.get('ts_h4_font_family', 'default_value'),
-        'ts_brand_font_size': settings.CONTEXT_CONFIG_DATA.get('ts_brand_font_size', 'default_value'),
-        'ts_brand_font_color': settings.CONTEXT_CONFIG_DATA.get('ts_brand_font_color', 'default_value'),
-        'ts_brand_font_family': settings.CONTEXT_CONFIG_DATA.get('ts_brand_font_family', 'default_value'),
-        'ts_brand_padding_left': settings.CONTEXT_CONFIG_DATA.get('ts_brand_padding_left', 'default_value'),
-        'ts_std_padding': settings.CONTEXT_CONFIG_DATA.get('ts_std_padding', 'default_value'),
-        'ts_lg_padding': settings.CONTEXT_CONFIG_DATA.get('ts_lg_padding', 'default_value'),
-        'ts_bg_alt_color': settings.CONTEXT_CONFIG_DATA.get('ts_bg_alt_color', 'default_value'),
-        'ts_bg_std_color': settings.CONTEXT_CONFIG_DATA.get('ts_bg_std_color', 'default_value'),
-        'ts_section_padding': settings.CONTEXT_CONFIG_DATA.get('ts_section_padding', 'default_value'),
-        'ts_section_padding_b': settings.CONTEXT_CONFIG_DATA.get('ts_section_padding_b', 'default_value'),
-        'ts_home_alt_bg_color': settings.CONTEXT_CONFIG_DATA.get('ts_home_alt_bg_color', 'default_value'),
-        'ts_home_std_bg_color': settings.CONTEXT_CONFIG_DATA.get('ts_home_std_bg_color', 'default_value'),
-        'ts_about_section1_bg': settings.CONTEXT_CONFIG_DATA.get('ts_about_section1_bg', 'default_value'),
-        'ts_about_section1_text_color': settings.CONTEXT_CONFIG_DATA.get('ts_about_section1_text_color', 'default_value'),
-        'ts_about_section2_bg': settings.CONTEXT_CONFIG_DATA.get('ts_about_section2_bg', 'default_value'),
-        'ts_about_section2_heading_font': settings.CONTEXT_CONFIG_DATA.get('ts_about_section2_heading_font', 'default_value'),
-        'ts_about_section2_heading_size': settings.CONTEXT_CONFIG_DATA.get('ts_about_section2_heading_size', 'default_value'),
-        'ts_about_section2_text_font': settings.CONTEXT_CONFIG_DATA.get('ts_about_section2_text_font', 'default_value'),
-        'ts_about_section2_text_size': settings.CONTEXT_CONFIG_DATA.get('ts_about_section2_text_size', 'default_value'),
-        'ts_about_section2_text_color': settings.CONTEXT_CONFIG_DATA.get('ts_about_section2_text_color', 'default_value'),
-        'ts_about_section3_bg': settings.CONTEXT_CONFIG_DATA.get('ts_about_section3_bg', 'default_value'),
-        'ts_about_section3_text_color': settings.CONTEXT_CONFIG_DATA.get('ts_about_section3_text_color', 'default_value'),
-        'ts_about_section3_text_font': settings.CONTEXT_CONFIG_DATA.get('ts_about_section3_text_font', 'default_value'),
-        'ts_about_skills_card_bg': settings.CONTEXT_CONFIG_DATA.get('ts_about_skills_card_bg', 'default_value'),
-        'ts_about_skills_card_text_color': settings.CONTEXT_CONFIG_DATA.get('ts_about_skills_card_text_color', 'default_value'),
-        'ts_about_interests_card_bg': settings.CONTEXT_CONFIG_DATA.get('ts_about_interests_card_bg', 'default_value'),
-        'ts_about_interests_card_text_color': settings.CONTEXT_CONFIG_DATA.get('ts_about_interests_card_text_color', 'default_value'),
-        'ts_about_tools_card_bg': settings.CONTEXT_CONFIG_DATA.get('ts_about_tools_card_bg', 'default_value'),
-        'ts_about_tools_card_text_color': settings.CONTEXT_CONFIG_DATA.get('ts_about_tools_card_text_color', 'default_value'),
-        'ts_about_section4_bg': settings.CONTEXT_CONFIG_DATA.get('ts_about_section4_bg', 'default_value'),
-        'ts_about_section4_heading_font': settings.CONTEXT_CONFIG_DATA.get('ts_about_section4_heading_font', 'default_value'),
-        'ts_about_section4_text_color': settings.CONTEXT_CONFIG_DATA.get('ts_about_section4_text_color', 'default_value'),
-        'ts_about_section4_text_font': settings.CONTEXT_CONFIG_DATA.get('ts_about_section4_text_font', 'default_value'),
-        'ts_about_section5_bg': settings.CONTEXT_CONFIG_DATA.get('ts_about_section5_bg', 'default_value'),
-        'ts_about_section5_heading_font': settings.CONTEXT_CONFIG_DATA.get('ts_about_section5_heading_font', 'default_value'),
-        'ts_about_section5_text_color': settings.CONTEXT_CONFIG_DATA.get('ts_about_section5_text_color', 'default_value'),
-        'ts_about_section5_text_font': settings.CONTEXT_CONFIG_DATA.get('ts_about_section5_text_font', 'default_value'),
-        'ts_pdetails_sheading1_color': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_sheading1_color', 'default_value'),
-        'ts_pdetails_sheading1_font_size': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_sheading1_font_size', 'default_value'),
-        'ts_pdetails_sheading2_color': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_sheading2_color', 'default_value'),
-        'ts_pdetails_sheading2_font_size': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_sheading2_font_size', 'default_value'),
-        'ts_pdetails_sheading_font_family': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_sheading_font_family', 'default_value'),
-        'ts_pdetails_learning_card_bg': settings.CONTEXT_CONFIG_DATA.get('ts_pdetails_learning_card_bg', 'default_value'),
+        'consultant_fname': settings.CONTEXT_CONFIG_DATA.get(
+                'consultant_fname', 'default_value'),
+        'consultant_lname': settings.CONTEXT_CONFIG_DATA.get(
+                'consultant_lname', 'default_value'),
+        'consultant_email': settings.CONTEXT_CONFIG_DATA.get(
+                'consultant_email', 'default_value'),
+        'ts_p_std_font_size': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_p_std_font_size', 'default_value'),
+        'ts_p_std_font_family': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_p_std_font_family', 'default_value'),
+        'ts_p_std_font_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_p_std_font_color', 'default_value'),
+        'ts_h7_font_size': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_h7_font_size', 'default_value'),
+        'ts_h7_font_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_h7_font_color', 'default_value'),
+        'ts_h7_font_family': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_h7_font_family', 'default_value'),
+        'ts_h4_font_size': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_h4_font_size', 'default_value'),
+        'ts_h4_font_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_h4_font_color', 'default_value'),
+        'ts_h4_font_family': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_h4_font_family', 'default_value'),
+        'ts_brand_font_size': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_brand_font_size', 'default_value'),
+        'ts_brand_font_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_brand_font_color', 'default_value'),
+        'ts_brand_font_family': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_brand_font_family', 'default_value'),
+        'ts_brand_padding_left': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_brand_padding_left', 'default_value'),
+        'ts_std_padding': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_std_padding', 'default_value'),
+        'ts_lg_padding': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_lg_padding', 'default_value'),
+        'ts_bg_alt_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_bg_alt_color', 'default_value'),
+        'ts_bg_std_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_bg_std_color', 'default_value'),
+        'ts_section_padding': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_section_padding', 'default_value'),
+        'ts_section_padding_b': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_section_padding_b', 'default_value'),
+        'ts_home_alt_bg_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_home_alt_bg_color', 'default_value'),
+        'ts_home_std_bg_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_home_std_bg_color', 'default_value'),
+        'ts_about_section1_bg': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section1_bg', 'default_value'),
+        'ts_about_section1_text_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section1_text_color', 'default_value'),
+        'ts_about_section2_bg': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section2_bg', 'default_value'),
+        'ts_about_section2_heading_font': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section2_heading_font', 'default_value'),
+        'ts_about_section2_heading_size': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section2_heading_size', 'default_value'),
+        'ts_about_section2_text_font': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section2_text_font', 'default_value'),
+        'ts_about_section2_text_size': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section2_text_size', 'default_value'),
+        'ts_about_section2_text_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section2_text_color', 'default_value'),
+        'ts_about_section3_bg': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section3_bg', 'default_value'),
+        'ts_about_section3_text_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section3_text_color', 'default_value'),
+        'ts_about_section3_text_font': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section3_text_font', 'default_value'),
+        'ts_about_skills_card_bg': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_skills_card_bg', 'default_value'),
+        'ts_about_skills_card_text_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_skills_card_text_color', 'default_value'),
+        'ts_about_interests_card_bg': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_interests_card_bg', 'default_value'),
+        'ts_about_interests_card_text_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_interests_card_text_color', 'default_value'),
+        'ts_about_tools_card_bg': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_tools_card_bg', 'default_value'),
+        'ts_about_tools_card_text_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_tools_card_text_color', 'default_value'),
+        'ts_about_section4_bg': settings.CONTEXT_CONFIG_DATA.get(
+            'ts_about_section4_bg', 'default_value'),
+        'ts_about_section4_heading_font': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section4_heading_font', 'default_value'),
+        'ts_about_section4_text_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section4_text_color', 'default_value'),
+        'ts_about_section4_text_font': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section4_text_font', 'default_value'),
+        'ts_about_section5_bg': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section5_bg', 'default_value'),
+        'ts_about_section5_heading_font': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section5_heading_font', 'default_value'),
+        'ts_about_section5_text_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section5_text_color', 'default_value'),
+        'ts_about_section5_text_font': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_about_section5_text_font', 'default_value'),
+        'ts_pdetails_sheading1_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_pdetails_sheading1_color', 'default_value'),
+        'ts_pdetails_sheading1_font_size': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_pdetails_sheading1_font_size', 'default_value'),
+        'ts_pdetails_sheading2_color': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_pdetails_sheading2_color', 'default_value'),
+        'ts_pdetails_sheading2_font_size': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_pdetails_sheading2_font_size', 'default_value'),
+        'ts_pdetails_sheading_font_family': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_pdetails_sheading_font_family', 'default_value'),
+        'ts_pdetails_learning_card_bg': settings.CONTEXT_CONFIG_DATA.get(
+                'ts_pdetails_learning_card_bg', 'default_value'),
     }

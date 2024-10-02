@@ -7,11 +7,11 @@ from django.conf import settings
 
 class CustomSignupForm(SignupForm):
     """
-    customizing the signup form to show first name and last name 
+    customizing the signup form to show first name and last name
     suggested by github copilot.
-    removing the ('optional') from email field to encourage the user 
+    removing the ('optional') from email field to encourage the user
     to fill it out for later use
-    
+
     """
     first_name = forms.CharField(max_length=30, label='First Name')
     last_name = forms.CharField(max_length=30, label='Last Name')
@@ -22,13 +22,17 @@ class CustomSignupForm(SignupForm):
         self.fields['email'].label = 'Your Email'
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
         self.fields['first_name'].label = 'First Name'
-        self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
+        self.fields['first_name'].widget.attrs.update(
+                {'placeholder': 'First Name'})
         self.fields['last_name'].label = 'Last Name'
-        self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
+        self.fields['last_name'].widget.attrs.update(
+                {'placeholder': 'Last Name'})
         self.fields['password1'].label = 'Password'
-        self.fields['password1'].widget.attrs.update({'placeholder': 'Password'})
+        self.fields['password1'].widget.attrs.update(
+                {'placeholder': 'Password'})
         self.fields['password2'].label = 'Password Confirmation'
-        self.fields['password2'].widget.attrs.update({'placeholder': 'Password Confirmation'})
+        self.fields['password2'].widget.attrs.update(
+                {'placeholder': 'Password Confirmation'})
 
         self.fields = OrderedDict([
             ('username', self.fields['username']),
@@ -39,7 +43,6 @@ class CustomSignupForm(SignupForm):
             ('password2', self.fields['password2']),
         ])
 
-            
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
         user.first_name = self.cleaned_data['first_name']
@@ -51,18 +54,18 @@ class CustomSignupForm(SignupForm):
             f"Hi {settings.CONTEXT_CONFIG_DATA['consultant_fname']}!\n\n"
             "You have a new registration request:\n\n"
             "----------------------\n"
-            f"Name (last, first): {user.last_name}, {user.first_name}\n" 
+            f"Name (last, first): {user.last_name}, {user.first_name}\n"
             "----------------------\n"
             f"eMail: {user.email}\n"
             "----------------------\n"
-            
+
             "\nYour friendly Portfolio App django"
         )
         subject = '[NO-REPLY] you have new registration'
         send_mail(
-            subject, 
-            consultant_message, 
-            "", 
+            subject,
+            consultant_message,
+            "",
             [settings.CONTEXT_CONFIG_DATA['consultant_email']]
             )
 
