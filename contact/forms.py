@@ -1,7 +1,6 @@
-from .models import CollaborationRequest
-from django.conf import settings
 from django import forms
-
+from django.conf import settings
+from .models import CollaborationRequest
 
 class CollaborationForm(forms.ModelForm):
     """
@@ -31,6 +30,14 @@ class CollaborationForm(forms.ModelForm):
     class Meta:
         model = CollaborationRequest
         fields = ('first_name', 'last_name', 'email', 'message')
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user is not None:
+            self.fields['first_name'].initial = user.first_name
+            self.fields['last_name'].initial = user.last_name
+            self.fields['email'].initial = user.email
 
     def save(self, commit=True):
         instance = super().save(commit=False)

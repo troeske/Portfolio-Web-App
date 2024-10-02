@@ -72,7 +72,12 @@ def contact(request):
         form or redirecting to the home page in case of errors.
     """
     if request.method == "POST":
-        collaboration_form = CollaborationForm(data=request.POST)
+        if request.user.is_authenticated:
+            collaboration_form = CollaborationForm(data=request.POST,
+                                                   user=request.user)
+        else:
+            collaboration_form = CollaborationForm(request.POST)
+
         if collaboration_form.is_valid():
             try:
                 collaboration_form.save()
@@ -153,7 +158,10 @@ def contact(request):
                 {"collaboration_form": collaboration_form}
             )
 
-    collaboration_form = CollaborationForm()
+    if request.user.is_authenticated:
+        collaboration_form = CollaborationForm(user=request.user)
+    else:
+        collaboration_form = CollaborationForm()
 
     context = {
         "collaboration_form": collaboration_form
