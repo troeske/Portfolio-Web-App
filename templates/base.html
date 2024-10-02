@@ -15,9 +15,14 @@
 <html class="h-100" lang="en">
 
 <head>
-    <title>My Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Resume site providing insights into expertise, roles, employers, clients skills of {{ consultant_fname }} {{ consultant_lname }}">
+    <meta name="keywords" content="cv, resume, expertise, roles, employers, clients skills">
+    
+    <title>My Living Resume</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +39,12 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="256x256" href="{% static 'images/vip_pass_16811407_256.png' %}" class="text-primary">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/vip_pass_16811407_32.png' %}" class="text-primary">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/vip_pass_16811407_16.png' %}" class="text-primary">
+
     <!-- custom font -->
     <style>
         @font-face {
