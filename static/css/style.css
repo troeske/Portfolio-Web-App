@@ -294,7 +294,7 @@ main {
 }
 
 /* from my organic store project  */
-#ts-images-carousel {
+.ts-images-carousel {
     overflow: visible;
     justify-content: space-around;
     margin: 0;

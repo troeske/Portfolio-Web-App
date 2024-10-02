@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col mt-0">
                         <h4 class="border-top border-dark pt-0 mb-0">CUSTOMER</h4>
-                        <a href="{{ project.link }}" target="_blank" alt="{{ project.text }}"><p class="ts-p-std mb-2 pt-0">{{ project.customer }}</p></a>
+                        <a href="{{ project.link }}" target="_blank"><p class="ts-p-std mb-2 pt-0">{{ project.customer }}</p></a>
                         <p class="border-top border-dark ts-p-std pt-2"> <span>{{ project.start|date:"m/y" }}</span> - <span>{{ project.end|date:"m/y" }}</span> </p>
                         <p class="border-top border-dark ts-p-std pt-2">{{ project.sub_heading }}</p>
                     </div>
@@ -29,6 +29,7 @@
             <div class="col-12 col-sm-8 px-0 text-sm-start text-md-center">
                 <img src="{{ project.detail_image.url }}" class="img-fluid rounded" alt="{{ project.detail_image_alt }}">
             </div>
+        </div>
         <div class="row mx-0 px-0">
             <div class="col-3 col-sm-4 px-0">
 
@@ -36,7 +37,7 @@
             <div class="col-9 col-sm-8 ps-0">
                 <div class="d-block d-sm-none mt-3">
                     <h4 class="border-top border-dark pt-2 mb-0">CUSTOMER</h4>
-                    <a href="{{ project.link }}" target="_blank" alt="{{ project.text }}"><p class="ts-p-std mb-2 pt-0">{{ project.customer }}</p></a>
+                    <a href="{{ project.link }}" target="_blank"><p class="ts-p-std mb-2 pt-0">{{ project.customer }}</p></a>
                     <p class="border-top border-dark ts-p-std pt-2"> <span>{{ project.start|date:"m/y" }}</span> - <span>{{ project.end|date:"m/y" }}</span> </p>
                     <p class="border-top border-dark ts-p-std pt-2">{{ project.sub_heading }}</p>
                 </div>
@@ -73,7 +74,7 @@
                     {% if section.text %}<p class="ts-p-std">{{ section.text }}</p>{% endif %}
                 </div>
             </div>
-            <div class="d-none d-sm-block col-sm-1"></div>
+            <div class="d-none d-sm-block col-sm-1">
                 <!-- intentionally left blank for later design improvements -->
             </div>
         </div>
@@ -83,7 +84,7 @@
     {% if show_images %}
     <!-- loosely based on my organic store project offers carousel-->
     {% if section_image_counts|get_item:section.id > 0 %}
-    <div id="ts-images-carousel">
+    <div class="ts-images-carousel">
         <div class="list-wrapper ts-image-cards" id="ts-image-cards-{{ section.id }}"></div>
         <ul class="ts-list ts-list-aligmnet-left" id="ts-list-{{ section.id }}">
             {% for image in images %}
@@ -119,8 +120,12 @@
             <div class="col px-4">
                 {% for video in videos %}
                 {% if video.section.id == section.id %}
-                <video source src="{{ video.video.url }}" class="w-50 border rounded" alt="{{ video.alt_text }}" 
-                type="video/mp4" controls>Your browser does not support the video tag.</video>
+                <video class="w-50 border rounded" controls>
+                    <source src="{{ video.video.url }}" type="video/mp4"> 
+                    Your browser does not support the video tag.
+                </video>
+                
+                
                 {% endif %}
                 {% endfor %}
             </div>

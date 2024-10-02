@@ -294,7 +294,7 @@ main {
 }
 
 /* from my organic store project  */
-#ts-images-carousel {
+.ts-images-carousel {
     overflow: visible;
     justify-content: space-around;
     margin: 0;
@@ -401,6 +401,7 @@ main {
     padding-top: 6px;
 }
 
+/* reused from walkthrough project */
 .project-link {
     text-decoration: none;
     color: #445261;

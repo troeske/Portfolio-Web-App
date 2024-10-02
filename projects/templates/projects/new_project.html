@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
 {% load custom_filters %}
 
@@ -6,6 +6,7 @@
 
 <!-- general about project section -->
 <section>
+    <h2 class="visually-hidden">New Project</h2>
     <div class="container-fluid mt-4 ts-lg-padding-left">
         {% if user.is_superuser %}
         <div class="row">
@@ -17,72 +18,70 @@
         <div class="row">
             <div class="col-12 mt-0">
                 <p class="text-start ts-h7 mb-2">DESIGN PHILOSOPHY</p>
-                <p class="ts-p-std pt-2">A project is build up of general project information that includes a description, 
-                    an image for the project list and one for the details page as well as project timeframe. Among other things
-                    the general information includes a flag if the project is confidential and cannot be shown without 
+                <p class="ts-p-std pt-2">A project is build up of general project information that includes a
+                    description,
+                    an image for the project list and one for the details page as well as project timeframe. Among other
+                    things
+                    the general information includes a flag if the project is confidential and cannot be shown without
                     approved registration.</p>
                 <p class="ts-p-std pt-2">To provide the ability to structure the project content you can define
-                    any number of <strong>SECTIONS</strong> within the project. Each section includes optionally up to two headings, text content 
-                    and the display order in which the secions should be displayed.</p>
-                <p class="ts-p-std pt-2">Each section in turn can include any number of <strong>IMAGES, VIDEOS</strong> and 
+                    any number of <strong>SECTIONS</strong> within the project. Each section includes optionally up to
+                    two headings, text content
+                    and the display order in which the sections should be displayed.</p>
+                <p class="ts-p-std pt-2">Each section in turn can include any number of <strong>IMAGES, VIDEOS</strong>
+                    and
                     external <strong>LINKS</strong> (e.g. to your Github repo)</p>
-                <p class="ts-p-std pt-2">Each project can optionally also include a section for <strong>CATEGORIES</strong> that 
+                <p class="ts-p-std pt-2">Each project can optionally also include a section for
+                    <strong>CATEGORIES</strong> that
                     may apply to a project e.g. like "full-stack development", "app-development", "UI/UX Design".</p>
-                <p class="ts-p-std pt-2">Finally, each project can optionally include a section for <strong>LEARNINGS</strong> that 
+                <p class="ts-p-std pt-2">Finally, each project can optionally include a section for
+                    <strong>LEARNINGS</strong> that
                     you took away from the project.</p>
                 <p class="ts-p-std pt-2">Follow the steps outlined below to create a new project.</p>
             </div>
+        </div> <!-- Closed missing div -->
         <div class="row">
             <div class="col-12 mt-4">
                 <p class="text-start ts-h7 mb-1"><strong>STEP 1 - PROVIDE THE PROJECT FRAME</strong></p>
-                <p class="ts-p-std mb-0 pt-1">Click on the link below to the site admin panel and fill in the 
+                <p class="ts-p-std mb-0 pt-1">Click on the link below to the site admin panel and fill in the
                     general information about the project. Select your name in the [Consultant id] drop-down:</p>
-                <a  href="/admin/projects/project/add/" target="_blank">PROJECT</a>
+                <a href="/admin/projects/project/add/" target="_blank">PROJECT</a>
             </div>
         </div>
         <div class="row">
             <div class="col-12 mt-1">
                 <p class="text-start ts-h7 mb-1"><strong>STEP 2 (optional) - CREATE SECTIONS</strong></p>
-                <p class="ts-p-std mb-0 pt-1">Click on the link below to create any section for the project. 
+                <p class="ts-p-std mb-0 pt-1">Click on the link below to create any section for the project.
                     Select the project you just created in the [Project id:] dropdown:</p>
-                <a  href="/admin/projects/section/add/" target="_blank">SECTIONS</a>
+                <a href="/admin/projects/section/add/" target="_blank">SECTIONS</a>
             </div>
         </div>
-    </div>    
-    <div class="row">
-        <div class="col-12 mt-1">
-            <p class="text-start ts-h7 mb-1"><strong>STEP 3 (optional) - ADD IMAGES TO A SECTION</strong></p>
-            <p class="ts-p-std mb-0 pt-1">Click on the link below to add images to a section of the project. 
-                Select the section you want to add images to in the [Section:] dropdown:</p>
-            <a  href="/admin/projects/sectionimages/add/" target="_blank">SECTION IMAGES</a>
+        <div class="row">
+            <div class="col-12 mt-1">
+                <p class="text-start ts-h7 mb-1"><strong>STEP 3 (optional) - ADD IMAGES TO A SECTION</strong></p>
+                <p class="ts-p-std mb-0 pt-1">Click on the link below to add images to a section of the project.
+                    Select the section you want to add images to in the [Section:] dropdown:</p>
+                <a href="/admin/projects/sectionimages/add/" target="_blank">SECTION IMAGES</a>
+            </div>
         </div>
-    </div>  
-    <div class="row">
-        <div class="col-12 mt-1">
-            <p class="text-start ts-h7 mb-1"><strong>STEP 4 (optional) - ADD VIDEOS TO A SECTION</strong></p>
-            <p class="ts-p-std mb-0 pt-1">Click on the link below to add videos to a section of the project. 
-                Select the section you want to add videos to in the [Section:] dropdown:</p>
-            <a  href="/admin/projects/sectionvideo/add/" target="_blank">SECTION VIDEOS</a>
+        <div class="row">
+            <div class="col-12 mt-1">
+                <p class="text-start ts-h7 mb-1"><strong>STEP 4 (optional) - ADD VIDEOS TO A SECTION</strong></p>
+                <p class="ts-p-std mb-0 pt-1">Click on the link below to add videos to a section of the project.
+                    Select the section you want to add videos to in the [Section:] dropdown:</p>
+                <a href="/admin/projects/sectionvideo/add/" target="_blank">SECTION VIDEOS</a>
+            </div>
         </div>
-    </div>  
-    <div class="row">
-        <div class="col-12 mt-1 mb-4">
-            <p class="text-start ts-h7 mb-1"><strong>STEP 5 (optional) - ADD LEARNINGS TO A SECTION</strong></p>
-            <p class="ts-p-std mb-0 pt-1">Click on the link below to add learnings to the project. 
-                Select the project you just created in the [Project id:] dropdown:</p>
-            <a  href="/admin/projects/learning/add/" target="_blank">LEARNINGS</a>
+        <div class="row">
+            <div class="col-12 mt-1 mb-4">
+                <p class="text-start ts-h7 mb-1"><strong>STEP 5 (optional) - ADD LEARNINGS TO A SECTION</strong></p>
+                <p class="ts-p-std mb-0 pt-1">Click on the link below to add learnings to the project.
+                    Select the project you just created in the [Project id:] dropdown:</p>
+                <a href="/admin/projects/learning/add/" target="_blank">LEARNINGS</a>
+            </div>
         </div>
-    </div>  
-   <!--  <div class="row">
-        <div class="col-12 mt-0">
-            <p class="text-start ts-h7 mb-3">STEP 5 (optional) - ADD EXTERNAL LINKS TO A SECTION</p>
-            <p class="ts-p-std pt-2">Click on the link below to add external links to a section of the project. 
-                Select the section you want to add links to in the [Section:] dropdown:</p>
-            <a  href="/admin/projects/sectionvideo/add/" target="_blank">LINKS</a>
-        </div>
-    </div>   -->
+    </div>
     {% endif %}
-
 </section>
 
 {% endblock content %}
