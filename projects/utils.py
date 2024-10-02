@@ -1,5 +1,6 @@
 from .models import Client
 
+
 def client_approved(user):
     """
     see if a client/user has been approved
@@ -9,6 +10,7 @@ def client_approved(user):
         return False
     else:
         return client.approved
+
 
 def not_in_clients(user):
     """
