@@ -103,14 +103,20 @@ def project_details(request, slug):
     """
     try:
         current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
-
-        # see if the user is approved
-        if client_approved(request.user):
-            queryset = Project.objects.filter(consultant_id=current_consultant)
+        # see if there is a logged in user
+        if request.user.is_authenticated:
+            # see if the user logged-in is approved
+            if client_approved(request.user):
+                queryset = Project.objects.filter(
+                    consultant_id=current_consultant)
+            else:
+                queryset = Project.objects.filter(
+                    consultant_id=current_consultant, confidential=False
+                )
         else:
             queryset = Project.objects.filter(
-                consultant_id=current_consultant, confidential=False
-            )
+                    consultant_id=current_consultant, confidential=False
+                )
 
         project = get_object_or_404(queryset, slug=slug)
 
@@ -149,7 +155,7 @@ def project_details(request, slug):
         show_videos = videos.exists()
 
     except Exception as e:
-        error_message = f"A general error occurred: {e}."
+        error_message = f"A general error occurred in project details: {e}."
         print(error_message)
         print(type(e))
         return redirect('home')
