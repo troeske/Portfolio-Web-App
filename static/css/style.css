@@ -7,6 +7,10 @@ main {
     background-color: #cccaca;
 }
 
+.ts-error {
+    color: red;
+}
+
 .ts_navbar {
     font-family: var(--ts-p-std-font-family), sans-serif;
 }
