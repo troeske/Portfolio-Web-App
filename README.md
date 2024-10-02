@@ -115,6 +115,19 @@ For the showcase, al normal text is based on the sans-serif free Google font Int
 
 ## Current Features:
 
+### Styling through database config
+To enable a consultant to change the basic appearance of the LIVING RESUME without changing the css, the LIVING RESUME implements a database approach to managing a first selection of styling options. In future releases more options will be made available. 
+
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727902490/screenshot_admin_interface_config_model_qkadec.png"  width="300" height="auto" alt="collaboration request">
+<br>
+
+To achieve this database storage of styling parameters, the site is using css custom properties. When a page is loaded the config model is read and respective values are stored in css custom properties. The only way I found was to use django template language for html files and injected the respective part of css code into the html page through a [style] section.
+
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727903033/screenshot_db_config_css_cust_prop_in_html_yyremo.png"  width="300" height="auto" alt="collaboration request">
+<br>
+
 ### Home
 ### About
 ### Project List
@@ -123,13 +136,26 @@ For the showcase, al normal text is based on the sans-serif free Google font Int
 The first viewport of the detail project page
 <br>
 
+### Add project
+Consultants will constantly add to their project portfolio. To have a first option to add such a new project to their LIVING RESUME, the consultant (superuser/admin) can use the [Site Admin] menu to 'add project'. The add project page will guide the consultant through the process using links to the django admin interface.
+
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727902030/screenshot_new_project_qr6re2.png"  width="300" height="auto" alt="collaboration request">
+<br>
 
 ### Contact
 
+The contact / collaboration form allows a potential client to get in contact with the consultant.
 <br>
 <img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727898982/screenshot_contact_fdviz3.png"  width="300" height="auto" alt="collaboration request">
+<br>
 
-### Sign-up/Sign-in/Sin-out
+If the user is alreader signe-up the contact form is prefilled with any existing data known about the user:
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727901537/screenshot_contact_signed_in_plpvzc.png"  width="300" height="auto" alt="collaboration request">
+<br>
+
+### Sign-up/Sign-in/Sign-out
 
 <br>
 <img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727898983/screenshot_sign-up_wpjlr8.png"  width="300" height="auto" alt="sign-up">
@@ -147,7 +173,11 @@ The first viewport of the detail project page
 
 ### Access to confidential projects after login
 
-### Approval of sign-up clients
+Clients can only see projects that are marked as confidential if they have signed-in and have been approved by the consultant (superuser/admin) e.g. after signing an NDA or providng additional data.
+
+### Approval of signed-up clients
+
+The consultant (superuser/admin) can approve individual clients who have signed-up via the [site admin] menue of the LIVING RESUME site after signing-in
 
 <br>
 <img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727898654/screenshot_1_registrations.html_hpgrwm.png"  width="300" height="auto" alt="registration approval">
@@ -160,9 +190,9 @@ The first viewport of the detail project page
 ### Full CRUD
 __C__ reate: The [Contact Form](https://portfolio-site-consultant-ee5192104007.herokuapp.com/contact/) implements the create part through a form POST view
 <br>
-__R__ ead: almost every page implements a read from the database as all displayed info is stored in the a respective model. E.g. (when logged in a superuser/admin) [registrations list](https://portfolio-site-consultant-ee5192104007.herokuapp.com/projects/client_registration_list)
+__R__ ead: almost every page implements a read from the database as all displayed info is stored in the respective model. E.g. (when logged in a superuser/admin) [registrations list](https://portfolio-site-consultant-ee5192104007.herokuapp.com/projects/client_registration_list)
 <br>
-__U__ pdate: the (when logged in a superuser/admin) [registration list](https://portfolio-site-consultant-ee5192104007.herokuapp.com/projects/client_registration_list) implements an update of the field [approved] in the Client model (projects app) setting approved=TRUE through the approve_client(request, id) view.
+__U__ pdate: the (when logged in a superuser/admin) [registration list](https://portfolio-site-consultant-ee5192104007.herokuapp.com/projects/client_registration_list) implements an update of the field [approved] in the Client model (projects app) setting approved=True through the approve_client(request, id) view.
 <br>
 __D__ delete: the (when logged in a superuser/admin) [registration list](https://portfolio-site-consultant-ee5192104007.herokuapp.com/projects/client_registration_list) also implements the delete function through the [Delete] button and client_delete(request, username) view.
 <br>
