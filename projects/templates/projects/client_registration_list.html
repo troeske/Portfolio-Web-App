@@ -37,7 +37,7 @@
                     {% endif %}
                     <td>
                         {% if registration.allow_delete %} 
-                        <button class="btn btn-delete mb-2 me-2" data-user="{{ registration.client }}">Delete</button>
+                        <button class="btn ts-btn-delete mb-2 me-2" data-user="{{ registration.client }}">Delete</button>
                         {% endif %}
                         {% if not registration.approved %} 
                         <a id="approveClient" href="{% url 'approve_client' registration.id %}" class="btn btn-danger mb-2 me-2">Approve</a>

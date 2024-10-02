@@ -405,6 +405,11 @@ main {
     padding-top: 6px;
 }
 
+.ts-btn-delete {
+    color: #fff;
+    background: #E84610;
+}
+
 /* reused from walkthrough project */
 .project-link {
     text-decoration: none;
