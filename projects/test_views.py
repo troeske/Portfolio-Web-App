@@ -7,7 +7,25 @@ from home.models import Consultant, User
 
 
 class TestProjectsListView(TestCase):
-    """Testing thje projects list view
+    """
+    TestProjectsListView is a test case for testing the Projects List View in
+    a Django application.
+
+    Methods:
+        setUp():
+            Sets up the necessary objects and state for the tests,
+            including creating a user, consultant, client instance,
+            and a project.
+
+        test_render_confidential_projects_for_approved(mock_client_approved):
+            Tests that confidential projects are rendered for approved clients.
+            Mocks the client_approved function to return True and checks
+            the response content.
+
+        test_dont_render_confidential_projects(mock_client_approved):
+            Tests that confidential projects are not rendered for non-approved
+            clients. Mocks the client_approved function to return False
+            and checks the response content.
     """
 
     def setUp(self):
@@ -75,9 +93,20 @@ class TestProjectsListView(TestCase):
 
 class TestClientDeleteView(TestCase):
     """
-    Testing the client delete view
-    """
+    TestClientDeleteView is a test case for verifying the client delete
+    view functionality.
 
+    Methods:
+        setUp():
+            Sets up the test environment by creating a superuser and
+            a normal user.
+
+        test_superuser_can_delete_client():
+            Tests that a superuser can successfully delete a normal user.
+
+        test_non_superuser_cannot_delete_client():
+            Tests that a non-superuser cannot delete a superuser.
+    """
     def setUp(self):
         self.test_client = TestClient()
         self.superuser = User.objects.create_superuser(
@@ -106,9 +135,23 @@ class TestClientDeleteView(TestCase):
 
 class TestApproveClientView(TestCase):
     """
-    Testing the approve client view
-    """
+    TestApproveClientView is a test case for the approve client view.
 
+    Methods:
+        setUp():
+            Sets up the test environment by creating a test client,
+            a superuser, a normal user, a consultant, and a client instance.
+
+        test_superuser_can_approve_client():
+            Tests that a superuser can approve a client by logging in as the
+            superuser and posting to the approve client view.
+            Asserts that the client is approved.
+
+        test_normaluser_cannot_approve_client():
+            Tests that a normal user cannot approve a client by logging in
+            as the normal user and posting to the approve client view.
+            Asserts that the client is not approved.
+    """
     def setUp(self):
         self.test_client = TestClient()
         self.superuser = User.objects.create_superuser(

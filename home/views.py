@@ -11,7 +11,31 @@ from projects.utils import client_approved
 
 def consultant_home(request):
     """
-    Renders the home page
+    Renders the home page for the consultant.
+
+    This view function retrieves the current consultant's information, social
+    accounts, customers, and projects to display on the home page. It handles
+    different scenarios based on the user's authentication status and whether
+    the user is approved as a client.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered home page with the consultant's information,
+        social accounts, customers, and projects.
+
+    Context:
+        consultant (Consultant): The current consultant object.
+        socials (QuerySet): A queryset of the consultant's social accounts.
+        customers (QuerySet): A queryset of the consultant's customers.
+        show_customers (bool): A flag indicating whether to show customers.
+        projects (QuerySet): A queryset of the consultant's projects.
+        show_projects (bool): A flag indicating whether to show projects.
+
+    Exceptions:
+        Redirects to the home page if an exception occurs and logs the error
+        message.
     """
     try:
         current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
@@ -66,7 +90,40 @@ def consultant_home(request):
 
 def consultant_about(request):
     """
-    Renders the about page
+    Renders the about page for the current consultant.
+
+    This view function retrieves various details about the current consultant,
+    including their skills, tools, interests, roles, past employments, press
+    links, and methodologies (hows). It then renders the 'about' page with
+    this information.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered 'about' page with the consultant's details.
+
+    Context:
+        consultant (Consultant): The current consultant object.
+        skills (QuerySet): A queryset of the consultant's skills.
+        show_skills (bool): Whether the consultant has any skills.
+        tools (QuerySet): A queryset of the consultant's tools.
+        show_tools (bool): Whether the consultant has any tools.
+        interests (QuerySet): A queryset of the consultant's interests.
+        show_interests (bool): Whether the consultant has any interests.
+        roles (QuerySet): A queryset of the consultant's roles.
+        show_roles (bool): Whether the consultant has any roles.
+        pastemployments (QuerySet): A queryset of past employments.
+        show_pastemployments (bool): Are there any past employments.
+        presslinks (QuerySet): A queryset of the consultant's press links.
+        show_presslinks (bool): Whether the consultant has any press links.
+        hows (QuerySet): A queryset of the consultant's methodologies (hows).
+        show_how (bool): Whether the consultant has any methodologies.
+
+    Raises:
+        Exception: If any error occurs during the retrieval of consultant
+                   details, an error message is printed and the user is
+                   redirected to the home page.
     """
     try:
         current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
@@ -138,6 +195,25 @@ def consultant_about(request):
 
 
 def reload_config(request):
+    """
+    Reloads the configuration settings for the current consultant from the
+    database and updates the global context configuration data.
+
+    This function performs the following steps:
+    1. Retrieves the current consultant's ID from the configuration.
+    2. Fetches the consultant's details (first name, last name, email)
+       and updates the global context configuration data.
+    3. Fetches all configuration settings for the current consultant
+       and updates the global context configuration data.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the 'home' view on success.
+        HttpResponse: Redirects to the 'home' view on error, with an
+                      error message printed to the console.
+    """
     try:
         CURRENT_CONSULTANT = Config.objects.get(key="CURRENT_CONSULTANT").value
         # get all config data for the current consultant from the db

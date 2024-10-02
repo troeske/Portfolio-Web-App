@@ -7,6 +7,56 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Project(models.Model):
+    """
+    Project model representing a project in the portfolio web application.
+
+    Attributes:
+        project_id (AutoField): Primary key for the project.
+        consultant_id (ForeignKey): Foreign key to the Consultant model,
+                                with a related name of 'consultant_projects'.
+        title (CharField): Title of the project, must be unique and have
+                           a maximum length of 200 characters.
+        slug (SlugField): URL-friendly representation of the title, must be
+                          unique and have a maximum length of 200 characters.
+        sub_heading (CharField): Optional sub-heading for the project, with a
+                                 maximum length of 250 characters.
+        summary (TextField): Optional summary of the project.
+        project_image (CloudinaryField): Image associated with the project,
+                                         defaults to 'placeholder'.
+        image_alt_text (CharField): Optional alt text for the project image,
+                                    with a maximum length of 200 characters.
+        detail_image (CloudinaryField): Detailed image associated with the
+                                        project, defaults to 'placeholder'.
+        detail_image_alt (CharField): Optional alt text for the detailed image,
+                                      with a maximum length of 200 characters.
+        confidential (BooleanField): Indicates if the project is confidential,
+                                     defaults to True.
+        display_order (IntegerField): Order in which the project is displayed,
+                                      defaults to 0.
+        link (URLField): Optional URL link related to the project, with a
+                         maximum length of 250 characters.
+        link_text (CharField): Optional text for the link, with a
+                               maximum length of 200 characters.
+        customer (CharField): Optional customer name associated with the
+                              project, with a maximum length of 250 characters.
+        start (DateField): Start date of the project, defaults to today's date.
+        end (DateField): End date of the project, defaults to today's date.
+        show_in_home (BooleanField): Indicates if the project should be shown
+                                     on the home page, defaults to True.
+
+    Relationships (ManyToOne):
+        categories: Many-to-one relationship with the Category model.
+        learnings: Many-to-one relationship with the Learning model.
+        sections: Many-to-one relationship with the Section model.
+
+    Meta:
+        ordering (list): Default ordering of projects by consultant_id
+                         and display_order.
+
+    Methods:
+        __str__: Returns a string representation of the project in the
+                 format 'consultant_id | title'.
+    """
     project_id = models.AutoField(primary_key=True)
     consultant_id = models.ForeignKey(
         Consultant, on_delete=models.CASCADE,
@@ -86,6 +136,31 @@ class Learning(models.Model):
 
 
 class Section(models.Model):
+    """
+    Section model represents a section within a project.
+
+    Attributes:
+        project_id (ForeignKey): Reference to the associated Project.
+        heading_1 (CharField): Primary heading of the section, optional.
+        heading_2 (CharField): Secondary heading of the section, optional.
+        text (TextField): Main content of the section, optional.
+        display_order (IntegerField): Order in which the section is displayed
+                                      within the project.
+        orientation_right (BooleanField): Flag indicating if the section is
+                                          oriented to the right.
+
+    Relationships:
+        section_images: One-to-many relationship with the SectionImages model.
+        section_videos: One-to-many relationship with the SectionVideo model.
+        section_urls: One-to-many relationship with the SectionURLS model.
+
+    Meta:
+        ordering (list): Default ordering of sections by project_id
+                         and display_order.
+
+    Methods:
+        __str__(): Returns a string representation of the section.
+    """
     project_id = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name="projects_sections"
         )

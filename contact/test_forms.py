@@ -9,6 +9,24 @@ from unittest.mock import patch
 
 
 class CollaborationFormTest(TestCase):
+    """
+    Unit tests for the CollaborationForm.
+
+    Test Cases:
+    - setUp: Initializes a Consultant instance and sets the
+             CONTEXT_CONFIG_DATA.
+    - test_form_valid: Tests that the form is valid with all required fields
+                       filled correctly.
+    - test_form_invalid_missing_fields: Tests that the form is invalid when
+                                        required fields are missing.
+    - test_form_invalid_email: Tests that the form is invalid when an
+                               incorrect email format is provided.
+    - test_form_max_length: Tests that the form is invalid when the input
+                            exceeds the maximum length for first_name
+                            and last_name.
+    - test_collaboration_form_save: Tests that a valid form can be saved
+                            and the saved instance has the correct data.
+    """
 
     def setUp(self):
         # Create a Consultant instance to be referenced by the form
@@ -86,7 +104,23 @@ class CollaborationFormTest(TestCase):
 
 class CollaborationFormSubmissionTests(TestCase):
     """
-    unnittest for the collaboration form submission (post request)
+    Unit tests for the collaboration form submission (POST request).
+
+    This test case verifies the following:
+    - A Consultant instance is created and referenced by the form.
+    - The form submission is successful and results in a redirect response.
+    - A CollaborationRequest instance is created in the database with the
+      correct data.
+    - Two emails are sent: one to the client and one to the consultant.
+    - The content of the emails is verified to ensure they contain the
+      expected information.
+
+    Test Methods:
+    - setUp: Sets up the test environment by creating a Consultant instance
+      and configuring settings.
+    - test_successful_collaboration_form_submission: Tests the successful
+      submission of the collaboration form, verifies the database entry,
+      and checks the email content.
     """
     def setUp(self):
         # Create a Consultant instance to be referenced by the form

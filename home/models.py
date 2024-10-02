@@ -13,6 +13,46 @@ TYPE = (
 
 
 class Consultant(models.Model):
+    """
+    Consultant Model
+
+    Relationships: (ManyToOne):
+    - Skill
+    - PastEmployment
+    - How
+    - PressLink
+    - Customer
+    - SocialAccount
+    - Config
+    - Projects/project
+
+    Attributes:
+        consultant_id (AutoField): Primary key for the Consultant model.
+        first_name (CharField): First name of the consultant, optional with a
+                                max length of 200 characters.
+        last_name (CharField): Last name of the consultant, optional with a
+                               max length of 200 characters.
+        email (EmailField): Email address of the consultant, optional.
+        intro_text_heading (CharField): Heading for the introduction text,
+                                required with a max length of 200 characters.
+        intro_text (TextField): Introduction text for the consultant, required.
+        about_me (TextField): About me section for the consultant, required.
+        profile_image (CloudinaryField): Profile image of the consultant,
+                                         defaults to 'placeholder'.
+        phone (CharField): Phone number of the consultant, optional with a
+                            max length of 50 characters.
+        street (CharField): Street address of the consultant, optional with a
+                            max length of 200 characters.
+        city (CharField): City of the consultant, optional with a
+                          max length of 100 characters.
+        zip (CharField): ZIP code of the consultant, optional with a
+                         max length of 10 characters.
+        country (CharField): Country of the consultant, optional with a
+                             max length of 100 characters.
+
+    Methods:
+        __str__(): Returns the full name of the consultant.
+    """
     consultant_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=200, blank=True)
     last_name = models.CharField(max_length=200, blank=True)

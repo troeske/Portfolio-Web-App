@@ -8,7 +8,24 @@ from django.conf import settings
 
 def collaboration_request_list(request):
     """
-    Renders the Collaboration Request (CR) list page
+    Renders the Collaboration Request (CR) list page.
+
+    This view function retrieves the list of collaboration requests associated
+    with the current consultant from the database, orders them by request date
+    (descending) and last name (ascending), and renders them in the
+    'contact/collaboration_request_list.html' template.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered collaboration request list page or a
+        redirection to the home page in case of an error.
+
+    Raises:
+        Exception: If an error occurs during the retrieval of collaboration
+        requests, an error message is printed and the user is redirected to
+        the home page.
     """
     try:
         current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
@@ -38,7 +55,22 @@ def collaboration_request_list(request):
 
 
 def contact(request):
-    """Handle collaboration requests."""
+    """
+    Handle collaboration requests.
+
+    This view handles POST requests to submit a collaboration form. If the
+    form is valid, it saves the collaboration request and sends confirmation
+    emails to both the client and the consultant. In case of errors, it handles
+    database and general exceptions, redirecting to the home page if necessary.
+    For GET requests, it renders the contact form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object, either rendering the contact
+        form or redirecting to the home page in case of errors.
+    """
     if request.method == "POST":
         collaboration_form = CollaborationForm(data=request.POST)
         if collaboration_form.is_valid():

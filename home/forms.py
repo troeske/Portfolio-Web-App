@@ -7,11 +7,24 @@ from django.conf import settings
 
 class CustomSignupForm(SignupForm):
     """
-    customizing the signup form to show first name and last name
-    suggested by github copilot.
-    removing the ('optional') from email field to encourage the user
-    to fill it out for later use
+    CustomSignupForm extends the default SignupForm to include additional
+    fields for first name and last name, and modifies the email field to
+    be required.
 
+    Suggested by github copilot.
+
+    Attributes:
+        first_name (forms.CharField): A form field for the user's first name.
+        last_name (forms.CharField): A form field for the user's last name.
+        email (forms.EmailField): A form field for the user's email, set
+        as required.
+
+    Methods:
+        __init__(self, *args, **kwargs): Initializes the form and updates
+        field labels and placeholders.
+        save(self, request): Saves the user instance with additional first name
+                             and last name fields, and sends an
+                             email notification to the consultant.
     """
     first_name = forms.CharField(max_length=30, label='First Name')
     last_name = forms.CharField(max_length=30, label='Last Name')
@@ -44,6 +57,23 @@ class CustomSignupForm(SignupForm):
         ])
 
     def save(self, request):
+        """
+        Saves the user information and sends a notification email to
+        the consultant.
+
+        Args:
+            request: The HTTP request object containing the form data.
+
+        Returns:
+            user: The saved user instance with updated first/last name.
+
+        This method performs the following actions:
+        1. Saves the user instance using the parent class's save method.
+        2. Updates the user's first name and last name with the cleaned
+           data from the form.
+        3. Sends an email notification to the consultant with the
+           new registration details.
+        """
         user = super(CustomSignupForm, self).save(request)
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']

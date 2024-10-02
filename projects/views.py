@@ -12,7 +12,24 @@ from django.conf import settings
 
 def projects_list(request):
     """
-    Renders the projects home page
+    Renders the projects home page.
+
+    This view handles the display of projects based on user's authentication
+    status and approval. It fetches projects associated with the current
+    consultant and filters them based on confidentiality if the user is not
+    authenticated or not approved.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered projects home page with the context
+        containing the list of projects and a flag indicating if there
+        are projects to show.
+
+    Raises:
+        Exception: If any error occurs during the process, it logs the error
+        and redirects to the home page.
     """
     try:
         current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
@@ -57,7 +74,32 @@ def projects_list(request):
 
 def project_details(request, slug):
     """
-    Renders the project details page
+    Args:
+        request (HttpRequest): The HTTP request object.
+        slug (str): The slug of the project to retrieve.
+
+    Returns:
+        HttpResponse: The rendered project details page or a
+        redirect to the home page in case of an error.
+
+    Context:
+        project (Project): The project object retrieved by the slug.
+        categories (QuerySet): The categories associated with the project.
+        show_categories (bool): Whether there are any categories to display.
+        learnings (QuerySet): The learnings associated with the project.
+        show_learnings (bool): Whether there are any learnings to display.
+        sections (QuerySet): The sections associated with the project.
+        show_sections (bool): Whether there are any sections to display.
+        section_image_counts (dict): A dictionary mapping section IDs to the c
+        ount of images in each section.
+        images (QuerySet): All images ordered by display order and alt text.
+        show_images (bool): Whether there are any images to display.
+        videos (QuerySet): All videos ordered by display order, video alt text.
+        show_videos (bool): Whether there are any videos to display.
+
+    Raises:
+        Exception: If any error occurs during the retrieval of project details,
+        it logs the error and redirects to the home page.
     """
     try:
         current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
@@ -136,7 +178,24 @@ def project_details(request, slug):
 
 def client_registration_list(request):
     """
-    CRUD basis for the client registration list page
+    Handles the client registration list page with CRUD operations.
+
+    This view performs the following actions:
+    - If the user is a superuser:
+        - Retrieves all users and adds new users/clients to the Client table.
+        - Sets the `allow_delete` flag if the user is a superuser.
+        - Retrieves a list of all clients of the current consultant.
+        - Handles any exceptions that occur during the process and redirects to
+          the home page.
+    - If the user is not a superuser:
+        - Sets the context to indicate no registrations to show.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered client registration list page with the
+        appropriate context.
     """
     current_consultant = settings.CONTEXT_CONFIG_DATA['CURRENT_CONSULTANT']
 
