@@ -1,7 +1,9 @@
 # THE LIVING RESUME
 This is a web site / app to showcase the portfolio and resume of developers, UX/UI designers or even consultants in general: [MY LIVING RESUME](https://portfolio-site-consultant-ee5192104007.herokuapp.com/) . 
 <br>
-<img src="xxx"  width="300" height="auto" alt="Portfolio home">
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727948555/screenshot_home_w0potp.png"  width="650" height="auto" alt="Portfolio home">
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727949226/screenshot_home_mobile_vp1_mss7jq.png"  width="300" height="auto" alt="Portfolio home">
 
 I was inspired to implement this web app to help developers (e.g. me), UX/UI designers and consultants (herein referred to as 'consultants') showcase their ever evolving experience in an easy to maintainable way. Current resume sites are static and adding or changing content on the site, in most cases, requires editing the html code of the site. As it is the nature of what we do, every day, we will expand our skills and gain experience and our public available portfolio should reflect that. This puts the need for easy editing and extending on the forefront of the LIVING RESUME web app.
 
@@ -129,12 +131,34 @@ To achieve this database storage of styling parameters, the site is using css cu
 <br>
 
 ### Home
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727948555/screenshot_home_w0potp.png"  width="500" height="auto" alt="Portfolio home">
+
 ### About
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727948569/screenshot_about_1_m3m146.png"  width="500" height="auto" alt="About First Viewport">
+
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727948568/screenshot_about_2_zwjhlc.png"  width="500" height="auto" alt="About Second Viewport">
+
 ### Project List
+
+Depending on the sign-in status the project list will only show confidential projects once the user has signed-in with an approved account:
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727949104/screenshot_project_list_not_signed-in_z9wswm.png"  width="500" height="auto" alt="Project List">
+
+<br>
+And signed-in:
+<br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727948565/screenshot_projects_jv8y76.png"  width="500" height="auto" alt="Project List">
+<br>
+
 ### Project Details
 
 The first viewport of the detail project page
 <br>
+<img src="https://res.cloudinary.com/dqd3t6mmb/image/upload/v1727948556/screenshot_project_detail_edc_hbshgz.png"  width="500" height="auto" alt="Project Details Hotel EDC">
+
 
 ### Add project
 Consultants will constantly add to their project portfolio. To have a first option to add such a new project to their LIVING RESUME, the consultant (superuser/admin) can use the [Site Admin] menu to 'add project'. The add project page will guide the consultant through the process using links to the django admin interface.
@@ -373,7 +397,10 @@ favicon: https://www.freepik.com/icon
 
 ### Any other resources
 https://validator.w3.org/nu/#textarea
+
 https://jigsaw.w3.org/css-validator/validator
+
+https://jshint.com/
 
 I used https://tabletomarkdown.com/convert-spreadsheet-to-markdown/ to convert my Google Sheets manual testing matrix into a to table for this readme.
 
