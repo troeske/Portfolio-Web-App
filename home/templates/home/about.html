@@ -159,7 +159,7 @@
         {% if show_presslinks %}
         <p class="ts-about-section5-heading mb-2">Press</p>
         {% for presslink in presslinks %}
-        <p class="ts-about-section5-text ps-2"><a href="{{ presslink.link.url }}" target="_blank"><i class="fa-solid fa-up-right-from-square"></i><span class="ms-1">{{ presslink.link_text }}</span></a></p>
+        <p class="ts-about-section5-text ps-2"><a href="{{ presslink.link }}" target="_blank"><i class="fa-solid fa-up-right-from-square"></i><span class="ms-1">{{ presslink.link_text }}</span></a></p>
         {% endfor %}
         {% endif %}
     </div>

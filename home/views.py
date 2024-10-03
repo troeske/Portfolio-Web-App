@@ -165,6 +165,7 @@ def consultant_about(request):
         presslinks = PressLink.objects.filter(
             consultant_id=current_consultant
         )
+        
         show_presslinks = presslinks.exists()
 
     except Exception as e:
