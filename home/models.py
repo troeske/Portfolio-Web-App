@@ -104,9 +104,7 @@ class PastEmployment(models.Model):
     role = models.CharField(max_length=200, blank=True)
     text = models.TextField(blank=True)
     link_text = models.CharField(max_length=250, blank=True)
-    link = models.URLField(
-        max_length=250, blank=False, default="https://www.google.com"
-    )
+    link = models.URLField(max_length=250, blank=True )
     logo = CloudinaryField('image', default='placeholder')
     logo_alt_text = models.CharField(max_length=200, blank=True)
 

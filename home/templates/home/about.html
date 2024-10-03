@@ -7,18 +7,18 @@
     <h2 class="visually-hidden">About Section</h2>
     <div class="container-fluid mt-5 pb-2">
         <div class="row">
-            <div class="col-3 col-sm-1">
+            <div class="col-2 col-sm-1">
                 <!-- intentionally left blank for later design improvements -->
             </div>
-            <div class="col-9 col-sm-11 ps-0">
+            <div class="col-10 col-sm-11 ps-0">
                 <p class="ts-about-aboutme">{{ consultant.about_me }}</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-3 col-sm-1 ps-0">
+            <div class="col-2 col-sm-1 ps-0">
                 <!-- intentionally left blank for later design improvements -->
             </div>
-            <div class="col-9 col-sm-11 ps-0">
+            <div class="col-10 col-sm-11 ps-0">
                 <p class="ts-p-std text-start text-sm-start fw-bold ps-0 mb-0">{{ consultant.first_name }} {{ consultant.last_name }}</p>
                 <p class="ts-p-std text-start text-sm-start ps-0">{{ consultant.city }}.{{ consultant.country }}</p>
             </div>
@@ -84,7 +84,7 @@
             <div class="col-1 col-sm-1 ps-2">
                 <!-- intentionally left blank for later design improvements -->
             </div>
-            <div class="col-11 d-sm-none ps-2 py-0">
+            <div class="col-11 d-sm-none ps-2 pe-4 py-0">
                 <p class="ts-about-section2-p lh-1 pt-2 my-0">{{ pastemployment.role }}</p>
                 <p class="ts-about-section2-p lh-1 pt-1 pb-2 my-0">{{ pastemployment.city }}, {{ pastemployment.start|date:"m/y" }} - {{ pastemployment.end|date:"m/y" }}</p>
             </div>
