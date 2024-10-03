@@ -71,8 +71,15 @@
                     {% if section.heading_2 %}<h2 class="ts-sheading2">{{ section.heading_2 }}</h2>{% endif %}
                 </div>
                 <div class="ps-0 pe-3">
-                    {% if section.text %}<p class="ts-p-std">{{ section.text }}</p>{% endif %}
+                    {% if section.text %}<p class="ts-p-std mb-2">{{ section.text }}</p>{% endif %}
                 </div>
+                {% if show_urls %}
+                {% for url in urls %}
+                <div>
+                    {% if url.link_text %}<a href="{{ url.link }}" target="_blank"><p class="ts-p-std mb-0">{{ url.link_text }}</p></a>{% endif %}
+                </div>
+                {% endfor %}
+                {% endif %}
             </div>
             <div class="d-none d-sm-block col-sm-1">
                 <!-- intentionally left blank for later design improvements -->

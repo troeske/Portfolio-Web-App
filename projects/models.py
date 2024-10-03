@@ -150,7 +150,7 @@ class Section(models.Model):
                                           oriented to the right.
 
     Relationships:
-        section_images: One-to-many relationship with the SectionImages model.
+        section_images: One-to-many relationship with the SectionImage model.
         section_videos: One-to-many relationship with the SectionVideo model.
         section_urls: One-to-many relationship with the SectionURLS model.
 
@@ -177,7 +177,7 @@ class Section(models.Model):
         return f"{self.project_id} | {self.heading_1}"
 
 
-class SectionImages(models.Model):
+class SectionImage(models.Model):
     section = models.ForeignKey(
         Section, on_delete=models.CASCADE, related_name="section_images"
         )
@@ -214,7 +214,7 @@ class SectionVideo(models.Model):
         return f"{self.section} | {self.video_alt_text} | {self.display_order}"
 
 
-class SectionURLS(models.Model):
+class SectionURL(models.Model):
     section = models.ForeignKey(
         Section, on_delete=models.CASCADE, related_name="section_urls"
         )
@@ -226,4 +226,4 @@ class SectionURLS(models.Model):
         ordering = ["section_id", "display_order"]
 
     def __str__(self):
-        return f"{self.section_id} | {self.alt_text}"
+        return f"{self.section_id} | {self.link_text}"

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.models import User
 from .models import Project, Category, Learning, Section
-from .models import SectionImages, Client, SectionVideo
+from .models import SectionImage, Client, SectionVideo, SectionURL
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -135,14 +135,22 @@ def project_details(request, slug):
         )
         show_sections = sections.exists()
 
+        urls = SectionURL.objects.all().order_by(
+            "display_order",
+            "link_text"
+            )
+        show_urls = urls.exists()
+        
+        
         # calculate the number of images per section for the image carousel
+        # proposed by Github Copilot
         section_image_counts = {
-            section.id: SectionImages.objects.filter(
+            section.id: SectionImage.objects.filter(
                 section_id=section).count()
             for section in sections
         }
 
-        images = SectionImages.objects.all().order_by(
+        images = SectionImage.objects.all().order_by(
             "display_order",
             "alt_text"
             )
@@ -168,6 +176,8 @@ def project_details(request, slug):
         "show_learnings": show_learnings,
         "sections": sections,
         "show_sections": show_sections,
+        "urls": urls,
+        "show_urls": show_urls,
         "images": images,
         'section_image_counts': section_image_counts,
         "show_images": show_images,
