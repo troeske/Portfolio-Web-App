@@ -160,7 +160,7 @@ main {
 }
 
 .ts-skills-container {
-    width: 220px;
+    width: 260px;
     background-color: var(--ts-about-skills-card-bg-color);
 }
 
@@ -177,7 +177,7 @@ main {
 }
 
 .ts-tools-container {
-    width: 220px;
+    width: 260px;
     background-color: var(--ts-about-tools-card-bg-color);
 }
 
@@ -194,7 +194,7 @@ main {
 }
 
 .ts-interests-container {
-    width: 220px;
+    width: 260px;
     background-color: var(--ts-about-interests-card-bg-color);
 }
 
@@ -340,7 +340,7 @@ main {
     justify-content: left;
     height: 100%;
 
-    position: relative; /* Parent container needs to be relative for absolute children */
+    position: relative; 
     display: inline-block;
 }
 
