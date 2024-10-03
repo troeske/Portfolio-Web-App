@@ -75,9 +75,11 @@
                 </div>
                 {% if show_urls %}
                 {% for url in urls %}
+                {% if url.section.id == section.id %}
                 <div>
                     {% if url.link_text %}<a href="{{ url.link }}" target="_blank"><p class="ts-p-std mb-0">{{ url.link_text }}</p></a>{% endif %}
                 </div>
+                {% endif %}
                 {% endfor %}
                 {% endif %}
             </div>
